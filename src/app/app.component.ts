@@ -10,6 +10,11 @@ const ships: Array<Ship> = (<any>boats).boats;
 export class AppComponent {
   title = 'Warship Website';
   shipsList = ships;
+  selectedShip: Ship;
+
+  selectShip(ship: Ship): void{
+      this.selectedShip=ship;
+  }
 }
 export class Ship {
     id: number;

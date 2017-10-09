@@ -50,3 +50,12 @@
 	display: block;
 	position: relative;
 }
+.selected-dialogue{
+	position: fixed;
+	background-color: rgba(100, 100, 100, .6);
+	width: 100vw;
+	height: 100vh;
+	top: 0px;
+	left: 0px;
+	z-index: 100;
+}

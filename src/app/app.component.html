@@ -1,18 +1,23 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div id="ships">
-    <div *ngFor="let ship of shipsList">
-        <div class="ship-header">
-            <div class="ship-header-text">
-                <h3>{{ship.name}}</h3>
+<div id="content">
+    <div id="ships">
+        <div *ngFor="let ship of shipsList" (click)="selectShip(ship)">
+            <div class="ship-header">
+                <div class="ship-header-text">
+                    <h3>{{ship.name}}</h3>
+                </div>
+                <span class="ship-header-divider"></span>
+            </div>
+            <div class="ship-content">
+                <div>
+                    <img src="{{ship.thumbnail}}">
+                </div>
             </div>
             <span class="ship-header-divider"></span>
-        </div>
-        <div class="ship-content">
-            <div>
-                <img src="{{ship.thumbnail}}">
-            </div>
-        </div>
-        <span class="ship-header-divider"></span>
 
+        </div>
     </div>
+</div>
+<div (click)="selectShip(null)" class="selected-dialogue" *ngIf="selectedShip">
+    <button >Close</button>
+    <h3>{{selectedShip.name}}</h3>
 </div>
