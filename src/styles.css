@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Russo+One');
+
+
+body{
+	font-family: 'Roboto', sans-serif;
+	background-color: white;
+	color: black;
+}
+footer{
+	width: 100%;
+	height: 300px;
+	background:  linear-gradient(to left, rgba(1, 74, 191, 1) , rgba(20, 44, 81, 1));
+	position: relative;
+
+}
+#background{
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	display: block;
+	content: '';
+	position: absolute;
+}
+#background::after{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+#content{
+	position: relative;
+	z-index: 0;
+	padding-top: 400px;
+
+}
+
+.nav-wrapper{
+	position: fixed;
+	z-index: 1;
+	width: 100vw;
+
+}
+
+.navbar{
+	display: flex;
+	flex-direction: column;
+	border-top: solid 2px rgba(1, 74, 191, .7);
+	border-bottom: solid 2px rgba(1, 74, 191, .7);
+	background:  linear-gradient(to left, rgba(1, 74, 191, .6) , rgba(20, 44, 81, .6));
+	padding: 0pt;
+}
+.nav-link{
+	background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea) !important;
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent !important;
+}
+.brand-wrapper{
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 30px;
+}
+
+.wrapper-background{
+	display: block;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	content: '';
+	position: absolute;
+	z-index: 1;
+	background-image: URL("/Pictures/Backgrounds/pixelate.png");
+}
+.wrapper-content{
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	padding-top: 20px;
+	background: linear-gradient(to left, rgba(1, 74, 191, 1) , rgba(20, 44, 81, 1));
+}
+nav{
+	position: relative;
+}
+.wrapper-content>img{
+	position: relative;
+	z-index: 2;
+	width: 100px;
+	height: 100%;
+	object-fit: cover;
+}
+.wrapper-content>h3{
+	position: relative;
+	z-index: 2;
+	font-size: 60pt;
+	color: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
+}
+.navbar-brand{
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Russo One', sans-serif;
+	color: rgba(147, 154, 165, 1);
+	font-size: 35pt;
+}
+.footer-content{
+	position: relative;
+	z-index: 2;
+	width: 100%;
+}

@@ -1,0 +1,52 @@
+#ships{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 20px;
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 2px;
+
+}
+#ships>div{
+	margin: 20pt;
+	width: inherit;
+	height: inherit;
+}
+
+#ships img{
+	object-fit: contain;
+	width: 400px;
+	height: 200px;
+
+}
+.ship-content{
+	padding: 0pt;
+
+}
+.ship-header{
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.ship-header-divider{
+	display: inline-block;
+	height: 3px;
+	content: '';
+	width: 100%;
+	background-color: rgba(1, 74, 191, .7);
+
+}
+.ship-header-text{
+	padding: 0px;
+	margin: 0px;
+}
+.ship-header-text h3{
+	padding: 0px;
+	margin: 0px;
+}
+.ship-header-background{
+	display: block;
+	position: relative;
+}

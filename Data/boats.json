@@ -1,0 +1,78 @@
+{
+    "boats":[
+        {
+            "id": 0,
+            "name": "Scharnhorst",
+            "weaponSystems": [
+                {
+                    "id": 0,
+                    "name": "11 Inch Gun",
+                    "quantity": 9
+                }
+            ],
+            "thumbnail": "/Pictures/Ships/Thumbnails/scharnhorst.png"
+
+        },
+        {
+            "id": 1,
+            "name": "Yamato",
+            "weaponSystems": [
+                {
+                    "id": 0,
+                    "name": "18 Inch Gun",
+                    "quantity": 9
+                }
+            ],
+            "thumbnail": "/Pictures/Ships/Thumbnails/yamato.png"
+
+        },
+        {
+            "id": 2,
+            "name": "Iowa",
+            "weaponSystems": [
+                {
+                    "id": 0,
+                    "name": "16 Inch Gun",
+                    "quantity": 9
+                }
+            ],
+            "thumbnail": "/Pictures/Ships/Thumbnails/iowa.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Bismarck",
+            "weaponSystems": [
+                {
+                    "id": 0,
+                    "name": "16 Inch Gun",
+                    "quantity": 9
+                }
+            ],
+            "thumbnail": "/Pictures/Ships/Thumbnails/iowa.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Nagato",
+            "weaponSystems": [
+                {
+                    "id": 0,
+                    "name": "16 Inch Gun",
+                    "quantity": 9
+                }
+            ],
+            "thumbnail": "/Pictures/Ships/Thumbnails/iowa.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Izumo",
+            "weaponSystems": [
+                {
+                    "id": 0,
+                    "name": "16 Inch Gun",
+                    "quantity": 9
+                }
+            ],
+            "thumbnail": "/Pictures/Ships/Thumbnails/iowa.jpg"
+        }
+    ]
+}
