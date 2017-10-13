@@ -6,6 +6,8 @@ body{
 	font-family: 'Roboto', sans-serif;
 	background-color: white;
 	color: black;
+	overflow-x: hidden;
+
 }
 footer{
 	width: 100%;

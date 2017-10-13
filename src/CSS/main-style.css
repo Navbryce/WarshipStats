@@ -2,16 +2,13 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding: 20px;
-	margin-left: 10%;
-	margin-right: 10%;
-	border-radius: 2px;
-
+	padding-left: 5%;
+	padding-right: 5%;
+	width: 100vw;
 }
 #ships>div{
 	margin: 20pt;
-	width: inherit;
-	height: inherit;
+	cursor: pointer;
 }
 
 #ships img{
@@ -20,10 +17,11 @@
 	height: 200px;
 
 }
+
 .ship-content{
 	padding: 0pt;
-
 }
+
 .ship-header{
 	display: flex;
 	width: 100%;
@@ -51,11 +49,52 @@
 	position: relative;
 }
 .selected-dialogue{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: fixed;
-	background-color: rgba(100, 100, 100, .6);
 	width: 100vw;
 	height: 100vh;
 	top: 0px;
 	left: 0px;
 	z-index: 100;
+}
+.selected-dialogue::after{
+	display: block;
+	position: absolute;
+	content: '';
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(200, 200, 200, .5);
+	z-index: 0;
+
+
+}
+.selected-box{
+	position: relative;
+	z-index: 1;
+	padding-left: 2%;
+	padding-right: 2%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.selected-box-header{
+	width: 100%;
+	position: relative;
+	background: linear-gradient(to left, rgba(1, 74, 191, 1) , rgba(20, 44, 81, 1));
+	margin: 0px;
+	padding: 0px;
+}
+.selected-box-header h3{
+	margin: 0px;
+	padding: 0px;
+}
+.selected-box-content{
+	background-color: white;
+}
+.selected-box-shipimg{
+	width: 500px;
+	height: 300px;
+	object-fit: contain;
+
 }

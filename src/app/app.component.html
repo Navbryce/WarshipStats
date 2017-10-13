@@ -17,7 +17,16 @@
         </div>
     </div>
 </div>
-<div (click)="selectShip(null)" class="selected-dialogue" *ngIf="selectedShip">
-    <button >Close</button>
-    <h3>{{selectedShip.name}}</h3>
+<div (click)="selectShip(null)"  *ngIf="selectedShip" [@dialogueState]="dialogueState" class="selected-dialogue">
+    <div class="selected-box">
+        <div class="selected-box-header">
+            <h3>{{selectedShip.name}}</h3>
+            <div class="wrapper-background">
+            </div>
+        </div>
+        <div class="selected-box-content">
+            <img class="selected-box-shipimg" src="{{selectedShip.thumbnail}}">
+            <button>Close</button>
+        </div>
+    </div>
 </div>
