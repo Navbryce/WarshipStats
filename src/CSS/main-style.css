@@ -51,7 +51,7 @@
 .selected-dialogue{
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-end;
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
@@ -59,41 +59,64 @@
 	left: 0px;
 	z-index: 100;
 }
-.selected-dialogue::after{
+.selected-dialogue::after{ /*For a background of the dialogue box. not used currently */
 	display: block;
 	position: absolute;
 	content: '';
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(200, 200, 200, .5);
 	z-index: 0;
 
 
 }
 .selected-box{
 	position: relative;
-	z-index: 1;
-	padding-left: 2%;
-	padding-right: 2%;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	z-index: 2;
+	background: rgba(20, 44, 81, 1);
+
+
+
+}
+.selected-frame{
+	position: relative;
+	z-index: 2;
+	margin: 20px;
+	margin-bottom: 0px;
+
 }
 .selected-box-header{
 	width: 100%;
+	z-index: 2;
 	position: relative;
-	background: linear-gradient(to left, rgba(1, 74, 191, 1) , rgba(20, 44, 81, 1));
 	margin: 0px;
 	padding: 0px;
 }
 .selected-box-header h3{
 	margin: 0px;
 	padding: 0px;
+	background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea) !important;
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent !important;
+	font-family: 'Russo One', sans-serif;
+
 }
 .selected-box-content{
 	background-color: white;
+	height: 70vh;
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex-wrap: wrap;
+}
+.selected-box-stats{
+
+}
+.selected-box-info{
+	min-width: 300px;
+	width: 30vw;
 }
 .selected-box-shipimg{
-	width: 500px;
+	width: 400px;
 	height: 300px;
 	object-fit: contain;
 

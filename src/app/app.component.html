@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="not-dialogue">
     <div id="ships">
         <div *ngFor="let ship of shipsList" (click)="selectShip(ship)">
             <div class="ship-header">
@@ -19,14 +19,20 @@
 </div>
 <div (click)="selectShip(null)"  *ngIf="selectedShip" [@dialogueState]="dialogueState" class="selected-dialogue">
     <div class="selected-box">
-        <div class="selected-box-header">
-            <h3>{{selectedShip.name}}</h3>
-            <div class="wrapper-background">
+        <div class="selected-frame">
+            <div class="selected-box-header">
+                <h3>{{selectedShip.name}}</h3>
+            </div>
+            <div class="selected-box-content">
+                <div class="selected-box-stats">
+                    <img class="selected-box-shipimg" src="{{selectedShip.thumbnail}}">
+                </div>
+                <div class="selected-box-info">
+                </div>
+                <button>Close</button>
             </div>
         </div>
-        <div class="selected-box-content">
-            <img class="selected-box-shipimg" src="{{selectedShip.thumbnail}}">
-            <button>Close</button>
+        <div class="wrapper-background">
         </div>
     </div>
 </div>

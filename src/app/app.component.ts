@@ -38,9 +38,16 @@ export class AppComponent {
   selectShip(ship: Ship): void{
 
       var body = document.getElementsByTagName("body")[0];
+      var nonDialogue = document.getElementsByClassName("not-dialogue");
 
       if(ship==null){
           body.style.overflowY = "visible";
+          for(var domElement=0; domElement<nonDialogue.length; domElement++){
+              var element = (<HTMLElement>nonDialogue[domElement]);
+              element.style.transition = ("filter 500ms, transform 300ms"); //Speeds prevent seeing white border
+              element.style.webkitFilter="blur(0px)";
+              element.style.transform = "scale(1)";
+          }
           this.dialogueState="inactive";
           setTimeout(()=>{
               this.selectedShip=ship;
@@ -48,10 +55,15 @@ export class AppComponent {
 
       }else{
           this.selectedShip=ship;
-
           body.style.overflowY= "hidden";
           this.dialogueState="inactive";
           setTimeout(()=>{ /*For some reason the animation trigger wants a brief period between switching. */
+              for(var domElement=0; domElement<nonDialogue.length; domElement++){
+                  var element = (<HTMLElement>nonDialogue[domElement]);
+                  element.style.transition = ("filter 300ms, transform 500ms"); //Speeds prevent seeing white border
+                  element.style.webkitFilter="blur(2px)";
+                  element.style.transform = "scale(1.02)";
+              }
               this.dialogueState="active";
           }, 0);
       }
