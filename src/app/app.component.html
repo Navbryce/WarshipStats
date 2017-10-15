@@ -21,15 +21,32 @@
     <div class="selected-box">
         <div class="selected-frame">
             <div class="selected-box-header">
-                <h3>{{selectedShip.name}}</h3>
+                <h1 class="title-font metallic-text">{{selectedShip.name}}</h1>
+                <button class="visualization-button btn btn-warning"><p>Visualization</p><div class="wrapper-background"></div></button>
             </div>
             <div class="selected-box-content">
                 <div class="selected-box-stats">
                     <img class="selected-box-shipimg" src="{{selectedShip.thumbnail}}">
+
                 </div>
                 <div class="selected-box-info">
+                    <div *ngIf="selectedShip.primaryWeaponSystems"  class="info-section primary-weapons">
+                        <h4 class="title-font blue-underline">Primary Weapon Systems:</h4>
+                        <div  class="info-box" *ngFor="let weaponSystem of selectedShip.primaryWeaponSystems">
+                            <p>Type: {{weaponSystem.type}}</p>
+                            <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
+                            <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
+                        </div>
+                    </div>
+                    <div *ngIf="selectedShip.secondaryWeaponSystems"  class="info-section secondary-weapons">
+                        <h4 class="title-font blue-underline">Secondary Weapon Systems:</h4>
+                        <div  class="info-box" *ngFor="let weaponSystem of selectedShip.secondaryWeaponSystems">
+                            <p>Type: {{weaponSystem.type}}</p>
+                            <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
+                            <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
+                        </div>
+                    </div>
                 </div>
-                <button>Close</button>
             </div>
         </div>
         <div class="wrapper-background">

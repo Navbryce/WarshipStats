@@ -3,76 +3,52 @@
         {
             "id": 0,
             "name": "Scharnhorst",
-            "weaponSystems": [
+            "primaryWeaponSystems": [
                 {
                     "id": 0,
-                    "name": "11 Inch Gun",
-                    "quantity": 9
+                    "type": "283mm",
+                    "numberOfBarrels": "3",
+                    "numberOfTurrets": "3",
+                    "rof": "3",
+                    "specialCharacteristics":[
+
+                    ]
+                }
+            ],
+            "secondaryWeaponSystems": [
+                {
+                    "id": 0,
+                    "type": "150mm",
+                    "numberOfBarrels": "2",
+                    "numberOfTurrets": "4",
+                    "rof": "8",
+                    "specialCharacteristics":[
+
+                    ]
+                },
+                {
+                    "id": 1,
+                    "type": "150mm",
+                    "numberOfBarrels": "1",
+                    "numberOfTurrets": "4",
+                    "rof": "8",
+                    "specialCharacteristics":[
+
+                    ]
+                },
+                {
+                    "id": 3,
+                    "type": "105mm",
+                    "numberOfBarrels": "2",
+                    "numberOfTurrets": "7",
+                    "rof": "17.91",
+                    "specialCharacteristics":[
+
+                    ]
                 }
             ],
             "thumbnail": "/Pictures/Ships/Thumbnails/scharnhorst.png"
 
-        },
-        {
-            "id": 1,
-            "name": "Yamato",
-            "weaponSystems": [
-                {
-                    "id": 0,
-                    "name": "18 Inch Gun",
-                    "quantity": 9
-                }
-            ],
-            "thumbnail": "/Pictures/Ships/Thumbnails/yamato.png"
-
-        },
-        {
-            "id": 2,
-            "name": "Iowa",
-            "weaponSystems": [
-                {
-                    "id": 0,
-                    "name": "16 Inch Gun",
-                    "quantity": 9
-                }
-            ],
-            "thumbnail": "/Pictures/Ships/Thumbnails/iowa.jpg"
-        },
-        {
-            "id": 3,
-            "name": "Bismarck",
-            "weaponSystems": [
-                {
-                    "id": 0,
-                    "name": "16 Inch Gun",
-                    "quantity": 9
-                }
-            ],
-            "thumbnail": "/Pictures/Ships/Thumbnails/iowa.jpg"
-        },
-        {
-            "id": 4,
-            "name": "Nagato",
-            "weaponSystems": [
-                {
-                    "id": 0,
-                    "name": "16 Inch Gun",
-                    "quantity": 9
-                }
-            ],
-            "thumbnail": "/Pictures/Ships/Thumbnails/iowa.jpg"
-        },
-        {
-            "id": 5,
-            "name": "Izumo",
-            "weaponSystems": [
-                {
-                    "id": 0,
-                    "name": "16 Inch Gun",
-                    "quantity": 9
-                }
-            ],
-            "thumbnail": "/Pictures/Ships/Thumbnails/iowa.jpg"
         }
     ]
 }
