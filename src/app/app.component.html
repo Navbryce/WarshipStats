@@ -1,3 +1,6 @@
+
+
+
 <div id="content" class="not-dialogue">
     <div id="ships">
         <div *ngFor="let ship of shipsList" (click)="selectShip(ship)">
@@ -9,7 +12,7 @@
             </div>
             <div class="ship-content">
                 <div>
-                    <img src="{{ship.thumbnail}}">
+                    <img src="{{ship.pictures[0].src}}">
                 </div>
             </div>
             <span class="ship-header-divider"></span>
@@ -17,7 +20,7 @@
         </div>
     </div>
 </div>
-<div (click)="selectShip(null)"  *ngIf="selectedShip" [@dialogueState]="dialogueState" class="selected-dialogue">
+<div *ngIf="selectedShip" [@dialogueState]="dialogueState" class="selected-dialogue">
     <div class="selected-box">
         <div class="selected-frame">
             <div class="selected-box-header">
@@ -26,7 +29,9 @@
             </div>
             <div class="selected-box-content">
                 <div class="selected-box-stats">
-                    <img class="selected-box-shipimg" src="{{selectedShip.thumbnail}}">
+                    <div id="ship-gallery">
+                        <img src="{{image.src}}" *ngFor="let image of selectedShip.pictures">
+                    </div>
 
                 </div>
                 <div class="selected-box-info">
@@ -51,5 +56,7 @@
         </div>
         <div class="wrapper-background">
         </div>
+    </div>
+    <div class="glass-pane" (click)="selectShip(null)">
     </div>
 </div>

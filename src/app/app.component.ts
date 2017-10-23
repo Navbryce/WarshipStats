@@ -9,6 +9,7 @@ import {
 } from '@angular/animations';
 
 const ships: Array<Ship> = (<any>boats).boats;
+declare var initializeProductGallery: any;
 
 @Component({
       selector: 'app-root',
@@ -63,9 +64,15 @@ export class AppComponent {
                   element.style.transition = ("filter 300ms, transform 500ms"); //Speeds prevent seeing white border
                   element.style.webkitFilter="blur(2px)";
                   element.style.transform = "scale(1.02)";
+
               }
+              initializeProductGallery(); //Same as the animation trigger. I'm pretty sure this block runs asynch or something without the timeout
+
               this.dialogueState="active";
           }, 0);
+
+
+
       }
 
   }

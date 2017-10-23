@@ -47,7 +47,15 @@
                     ]
                 }
             ],
-            "thumbnail": "/Pictures/Ships/Thumbnails/scharnhorst.png"
+            "pictures": [
+                {
+                    "src": "/Pictures/Ships/Thumbnails/scharnhorst.png"
+                },
+                {
+                    "src":"/Pictures/Ships/Thumbnails/iowa.jpg"
+                }
+
+            ]
 
         }
     ]
