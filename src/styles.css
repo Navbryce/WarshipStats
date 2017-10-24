@@ -58,7 +58,7 @@ footer{
 	background:  linear-gradient(to left, rgba(1, 74, 191, .6) , rgba(20, 44, 81, .6));
 	padding: 0pt;
 }
-.nav-link{
+.nav-link-metal{
 	background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea) !important;
 	-webkit-background-clip: text !important;
 	-webkit-text-fill-color: transparent !important;

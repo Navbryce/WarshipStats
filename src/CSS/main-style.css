@@ -87,30 +87,37 @@
 	position: relative;
 	margin: 0px;
 	padding: 0px;
+	display: flex;
 }
 .selected-box-header>h1{
 	display: inline-block;
 	margin: 0px;
 	padding: 0px;
 }
-.selected-box-header>button{
-	overflow: hidden;
-	margin: 0px;
-	padding: 0px;
-	font-size: 0px;
+
+.selected-ship-tabs{
+	margin-left: auto;
+	border: none;
+	display: flex;
 }
-.selected-box-header>button>p{
-	text-align: center;
-	vertical-align: middle;
-	margin: 0px;
-	padding: 10px;
-	font-size: 12pt;
+.selected-ship-tabs>.nav-item{
+	margin-top: auto;
+	flex: 1;
+
+
 }
-.selected-box-header>button>.wrapper-background{
-	top: -10%;
-	left: -5%;
-	width: 120% !important;
-	height: 120% !important;
+.selected-ship-tabs>.nav-item>a{
+	background-color: #ffc107 !important;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	width: 75px;
+	display: flex;
+	justify-content: center;
+
+
+}
+.selected-ship-tabs>.nav-item:not(:first-child){
+	margin-left: 3px;
 }
 .metallic-text{
 	background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea) !important;
