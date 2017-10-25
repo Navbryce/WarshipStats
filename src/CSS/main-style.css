@@ -17,6 +17,10 @@
 	height: 200px;
 
 }
+.content-of-selected-box{
+	display: flex;
+	flex-wrap: wrap;
+}
 .glass-pane{
 	display: block;
 	content: '';
@@ -74,6 +78,13 @@
 	z-index: 2;
 	background: rgba(20, 44, 81, 1);
 }
+.selected-box-main{
+	background-color: white;
+	height: 70vh;
+	width: 70vw;
+	position: relative;
+	z-index: 2;
+}
 .selected-frame{
 	position: relative;
 	z-index: 2;
@@ -127,22 +138,15 @@
 .title-font{
 	font-family: 'Russo One', sans-serif;
 }
-.selected-box-content{
-	background-color: white;
-	height: 70vh;
-	position: relative;
-	z-index: 2;
-	display: flex;
-	flex-wrap: wrap;
-}
+
 .selected-box-stats{
 	min-width: 300px;
-	width: 30vw;
+	width: 50%;
 
 }
 .selected-box-info{
 	min-width: 300px;
-	width: 30vw;
+	width: 50%;
 	overflow-y: scroll;
 	border-left: solid 2px rgba(200, 200, 200, 1);
 

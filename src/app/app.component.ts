@@ -35,9 +35,10 @@ export class AppComponent {
   title = 'Warship Website';
   shipsList = ships;
   selectedShip: Ship;
+  dialogueState = "inactive";
+
 
   selectShip(ship: Ship): void{
-
       var body = document.getElementsByTagName("body")[0];
       var nonDialogue = document.getElementsByClassName("not-dialogue");
 
@@ -55,7 +56,16 @@ export class AppComponent {
           }, 100);
 
       }else{
+          //Sets the current tab to the previous tab unless there was no previous tab. Sets to null before loading in so the selectTab method actually triggers all the ngIfs
+          var previouslySelectedTab;
+          previouslySelectedTab=ship.selectedTab;
+          ship.selectedTab=null;
+          if(previouslySelectedTab==null){
+              previouslySelectedTab=0;
+          }
+
           this.selectedShip=ship;
+          this.selectTab(previouslySelectedTab);
           body.style.overflowY= "hidden";
           this.dialogueState="inactive";
           setTimeout(()=>{ /*For some reason the animation trigger wants a brief period between switching. */
@@ -66,8 +76,6 @@ export class AppComponent {
                   element.style.transform = "scale(1.02)";
 
               }
-              initializeProductGallery(); //Same as the animation trigger. I'm pretty sure this block runs asynch or something without the timeout
-
               this.dialogueState="active";
           }, 0);
 
@@ -76,7 +84,16 @@ export class AppComponent {
       }
 
   }
-  dialogueState = "inactive";
+  selectTab(tabNumber: number): void{
+      if(tabNumber!=this.selectedShip.selectedTab){
+          setTimeout(()=>{ /*For some reason the animation trigger wants a brief period between switching. */
+              initializeProductGallery(); //Same as the animation trigger. I'm pretty sure this block runs asynch or something without the timeout
+          }, 0);
+      }
+      if(tabNumber!=this.selectedShip.selectedTab){
+          this.selectedShip.selectedTab=tabNumber; //Must be done the start so code below can modify dom of tab
+      }
+  }
 
 
 }
@@ -85,6 +102,7 @@ export class Ship {
     name: string;
     weaponSystems: Array<Weapon>;
     thumbnail: string;
+    selectedTab: number; //Only for selected ship
 }
 export class Weapon{
     id: number;

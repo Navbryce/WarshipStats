@@ -27,41 +27,42 @@
                 <h1 class="title-font metallic-text">{{selectedShip.name}}</h1>
                 <ul class="selected-ship-tabs nav nav-tabs">
                       <li class="nav-item">
-                            <a class="nav-link" href="#">Active</a>
+                            <a class="nav-link" href="#" (click)="selectTab(0)">Tab 0</a>
                       </li>
                       <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" (click)="selectTab(1)" href="#">Tab 1</a>
 
-                      </li>
-                      <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
                       </li>
                 </ul>
             </div>
-            <div class="selected-box-content">
-                <div class="selected-box-stats">
-                    <div id="ship-gallery">
-                        <img src="{{image.src}}" *ngFor="let image of selectedShip.pictures">
+            <div class="selected-box-main">
+                <div class="tab-0 content-of-selected-box" *ngIf="selectedShip.selectedTab==0">
+                    <div class="selected-box-stats">
+                        <div id="ship-gallery">
+                            <img src="{{image.src}}" *ngFor="let image of selectedShip.pictures">
+                        </div>
                     </div>
-
+                    <div class="selected-box-info">
+                        <div *ngIf="selectedShip.primaryWeaponSystems"  class="info-section primary-weapons">
+                            <h4 class="title-font blue-underline">Primary Weapon Systems:</h4>
+                            <div  class="info-box" *ngFor="let weaponSystem of selectedShip.primaryWeaponSystems">
+                                <p>Type: {{weaponSystem.type}}</p>
+                                <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
+                                <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedShip.secondaryWeaponSystems"  class="info-section secondary-weapons">
+                            <h4 class="title-font blue-underline">Secondary Weapon Systems:</h4>
+                            <div  class="info-box" *ngFor="let weaponSystem of selectedShip.secondaryWeaponSystems">
+                                <p>Type: {{weaponSystem.type}}</p>
+                                <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
+                                <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="selected-box-info">
-                    <div *ngIf="selectedShip.primaryWeaponSystems"  class="info-section primary-weapons">
-                        <h4 class="title-font blue-underline">Primary Weapon Systems:</h4>
-                        <div  class="info-box" *ngFor="let weaponSystem of selectedShip.primaryWeaponSystems">
-                            <p>Type: {{weaponSystem.type}}</p>
-                            <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
-                            <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
-                        </div>
-                    </div>
-                    <div *ngIf="selectedShip.secondaryWeaponSystems"  class="info-section secondary-weapons">
-                        <h4 class="title-font blue-underline">Secondary Weapon Systems:</h4>
-                        <div  class="info-box" *ngFor="let weaponSystem of selectedShip.secondaryWeaponSystems">
-                            <p>Type: {{weaponSystem.type}}</p>
-                            <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
-                            <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
-                        </div>
-                    </div>
+                <div class="tab-1 content-of-selected-box" *ngIf="selectedShip.selectedTab==1">
+                    <h3>Different tab</h3>
                 </div>
             </div>
         </div>
