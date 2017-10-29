@@ -3,9 +3,13 @@
         {
             "id": 0,
             "name": "Scharnhorst",
+            "description": "A German battleship designed for raider operations and fighting cruisers, including battlecruisers. When Scharnhorst was built, she was faster than any ship of her type. The rather small caliber of her main battery guns was her main drawback, but that was offset by her higher rate of fire.",
             "primaryWeaponSystems": [
                 {
                     "id": 0,
+                    "picture":{
+                        "src": "/Pictures/ShipIcons/primaryWeapon.png"
+                    },
                     "type": "283mm",
                     "numberOfBarrels": "3",
                     "numberOfTurrets": "3",

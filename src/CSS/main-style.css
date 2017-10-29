@@ -1,3 +1,7 @@
+#ship-gallery{
+	opacity: 0; /*Starts with a hidden opacity so it can fade in*/
+	transition: opacity .5s !important; /*For some reason, the photo gallery plugin automatically removes all transitions. Thus, important is needed. */
+}
 #ships{
 	display: flex;
 	flex-wrap: wrap;
@@ -17,9 +21,15 @@
 	height: 200px;
 
 }
+.active-tab{
+}
+.active-tab>a{
+	background-color: #c19307 !important;
+}
 .content-of-selected-box{
 	display: flex;
 	flex-wrap: wrap;
+	height: 100%;
 }
 .glass-pane{
 	display: block;
@@ -29,8 +39,13 @@
 	height: 100%;
 	z-index: 1;
 }
-
-
+.icon-info-box{
+	display: flex;
+}
+.info-box p{
+	margin: 0px;
+	padding: 0px;
+}
 .ship-content{
 	padding: 0pt;
 }
@@ -113,17 +128,21 @@
 }
 .selected-ship-tabs>.nav-item{
 	margin-top: auto;
-	flex: 1;
-
-
 }
+
 .selected-ship-tabs>.nav-item>a{
-	background-color: #ffc107 !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ffc107;
 	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
-	width: 75px;
-	display: flex;
-	justify-content: center;
+	width: 100px;
+	height: 40px;
+
+	padding: 0px;
+	text-align: center;
+	font-size: 10pt;
 
 
 }
@@ -141,12 +160,15 @@
 
 .selected-box-stats{
 	min-width: 300px;
+	flex: 1;
 	width: 50%;
 
 }
 .selected-box-info{
 	min-width: 300px;
 	width: 50%;
+	flex: 1;
+	height: 100%;
 	overflow-y: scroll;
 	border-left: solid 2px rgba(200, 200, 200, 1);
 
@@ -172,10 +194,7 @@
 	padding: 2%;
 	border-bottom: solid 2px rgba(200, 200, 200, 1);
 }
-.info-box>p{
-	margin: 0px;
-	padding: 0px;
-}
+
 .visualization-button{
 	display: block;
 	position: relative;
