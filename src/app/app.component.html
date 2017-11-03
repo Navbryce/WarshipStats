@@ -45,27 +45,36 @@
                         </div>
                     </div>
                     <div class="selected-box-info">
-                        <div *ngIf="selectedShip.primaryWeaponSystems"  class="info-section primary-weapons">
+                        <div *ngIf="selectedShip.description"  class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Description:</h4>
                             <div  class="info-box">
                                 <p>{{selectedShip.description}}</p>
                             </div>
                         </div>
-                        <div *ngIf="selectedShip.secondaryWeaponSystems"  class="info-section secondary-weapons">
-                            <h4 class="title-font blue-underline">Secondary Weapon Systems:</h4>
-                            <div  class="info-box icon-info-box" *ngFor="let weaponSystem of selectedShip.secondaryWeaponSystems">
+                        <div  *ngIf="selectedShip.propulsion" class="info-section primary-weapons">
+                            <h4 class="title-font blue-underline">Propulsion:</h4>
+                            <div class="info-box">
                                 <div>
-                                    <p>Type: {{weaponSystem.type}}</p>
-                                    <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
-                                    <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
+                                    <p>Max Speed: {{selectedShip.propulsion.maxSpeed.value}} knots</p>
+                                </div>
+                                <div>
+                                    <p>Number of Propellers: {{selectedShip.propulsion.numberOfPropellers.value}}</p>
+                                </div>
+                                <div>
+                                    <p>Number of Boilers: {{selectedShip.propulsion.numberOfBoilers.value}}</p>
+                                </div>
+                                <div>
+                                    <p>Horse Power: {{selectedShip.propulsion.horsePower.value}} PS</p>
+                                </div>
+                                <div>
+                                    <p>Range: {{selectedShip.propulsion.range.value}} nmi at {{selectedShip.propulsion.rangeSpeed.value}} knots</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="tab-1 content-of-selected-box" *ngIf="selectedShip.selectedTab==1">
-                    <div style="display: flex; width: 100%;">
-                        <div *ngIf="selectedShip.primaryWeaponSystems"  style="flex: 1;" class="info-section primary-weapons">
+                        <div *ngIf="selectedShip.primaryWeaponSystems" class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Primary Weapon Systems:</h4>
                             <div  class="info-box icon-info-box" *ngFor="let weaponSystem of selectedShip.primaryWeaponSystems">
                                 <div *ngIf="weaponSystem.picture">
@@ -78,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="selectedShip.secondaryWeaponSystems" style="flex: 1;" class="info-section secondary-weapons">
+                        <div *ngIf="selectedShip.secondaryWeaponSystems" class="info-section secondary-weapons">
                             <h4 class="title-font blue-underline">Secondary Weapon Systems:</h4>
                             <div  class="info-box" *ngFor="let weaponSystem of selectedShip.secondaryWeaponSystems">
                                 <p>Type: {{weaponSystem.type}}</p>
@@ -86,7 +95,6 @@
                                 <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div *ngIf="selectedShip.selectedTab==2">
                 </div>

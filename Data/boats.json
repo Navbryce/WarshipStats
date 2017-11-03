@@ -4,13 +4,34 @@
             "id": 0,
             "name": "Scharnhorst",
             "description": "A German battleship designed for raider operations and fighting cruisers, including battlecruisers. When Scharnhorst was built, she was faster than any ship of her type. The rather small caliber of her main battery guns was her main drawback, but that was offset by her higher rate of fire.",
+            "propulsion": {
+                "maxSpeed": {
+                    "value": "31"
+                },
+                "numberOfPropellers": {
+                    "value": "3"
+                },
+                "numberOfBoilers": {
+                    "value": "3"
+                },
+                "horsePower": {
+                    "value": "151893"
+                },
+                "range": {
+                    "value": "7100"
+                },
+                "rangeSpeed": {
+                    "value": "19"
+                }
+
+            },
             "primaryWeaponSystems": [
                 {
                     "id": 0,
                     "picture":{
                         "src": "/Pictures/ShipIcons/primaryWeapon.png"
                     },
-                    "type": "283mm",
+                    "type": "283",
                     "numberOfBarrels": "3",
                     "numberOfTurrets": "3",
                     "rof": "3",
@@ -22,7 +43,7 @@
             "secondaryWeaponSystems": [
                 {
                     "id": 0,
-                    "type": "150mm",
+                    "type": "150",
                     "numberOfBarrels": "2",
                     "numberOfTurrets": "4",
                     "rof": "8",
@@ -32,7 +53,7 @@
                 },
                 {
                     "id": 1,
-                    "type": "150mm",
+                    "type": "150",
                     "numberOfBarrels": "1",
                     "numberOfTurrets": "4",
                     "rof": "8",
@@ -42,7 +63,7 @@
                 },
                 {
                     "id": 3,
-                    "type": "105mm",
+                    "type": "105",
                     "numberOfBarrels": "2",
                     "numberOfTurrets": "7",
                     "rof": "17.91",

@@ -95,7 +95,7 @@
 }
 .selected-box-main{
 	background-color: white;
-	height: 70vh;
+	height: 90vh;
 	width: 70vw;
 	position: relative;
 	z-index: 2;
@@ -169,6 +169,7 @@
 	width: 50%;
 	flex: 1;
 	height: 100%;
+	padding-top: 2%;
 	overflow-y: scroll;
 	border-left: solid 2px rgba(200, 200, 200, 1);
 
@@ -188,6 +189,14 @@
 	width: 400px;
 	height: 300px;
 	object-fit: contain;
+}
+.tab-1{
+	display: flex;
+	width: 100%;
+}
+.tab-1>div{
+	min-width: 200px;
+	flex:1;
 }
 .info-box{
 	margin: 2px;
