@@ -4,6 +4,13 @@
             "id": 0,
             "name": "Scharnhorst",
             "description": "A German battleship designed for raider operations and fighting cruisers, including battlecruisers. When Scharnhorst was built, she was faster than any ship of her type. The rather small caliber of her main battery guns was her main drawback, but that was offset by her higher rate of fire.",
+            "laidDown":"1935",
+            "launched": "1936",
+            "class": "Scharnhorst",
+            "fate": {
+                "description": "sunk",
+                "year": "1943"
+            },
             "propulsion": {
                 "maxSpeed": {
                     "value": "31"
@@ -25,6 +32,44 @@
                 }
 
             },
+            "complement": [
+                {
+                    "attribute":"Enlisted Men",
+                    "value": "1613"
+                },
+                {
+                    "attribute":"Officers",
+                    "value": "56"
+                }
+            ],
+            "armor":[
+                {
+                    "attribute": "Belt",
+                    "minValue": "350",
+                    "maxValue": "350",
+                    "range": false
+                },
+                {
+                    "attribute": "Deck",
+                    "minValue": "50",
+                    "maxValue": "50",
+                    "range": false
+
+                },
+                {
+                    "attribute": "Turrets",
+                    "minValue": "200",
+                    "maxValue": "360",
+                    "range": true
+
+                },
+                {
+                    "attribute": "Conning Tower",
+                    "minValue": "350",
+                    "maxValue": "350",
+                    "range": false
+                }
+            ],
             "primaryWeaponSystems": [
                 {
                     "id": 0,

@@ -198,6 +198,9 @@
 	min-width: 200px;
 	flex:1;
 }
+.tab-1{
+	padding-top: 2%;
+}
 .info-box{
 	margin: 2px;
 	padding: 2%;

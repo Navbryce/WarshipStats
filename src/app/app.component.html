@@ -49,25 +49,45 @@
                             <h4 class="title-font blue-underline">Description:</h4>
                             <div  class="info-box">
                                 <p>{{selectedShip.description}}</p>
+                                <p style="padding-top: 5px;"><b>Class:</b> {{selectedShip.class}}</p>
+                                <p><b>Laid Down:</b> {{selectedShip.laidDown}}</p>
+                                <p><b>Launched:</b> {{selectedShip.launched}}</p>
+                                <p><b>Fate:</b> {{selectedShip.fate.description}}<span *ngIf="selectedShip.fate.year"> in {{selectedShip.fate.year}}</span></p>
                             </div>
                         </div>
                         <div  *ngIf="selectedShip.propulsion" class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Propulsion:</h4>
                             <div class="info-box">
                                 <div>
-                                    <p>Max Speed: {{selectedShip.propulsion.maxSpeed.value}} knots</p>
+                                    <p><b>Max Speed:</b> {{selectedShip.propulsion.maxSpeed.value}} knots</p>
                                 </div>
                                 <div>
-                                    <p>Number of Propellers: {{selectedShip.propulsion.numberOfPropellers.value}}</p>
+                                    <p><b>Number of Propellers:</b> {{selectedShip.propulsion.numberOfPropellers.value}}</p>
                                 </div>
                                 <div>
-                                    <p>Number of Boilers: {{selectedShip.propulsion.numberOfBoilers.value}}</p>
+                                    <p><b>Number of Boilers:</b> {{selectedShip.propulsion.numberOfBoilers.value}}</p>
                                 </div>
                                 <div>
-                                    <p>Horse Power: {{selectedShip.propulsion.horsePower.value}} PS</p>
+                                    <p><b>Horse Power:</b> {{selectedShip.propulsion.horsePower.value}} PS</p>
                                 </div>
                                 <div>
-                                    <p>Range: {{selectedShip.propulsion.range.value}} nmi at {{selectedShip.propulsion.rangeSpeed.value}} knots</p>
+                                    <p><b>Range:</b> {{selectedShip.propulsion.range.value}} nmi at {{selectedShip.propulsion.rangeSpeed.value}} knots</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedShip.complement" class="info-section primary-weapons">
+                            <h4 class="title-font blue-underline">Complement:</h4>
+                            <div class="info-box">
+                                <div *ngFor="let complementObject of selectedShip.complement">
+                                    <p><b>{{complementObject.attribute}}:</b> {{complementObject.value}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedShip.armor" class="info-section primary-weapons">
+                            <h4 class="title-font blue-underline">Armor:</h4>
+                            <div class="info-box">
+                                <div *ngFor="let armorObject of selectedShip.armor">
+                                    <p><b>{{armorObject.attribute}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span>mm</p>
                                 </div>
                             </div>
                         </div>
@@ -81,18 +101,18 @@
                                     <img  src="{{weaponSystem.picture.src}}">
                                 </div>
                                 <div>
-                                    <p>Type: {{weaponSystem.type}}</p>
-                                    <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
-                                    <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
+                                    <p><b>Type:</b> {{weaponSystem.type}}</p>
+                                    <p><b>Number of Turret(s)/Casemate(s):</b> {{weaponSystem.numberOfTurrets}}</p>
+                                    <p><b>Number of Barrels per Turret/Casemate:</b> {{weaponSystem.numberOfBarrels}}</p>
                                 </div>
                             </div>
                         </div>
                         <div *ngIf="selectedShip.secondaryWeaponSystems" class="info-section secondary-weapons">
                             <h4 class="title-font blue-underline">Secondary Weapon Systems:</h4>
                             <div  class="info-box" *ngFor="let weaponSystem of selectedShip.secondaryWeaponSystems">
-                                <p>Type: {{weaponSystem.type}}</p>
-                                <p>Number of Turret(s)/Casemate(s): {{weaponSystem.numberOfTurrets}}</p>
-                                <p>Number of Barrels per Turret/Casemate: {{weaponSystem.numberOfBarrels}}</p>
+                                <p><b>Type:</b> {{weaponSystem.type}}</p>
+                                <p><b>Number of Turret(s)/Casemate(s):</b> {{weaponSystem.numberOfTurrets}}</p>
+                                <p><b>Number of Barrels per Turret/Casemate:</b> {{weaponSystem.numberOfBarrels}}</p>
                             </div>
                         </div>
                 </div>
