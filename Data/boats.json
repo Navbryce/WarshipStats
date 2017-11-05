@@ -11,27 +11,37 @@
                 "description": "sunk",
                 "year": "1943"
             },
-            "propulsion": {
-                "maxSpeed": {
-                    "value": "31"
+            "propulsion": [
+                {
+                    "attribute": "Max Speed",
+                    "value": "31",
+                    "unit": "knots"
                 },
-                "numberOfPropellers": {
+                {
+                    "attribute": "Number of Propellers",
                     "value": "3"
                 },
-                "numberOfBoilers": {
+                {
+                    "attribute": "Number Of Boilers",
                     "value": "3"
                 },
-                "horsePower": {
-                    "value": "151893"
+                {
+                    "attribute": "Installed Power",
+                    "value": "118977",
+                    "unit": "kW" 
                 },
-                "range": {
-                    "value": "7100"
+                {
+                    "attribute": "Range",
+                    "value": "7100",
+                    "unit": "nmi"
                 },
-                "rangeSpeed": {
-                    "value": "19"
+                {
+                    "attribute": "Range Speed",
+                    "value": "19",
+                    "unit": "knots"
                 }
 
-            },
+            ],
             "complement": [
                 {
                     "attribute":"Enlisted Men",

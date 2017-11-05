@@ -55,23 +55,11 @@
                                 <p><b>Fate:</b> {{selectedShip.fate.description}}<span *ngIf="selectedShip.fate.year"> in {{selectedShip.fate.year}}</span></p>
                             </div>
                         </div>
-                        <div  *ngIf="selectedShip.propulsion" class="info-section primary-weapons">
+                        <div  *ngIf="selectedShip.propulsion[0]" class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Propulsion:</h4>
                             <div class="info-box">
-                                <div>
-                                    <p><b>Max Speed:</b> {{selectedShip.propulsion.maxSpeed.value}} knots</p>
-                                </div>
-                                <div>
-                                    <p><b>Number of Propellers:</b> {{selectedShip.propulsion.numberOfPropellers.value}}</p>
-                                </div>
-                                <div>
-                                    <p><b>Number of Boilers:</b> {{selectedShip.propulsion.numberOfBoilers.value}}</p>
-                                </div>
-                                <div>
-                                    <p><b>Horse Power:</b> {{selectedShip.propulsion.horsePower.value}} PS</p>
-                                </div>
-                                <div>
-                                    <p><b>Range:</b> {{selectedShip.propulsion.range.value}} nmi at {{selectedShip.propulsion.rangeSpeed.value}} knots</p>
+                                <div *ngFor="let propulsionComponent of selectedShip.propulsion">
+                                    <p><b>{{propulsionComponent.attribute}}:</b> {{propulsionComponent.value}} <span *ngIf="propulsionComponent.unit">{{propulsionComponent.unit}}</span></p>
                                 </div>
                             </div>
                         </div>
