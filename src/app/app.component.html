@@ -39,12 +39,12 @@
             </div>
             <div class="selected-box-main">
                 <div class="tab-0 content-of-selected-box" *ngIf="selectedShip.selectedTab==0">
-                    <div class="selected-box-stats">
-                        <div id="ship-gallery">
-                            <img src="{{image.src}}" *ngFor="let image of selectedShip.pictures">
+                    <div class="allow-y-scroll">
+                        <div class="gallery-wrapper">
+                            <div id="ship-gallery">
+                                <img src="{{image.src}}" *ngFor="let image of selectedShip.pictures">
+                            </div>
                         </div>
-                    </div>
-                    <div class="selected-box-info">
                         <div *ngIf="selectedShip.description"  class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Description:</h4>
                             <div  class="info-box">

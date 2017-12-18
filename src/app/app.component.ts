@@ -8,7 +8,7 @@ import {
   transition
 } from '@angular/animations';
 
-const ships: Array<Ship> = (<any>boats).boats;
+const ships: Array<any> = (<any>boats);
 declare var initializeProductGallery: any;
 
 @Component({
@@ -34,11 +34,11 @@ declare var initializeProductGallery: any;
 export class AppComponent {
   title = 'Warship Website';
   shipsList = ships;
-  selectedShip: Ship;
+  selectedShip: any;
   dialogueState = "inactive";
 
-
   selectShip(ship: Ship): void{
+
       var body = document.getElementsByTagName("body")[0];
       var nonDialogue = document.getElementsByClassName("not-dialogue");
 

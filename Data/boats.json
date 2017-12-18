@@ -1,142 +1,761 @@
-{
-    "boats":[
-        {
-            "id": 0,
-            "name": "Scharnhorst",
-            "description": "A German battleship designed for raider operations and fighting cruisers, including battlecruisers. When Scharnhorst was built, she was faster than any ship of her type. The rather small caliber of her main battery guns was her main drawback, but that was offset by her higher rate of fire.",
-            "laidDown":"1935",
-            "launched": "1936",
-            "class": "Scharnhorst",
-            "fate": {
-                "description": "sunk",
-                "year": "1943"
-            },
-            "propulsion": [
-                {
-                    "attribute": "Max Speed",
-                    "value": "31",
-                    "unit": "knots"
-                },
-                {
-                    "attribute": "Number of Propellers",
-                    "value": "3"
-                },
-                {
-                    "attribute": "Number Of Boilers",
-                    "value": "3"
-                },
-                {
-                    "attribute": "Installed Power",
-                    "value": "118977",
-                    "unit": "kW" 
-                },
-                {
-                    "attribute": "Range",
-                    "value": "7100",
-                    "unit": "nmi"
-                },
-                {
-                    "attribute": "Range Speed",
-                    "value": "19",
-                    "unit": "knots"
-                }
-
-            ],
-            "complement": [
-                {
-                    "attribute":"Enlisted Men",
-                    "value": "1613"
-                },
-                {
-                    "attribute":"Officers",
-                    "value": "56"
-                }
-            ],
-            "armor":[
-                {
-                    "attribute": "Belt",
-                    "minValue": "350",
-                    "maxValue": "350",
-                    "range": false
-                },
-                {
-                    "attribute": "Deck",
-                    "minValue": "50",
-                    "maxValue": "50",
-                    "range": false
-
-                },
-                {
-                    "attribute": "Turrets",
-                    "minValue": "200",
-                    "maxValue": "360",
-                    "range": true
-
-                },
-                {
-                    "attribute": "Conning Tower",
-                    "minValue": "350",
-                    "maxValue": "350",
-                    "range": false
-                }
-            ],
-            "primaryWeaponSystems": [
-                {
-                    "id": 0,
-                    "picture":{
-                        "src": "/Pictures/ShipIcons/primaryWeapon.png"
-                    },
-                    "type": "283",
-                    "numberOfBarrels": "3",
-                    "numberOfTurrets": "3",
-                    "rof": "3",
-                    "specialCharacteristics":[
-
-                    ]
-                }
-            ],
-            "secondaryWeaponSystems": [
-                {
-                    "id": 0,
-                    "type": "150",
-                    "numberOfBarrels": "2",
-                    "numberOfTurrets": "4",
-                    "rof": "8",
-                    "specialCharacteristics":[
-
-                    ]
-                },
-                {
-                    "id": 1,
-                    "type": "150",
-                    "numberOfBarrels": "1",
-                    "numberOfTurrets": "4",
-                    "rof": "8",
-                    "specialCharacteristics":[
-
-                    ]
-                },
-                {
-                    "id": 3,
-                    "type": "105",
-                    "numberOfBarrels": "2",
-                    "numberOfTurrets": "7",
-                    "rof": "17.91",
-                    "specialCharacteristics":[
-
-                    ]
-                }
-            ],
-            "pictures": [
-                {
-                    "src": "/Pictures/Ships/Thumbnails/scharnhorst.png"
-                },
-                {
-                    "src":"/Pictures/Ships/Thumbnails/iowa.jpg"
-                }
-
-            ]
-
+[
+  {
+    "ID": 0,
+    "scrapeURL": "https://en.wikipedia.org/wiki/USS_Monitor",
+    "configuration": "0",
+    "importantDates": [
+      {
+        "significance": "ordered",
+        "date": {
+          "year": 1861
         }
-    ]
-}
+      },
+      {
+        "significance": "laid down",
+        "date": {
+          "year": 1861
+        }
+      },
+      {
+        "significance": "launched",
+        "date": {
+          "year": 1862
+        }
+      },
+      {
+        "significance": "commissioned",
+        "date": {
+          "year": 1862
+        }
+      }
+    ],
+    "awards": [
+
+    ],
+    "armament": [
+      {
+        "fullName": "smoothbore Dahlgren guns",
+        "quantity": 2,
+        "size": 280.0,
+        "unit": "mm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/DahlgrenPawnee.jpg/220px-DahlgrenPawnee.jpg",
+            "description": "  John A. Dahlgren standing next to a 50-pounder Dahlgren rifle aboard USS Pawnee, 1865."
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Dahlgren_gun_crew.jpg/400px-Dahlgren_gun_crew.jpg",
+            "description": "  A 9-inch Dahlgren smoothbore naval gun and crew in the stern pivot position of USS Miami, 1864. (National Archives)."
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/DahlgrenBoat_HowitzerMountedinLaunch.jpg/220px-DahlgrenBoat_HowitzerMountedinLaunch.jpg",
+            "description": "  Dahlgren boat howitzer mounted in frigate's launch. The field carriage can be seen in stern"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/BoatHowitzerFieldCarriage.jpg/220px-BoatHowitzerFieldCarriage.jpg",
+            "description": "  Dahlgren boat howitzer mounted on field carriage"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/8inGunandIronCarriage.jpg/220px-8inGunandIronCarriage.jpg",
+            "description": "  Line engraving of a VIII-inch Dahlgren shell gun on an iron carriage"
+          }
+        ]
+      }
+    ],
+    "armor": [
+      {
+        "armorType": "Gun",
+        "minValue": "203",
+        "maxValue": "203",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Waterline",
+        "minValue": "76-127",
+        "maxValue": "76-127",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Deck",
+        "minValue": "25",
+        "maxValue": "25",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Pilot",
+        "minValue": "229",
+        "maxValue": "229",
+        "unit": "mm",
+        "range": false
+      }
+    ],
+    "description": "USS Monitor was an iron-hulled steamship. Built during the American Civil War, she was the first ironclad warship commissioned by the Union Navy. Monitor is most famous for her central role in the Battle of Hampton Roads on 9 March 1862, where, under the command of Lieutenant John Worden, she fought the casemate ironclad CSS Virginia (built on the hull of the former steam frigate USS Merrimack) to a standstill. The unique design of the ship, distinguished by its revolving turret which was designed by American inventor Theodore Timby, was quickly duplicated and established the monitor type of warship.",
+    "pictures": [
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/USS_Monitor_at_sea.jpg/300px-USS_Monitor_at_sea.jpg",
+        "description": "USS Monitor at sea.jpg"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Johnericsson.battary.jpg/184px-Johnericsson.battary.jpg",
+        "description": "  Statue of John Ericsson in the Battery, New York City, with model of Monitor in hand"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Monitor_model2.jpg/324px-Monitor_model2.jpg",
+        "description": "  Model of USS Monitor"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/USS_Monitor_plans.jpg/324px-USS_Monitor_plans.jpg",
+        "description": "  Inboard plans of USS Monitor See also Outboard plans "
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/USS_Monitor_-_Transverse_hull_section_through_the_turret.jpg/264px-USS_Monitor_-_Transverse_hull_section_through_the_turret.jpg",
+        "description": "  Transverse hull section through the turret"
+      }
+    ],
+    "name": "Monitor",
+    "builder": "Continental Iron Works, Greenpoint, Brooklyn, US",
+    "cost": "$275,000",
+    "fate": "Lost at sea, 31 December 1862",
+    "status": "Wreck located 27 August 1973, partially salvaged",
+    "type": "Monitor",
+    "displacement": {
+      "value": "1,003",
+      "unit": "t"
+    },
+    "tons burthen": {
+      "value": "776",
+      "unit": "tons"
+    },
+    "length": {
+      "value": "54.6",
+      "unit": "m"
+    },
+    "beam": {
+      "value": "12.6",
+      "unit": "m"
+    },
+    "draft": {
+      "value": "3.2",
+      "unit": "m"
+    },
+    "installed power": {
+      "value": "240",
+      "unit": "kW"
+    },
+    "propulsion": [
+      "1 x Propeller",
+      "1 x Vibrating-lever steam engine"
+    ],
+    "speed": {
+      "value": "6",
+      "unit": "knots"
+    },
+    "complement": "49 officers and enlisted men"
+  },
+  {
+    "ID": 1,
+    "scrapeURL": "https://en.wikipedia.org/wiki/German_battleship_Gneisenau",
+    "configuration": "0",
+    "importantDates": [
+      {
+        "significance": "laid down",
+        "date": {
+          "year": 1935
+        }
+      },
+      {
+        "significance": "launched",
+        "date": {
+          "year": 1936
+        }
+      },
+      {
+        "significance": "commissioned",
+        "date": {
+          "year": 1938
+        }
+      },
+      {
+        "significance": "decommissioned",
+        "date": {
+          "year": 1942
+        }
+      }
+    ],
+    "awards": [
+
+    ],
+    "armament": [
+      {
+        "fullName": "28 cm/54.5 (11 inch) SK C/34",
+        "quantity": 9,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Fjell_festning_granat.jpg/220px-Fjell_festning_granat.jpg",
+            "description": "  Coast-defence shell at Fjell festning in Sotra, Norway "
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gneisenau-1.jpg/220px-Gneisenau-1.jpg",
+            "description": "  Gneisenau's Casar turret at Austratt fort, Orlandet, Norway"
+          }
+        ]
+      },
+      {
+        "fullName": "15 cm/55 (5.9) SK C/28",
+        "quantity": 12,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "10.5 cm (4.1 in) SK C/33",
+        "quantity": 14,
+        "size": 10.5,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "3.7 cm (1.5 in) SK C/30",
+        "quantity": 16,
+        "size": 3.7,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Bundesarchiv_Bild_101II-MW-3930-23A%2C_U-Boot_U-103_in_See.jpg/220px-Bundesarchiv_Bild_101II-MW-3930-23A%2C_U-Boot_U-103_in_See.jpg",
+            "description": "  SK C/30U on a type IX U-Boat (U-103) in 1939"
+          }
+        ]
+      },
+      {
+        "fullName": "2 cm (0.79 in)",
+        "quantity": 10,
+        "size": 2.0,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Bundesarchiv_Bild_101I-219-0597-15%2C_Russland-Mitte-S%C3%BCd%2C_leichte_Flak%2C_Josef_Niemitz.jpg/220px-Bundesarchiv_Bild_101I-219-0597-15%2C_Russland-Mitte-S%C3%BCd%2C_leichte_Flak%2C_Josef_Niemitz.jpg",
+            "description": "  A Flak 38 mounted on a vehicle, Russia June 1943. Among the crew is Josef Niemietz"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bundesarchiv_Bild_101I-005-0015-27%2C_Jugoslawien%2C_Polizeieinsatz%2C_Truppentransport.jpg/220px-Bundesarchiv_Bild_101I-005-0015-27%2C_Jugoslawien%2C_Polizeieinsatz%2C_Truppentransport.jpg",
+            "description": "  The rear-location wheelhouse of this Siebel ferry features a Flakvierling quadmount AA battery to defend it in 1942 Yugoslavia."
+          }
+        ]
+      },
+      {
+        "fullName": "torpedo tubes",
+        "quantity": 6,
+        "size": 533.0,
+        "unit": "mm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Torpedo_tube_on_holland_1.jpg/220px-Torpedo_tube_on_holland_1.jpg",
+            "description": "  The torpedo tube on HMS Holland 1"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Torpedo_tube_breech_doors_of_USS_Nautilus.jpg/220px-Torpedo_tube_breech_doors_of_USS_Nautilus.jpg",
+            "description": "  Submarine torpedo tube breech doors of USS Nautilus in their close position"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/MU90.jpg/220px-MU90.jpg",
+            "description": "  MU90 Impact triple launcher onboard F221 Hessen, a modern Sachsen-class frigate of the German Navy"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Torpdorohr_eines_Torpedoschnellbootes.jpg/220px-Torpdorohr_eines_Torpedoschnellbootes.jpg",
+            "description": "  Rear torpedo tube of a former German Jaguar class Schnellboot (MTB)"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/FS_Redoutable_torpilles.jpg/220px-FS_Redoutable_torpilles.jpg",
+            "description": "  Torpedo tubes of the French SNLE Redoutable French submarines use pistons to push the torpedo outside the tube, instead of blowing it out with compressed air."
+          }
+        ]
+      }
+    ],
+    "armor": [
+      {
+        "armorType": "Belt",
+        "minValue": "350",
+        "maxValue": "350",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Deck",
+        "minValue": "50",
+        "maxValue": "50",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Turrets",
+        "minValue": "200",
+        "maxValue": "360",
+        "unit": "mm",
+        "range": true
+      }
+    ],
+    "description": "Gneisenau was a German capital ship, alternatively described as a battleship and battlecruiser, of Nazi Germany's Kriegsmarine. She was the second vessel of her class, which included one other ship, Scharnhorst. The ship was built at the Deutsche Werke dockyard in Kiel; she was laid down on 6 May 1935 and launched on 8 December 1936. Completed in May 1938, the ship was armed with a main battery of nine 28 cm (11 in) C/34 guns in three triple turrets, though there were plans to replace these weapons with six 38 cm (15 in) SK C/34 guns in twin turrets.",
+    "pictures": [
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Bundesarchiv_DVM_10_Bild-23-63-21%2C_Schlachtschiff_%22Gneisenau%22.jpg/300px-Bundesarchiv_DVM_10_Bild-23-63-21%2C_Schlachtschiff_%22Gneisenau%22.jpg",
+        "description": "Bundesarchiv DVM 10 Bild-23-63-21, Schlachtschiff Gneisenau.jpg"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Gneisenau1942.png/220px-Gneisenau1942.png",
+        "description": "  Gneisenau as she appeared in February 1942"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Bundesarchiv_DVM_10_Bild-23-63-11%2C_Schlachtschiff_%22Gneisenau%22.jpg/220px-Bundesarchiv_DVM_10_Bild-23-63-11%2C_Schlachtschiff_%22Gneisenau%22.jpg",
+        "description": "  Gneisenau in port"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/HMS_Glorious_last_picture.jpg/400px-HMS_Glorious_last_picture.jpg",
+        "description": "  HMS Glorious photographed in May 1940 operating off Norway"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Bundesarchiv_DVM_10_Bild-23-63-01%2C_Schlachtschiff_%22Gneisenau%22.jpg/220px-Bundesarchiv_DVM_10_Bild-23-63-01%2C_Schlachtschiff_%22Gneisenau%22.jpg",
+        "description": "  Gneisenau after her second bow alteration in 1942."
+      }
+    ],
+    "name": "Gneisenau",
+    "namesake": "August Neidhardt von Gneisenau[1]",
+    "builder": "Deutsche Werke",
+    "fate": "Sunk as a blockship 23 March 1945 and scrapped after the war.",
+    "class": "Scharnhorst-class",
+    "type": "battleship",
+    "displacement": [
+      {
+        "value": "32,600",
+        "unit": "t"
+      },
+      {
+        "value": "38,700",
+        "unit": "t"
+      }
+    ],
+    "length": {
+      "value": "234.9",
+      "unit": "m"
+    },
+    "beam": {
+      "value": "30",
+      "unit": "m"
+    },
+    "draft": {
+      "value": "9.9",
+      "unit": "m"
+    },
+    "installed power": {
+      "value": "122,040",
+      "unit": "kW"
+    },
+    "propulsion": "3 Germania geared steam turbines",
+    "speed": {
+      "value": "31",
+      "unit": "knots"
+    },
+    "range": {
+      "value": "19",
+      "unit": "knots"
+    },
+    "complement": [
+      "56 officers",
+      "1,613 enlisted"
+    ],
+    "aircraft carried": "3 Arado Ar 196A",
+    "aviation facilities": "1 catapult"
+  },
+  {
+    "ID": 2,
+    "scrapeURL": "https://en.wikipedia.org/wiki/HMS_Victory",
+    "configuration": "0",
+    "importantDates": [
+      {
+        "significance": "ordered",
+        "date": {
+          "year": 1758
+        }
+      },
+      {
+        "significance": "laid down",
+        "date": {
+          "year": 1759
+        }
+      },
+      {
+        "significance": "launched",
+        "date": {
+          "year": 1765
+        }
+      },
+      {
+        "significance": "commissioned",
+        "date": {
+          "year": 1778
+        }
+      }
+    ],
+    "awards": [
+      "Participated in",
+      "First Battle of Ushant (1778)",
+      "Second Battle of Ushant (1781)",
+      "Battle of Cape Spartel (1782)",
+      "Battle of Cape St Vincent (1797)",
+      "Battle of Trafalgar (1805)"
+    ],
+    "armament": [
+      {
+        "fullName": "long pattern Blomefield 32 pounders",
+        "quantity": 30,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "long 24 pounders",
+        "quantity": 28,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "1.7 ton short 12 pounders (5 kg)",
+        "quantity": 30,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "1.7 ton short 12 pounder (5 kg)",
+        "quantity": 12,
+        "size": 12.0,
+        "unit": "pounder",
+        "isCannon": true,
+        "isMissile": false,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "medium 12 pounder (5 kg), 2 x 68 pounder (31 kg) carronade",
+        "quantity": 2,
+        "size": 12.0,
+        "unit": "pounder",
+        "isCannon": true,
+        "isMissile": false,
+        "pictures": [
+
+        ]
+      }
+    ],
+    "armor": [
+
+    ],
+    "description": "HMS Victory is a 104-gun first-rate ship of the line of the Royal Navy, ordered in 1758, laid down in 1759 and launched in 1765. She is best known for her role as Lord Nelson's flagship at the Battle of Trafalgar in 1805.",
+    "pictures": [
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Victory_Portsmouth_um_1900.jpg/300px-Victory_Portsmouth_um_1900.jpg",
+        "description": "Victory Portsmouth um 1900.jpg"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Combat_d%27Ouessant_juillet_1778_par_Theodore_Gudin.jpg/220px-Combat_d%27Ouessant_juillet_1778_par_Theodore_Gudin.jpg",
+        "description": "  The first battle of Ushant (1778) by Theodore Gudin. Admiral Keppel was later court martialed for allowing the French fleet to escape but was acquitted."
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/HMSVictoryFromTheFleetOffshore.jpg/170px-HMSVictoryFromTheFleetOffshore.jpg",
+        "description": "  HMS Victory flying the Blue Ensign (with the pre-1801 Union Jack), from The Fleet Offshore, 1780-90, an anonymous piece of folk art now at Compton Verney Art Gallery."
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Batalha_do_Cabo_de_S%C3%A3o_Vicente.jpg/220px-Batalha_do_Cabo_de_S%C3%A3o_Vicente.jpg",
+        "description": "  The Battle of Cape Saint Vincent, Richard Brydges Beechey, 1881"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vice-Admiral_Horatio_Nelson%2C_1758-1805%2C_1st_Viscount_Nelson.jpg/170px-Vice-Admiral_Horatio_Nelson%2C_1758-1805%2C_1st_Viscount_Nelson.jpg",
+        "description": "  Vice-Admiral Horatio Nelson twice flew his flag in Victory"
+      }
+    ],
+    "name": "HMS Victory",
+    "builder": "Chatham Dockyard",
+    "homeport": [
+      "Portsmouth Historic Dockyard, England",
+      "50deg48'07''N 1deg06'35''W / 50.80194degN 1.10972degW / 50.80194; -1.10972Coordinates 50deg48'07''N 1deg06'35''W / 50.80194degN 1.10972degW / 50.80194; -1.10972"
+    ],
+    "status": [
+      "Active",
+      "Flagship of the First Sea Lord and museum ship"
+    ],
+    "class": "104-gun",
+    "type": "first-rate ship of the line",
+    "displacement": {
+      "value": "3,500",
+      "unit": "tons"
+    },
+    "tons burthen": {
+      "value": "2,142",
+      "unit": "tons"
+    },
+    "length": [
+      {
+        "value": "57",
+        "unit": "m"
+      },
+      {
+        "value": "69.34",
+        "unit": "m"
+      }
+    ],
+    "beam": {
+      "value": "15.80",
+      "unit": "m"
+    },
+    "draught": {
+      "value": "8.76",
+      "unit": "m"
+    },
+    "depth of hold": {
+      "value": "6.55",
+      "unit": "m"
+    },
+    "propulsion": "Sails--6,510 sq yd (5,440 m2)",
+    "sail plan": "Full-rigged ship",
+    "speed": {
+      "value": "11",
+      "unit": "knots"
+    },
+    "complement": "Approximately 850",
+    "notes": {
+      "value": "62.5",
+      "unit": "m"
+    }
+  },
+  {
+    "ID": 3,
+    "scrapeURL": "https://en.wikipedia.org/wiki/German_battleship_Scharnhorst",
+    "configuration": "0",
+    "importantDates": [
+      {
+        "significance": "laid down",
+        "date": {
+          "year": 1935
+        }
+      },
+      {
+        "significance": "launched",
+        "date": {
+          "year": 1936
+        }
+      },
+      {
+        "significance": "commissioned",
+        "date": {
+          "year": 1939
+        }
+      }
+    ],
+    "awards": [
+
+    ],
+    "armament": [
+      {
+        "fullName": "28 cm/54.5 (11 inch) SK C/34",
+        "quantity": 9,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Fjell_festning_granat.jpg/220px-Fjell_festning_granat.jpg",
+            "description": "  Coast-defence shell at Fjell festning in Sotra, Norway "
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Gneisenau-1.jpg/220px-Gneisenau-1.jpg",
+            "description": "  Gneisenau's Casar turret at Austratt fort, Orlandet, Norway"
+          }
+        ]
+      },
+      {
+        "fullName": "15 cm/55 (5.9) SK C/28",
+        "quantity": 12,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "10.5 cm (4.1 in) SK C/33",
+        "quantity": 14,
+        "size": 10.5,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "3.7 cm (1.5 in) SK C/30",
+        "quantity": 16,
+        "size": 3.7,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Bundesarchiv_Bild_101II-MW-3930-23A%2C_U-Boot_U-103_in_See.jpg/220px-Bundesarchiv_Bild_101II-MW-3930-23A%2C_U-Boot_U-103_in_See.jpg",
+            "description": "  SK C/30U on a type IX U-Boat (U-103) in 1939"
+          }
+        ]
+      },
+      {
+        "fullName": "2 cm (0.79 in)",
+        "quantity": 10,
+        "size": 2.0,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Bundesarchiv_Bild_101I-219-0597-15%2C_Russland-Mitte-S%C3%BCd%2C_leichte_Flak%2C_Josef_Niemitz.jpg/220px-Bundesarchiv_Bild_101I-219-0597-15%2C_Russland-Mitte-S%C3%BCd%2C_leichte_Flak%2C_Josef_Niemitz.jpg",
+            "description": "  A Flak 38 mounted on a vehicle, Russia June 1943. Among the crew is Josef Niemietz"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bundesarchiv_Bild_101I-005-0015-27%2C_Jugoslawien%2C_Polizeieinsatz%2C_Truppentransport.jpg/220px-Bundesarchiv_Bild_101I-005-0015-27%2C_Jugoslawien%2C_Polizeieinsatz%2C_Truppentransport.jpg",
+            "description": "  The rear-location wheelhouse of this Siebel ferry features a Flakvierling quadmount AA battery to defend it in 1942 Yugoslavia."
+          }
+        ]
+      },
+      {
+        "fullName": "torpedo tubes",
+        "quantity": 6,
+        "size": 533.0,
+        "unit": "mm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Torpedo_tube_on_holland_1.jpg/220px-Torpedo_tube_on_holland_1.jpg",
+            "description": "  The torpedo tube on HMS Holland 1"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Torpedo_tube_breech_doors_of_USS_Nautilus.jpg/220px-Torpedo_tube_breech_doors_of_USS_Nautilus.jpg",
+            "description": "  Submarine torpedo tube breech doors of USS Nautilus in their close position"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/MU90.jpg/220px-MU90.jpg",
+            "description": "  MU90 Impact triple launcher onboard F221 Hessen, a modern Sachsen-class frigate of the German Navy"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Torpdorohr_eines_Torpedoschnellbootes.jpg/220px-Torpdorohr_eines_Torpedoschnellbootes.jpg",
+            "description": "  Rear torpedo tube of a former German Jaguar class Schnellboot (MTB)"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/FS_Redoutable_torpilles.jpg/220px-FS_Redoutable_torpilles.jpg",
+            "description": "  Torpedo tubes of the French SNLE Redoutable French submarines use pistons to push the torpedo outside the tube, instead of blowing it out with compressed air."
+          }
+        ]
+      }
+    ],
+    "armor": [
+      {
+        "armorType": "Belt",
+        "minValue": "350",
+        "maxValue": "350",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Deck",
+        "minValue": "50",
+        "maxValue": "50",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Turrets",
+        "minValue": "200",
+        "maxValue": "360",
+        "unit": "mm",
+        "range": true
+      }
+    ],
+    "description": "Scharnhorst was a German capital ship, alternatively described as a battleship and battlecruiser, of Nazi Germany's Kriegsmarine. She was the lead ship of her class, which included one other ship, Gneisenau. The ship was built at the Kriegsmarinewerft dockyard in Wilhelmshaven; she was laid down on 15 June 1935 and launched a year and four months later on 3 October 1936. Completed in January 1939, the ship was armed with a main battery of nine 28 cm (11 in) C/34 guns in three triple turrets. Plans to replace these weapons with six 38 cm (15 in) SK C/34 guns in twin turrets were never carried out.",
+    "pictures": [
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Bundesarchiv_DVM_10_Bild-23-63-07%2C_Schlachtschiff_%22Scharnhorst%22.jpg/300px-Bundesarchiv_DVM_10_Bild-23-63-07%2C_Schlachtschiff_%22Scharnhorst%22.jpg",
+        "description": "Bundesarchiv DVM 10 Bild-23-63-07, Schlachtschiff Scharnhorst.jpg"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Scharnhorst1943.png/220px-Scharnhorst1943.png",
+        "description": "  Scharnhorst in her 1943 configuration"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/Scharnhorst_guns.jpg/220px-Scharnhorst_guns.jpg",
+        "description": "  Scharnhorst in port during the winter of 1939-1940"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Bundesarchiv_DVM_10_Bild-23-63-46%2C_Schlachtschiff_%22Scharnhorst%22.jpg/220px-Bundesarchiv_DVM_10_Bild-23-63-46%2C_Schlachtschiff_%22Scharnhorst%22.jpg",
+        "description": "  Scharnhorst in port"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/El_buque_alem%C3%A1n_Scharnhorst_durante_la_batalla_contra_el_Glorious.jpg/220px-El_buque_alem%C3%A1n_Scharnhorst_durante_la_batalla_contra_el_Glorious.jpg",
+        "description": "  Scharnhorst firing against HMS Glorious"
+      }
+    ],
+    "name": "Scharnhorst",
+    "namesake": "Gerhard Johann von Scharnhorst (1755-1813)[1]",
+    "builder": "Kriegsmarinewerft Wilhelmshaven",
+    "motto": "Scharnhorst immer voran (Scharnhorst ever onward)[2]",
+    "fate": "Sunk at 72deg16'N 28deg41'E / 72.267degN 28.683degE / 72.267; 28.683 the Battle of North Cape on 26 December 1943",
+    "class": "Scharnhorst-class",
+    "type": "battleship",
+    "displacement": [
+      {
+        "value": "32,600",
+        "unit": "t"
+      },
+      {
+        "value": "38,700",
+        "unit": "t"
+      }
+    ],
+    "length": {
+      "value": "234.9",
+      "unit": "m"
+    },
+    "beam": {
+      "value": "30",
+      "unit": "m"
+    },
+    "draft": {
+      "value": "9.9",
+      "unit": "m"
+    },
+    "installed power": "159,551 shp; 118,977 kW[3]",
+    "propulsion": "3 Brown, Boveri & Co geared steam turbines",
+    "speed": {
+      "value": "31",
+      "unit": "knots"
+    },
+    "range": {
+      "value": "19",
+      "unit": "knots"
+    },
+    "complement": [
+      "56 officers",
+      "1,613 enlisted"
+    ],
+    "aircraft carried": "3 Arado Ar 196A",
+    "aviation facilities": "1 catapult"
+  }
+]
