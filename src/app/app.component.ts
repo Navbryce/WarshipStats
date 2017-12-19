@@ -83,8 +83,15 @@ export class AppComponent {
 
       }
 
+
+  }
+  getKeysArray(object: Object): Array<String>{
+      var keys = Object.keys(object);
+      return keys;
   }
   selectTab(tabNumber: number): void{
+      console.log(this.selectedShip.selectedTab + "; new number:" + tabNumber);
+
       if(tabNumber!=this.selectedShip.selectedTab){
           setTimeout(()=>{ /*For some reason the animation trigger wants a brief period between switching. */
               initializeProductGallery(); //Same as the animation trigger. I'm pretty sure this block runs asynch or something without the timeout

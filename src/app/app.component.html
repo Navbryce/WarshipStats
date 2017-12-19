@@ -49,62 +49,52 @@
                             <h4 class="title-font blue-underline">Description:</h4>
                             <div  class="info-box">
                                 <p>{{selectedShip.description}}</p>
-                                <p style="padding-top: 5px;"><b>Class:</b> {{selectedShip.class}}</p>
-                                <p><b>Laid Down:</b> {{selectedShip.laidDown}}</p>
-                                <p><b>Launched:</b> {{selectedShip.launched}}</p>
-                                <p><b>Fate:</b> {{selectedShip.fate.description}}<span *ngIf="selectedShip.fate.year"> in {{selectedShip.fate.year}}</span></p>
+                                <p *ngIf="selectedShip.type" style="padding-top: 5px;"><b>Class:</b> {{selectedShip.type}}</p>
+                                <p *ngIf="selectedShip.class" style="padding-top: 5px;"><b>Type:</b> {{selectedShip.class}}</p>
                             </div>
                         </div>
-                        <div  *ngIf="selectedShip.propulsion[0]" class="info-section primary-weapons">
-                            <h4 class="title-font blue-underline">Propulsion:</h4>
+                        <div class="info-section primary-weapons">
+                            <h4 class="title-font blue-underline">Important Dates:</h4>
                             <div class="info-box">
-                                <div *ngFor="let propulsionComponent of selectedShip.propulsion">
-                                    <p><b>{{propulsionComponent.attribute}}:</b> {{propulsionComponent.value}} <span *ngIf="propulsionComponent.unit">{{propulsionComponent.unit}}</span></p>
+                                <div *ngFor="let importantDate of selectedShip.importantDates">
+                                    <p><b>{{importantDate.significance}}:</b> <span *ngFor="let key of getKeysArray(importantDate.date)">{{importantDate.date[key]}}</span></p>
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="selectedShip.complement" class="info-section primary-weapons">
-                            <h4 class="title-font blue-underline">Complement:</h4>
-                            <div class="info-box">
-                                <div *ngFor="let complementObject of selectedShip.complement">
-                                    <p><b>{{complementObject.attribute}}:</b> {{complementObject.value}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="selectedShip.armor" class="info-section primary-weapons">
+
+                        <div *ngIf="selectedShip.armor.length > 0" class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Armor:</h4>
                             <div class="info-box">
                                 <div *ngFor="let armorObject of selectedShip.armor">
-                                    <p><b>{{armorObject.attribute}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span>mm</p>
+                                    <p><b>{{armorObject.armorType}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span> {{armorObject.unit}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="tab-1 content-of-selected-box" *ngIf="selectedShip.selectedTab==1">
-                        <div *ngIf="selectedShip.primaryWeaponSystems" class="info-section primary-weapons">
-                            <h4 class="title-font blue-underline">Primary Weapon Systems:</h4>
-                            <div  class="info-box icon-info-box" *ngFor="let weaponSystem of selectedShip.primaryWeaponSystems">
-                                <div *ngIf="weaponSystem.picture">
-                                    <img  src="{{weaponSystem.picture.src}}">
+                    <div class="allow-y-scroll">
+                        <div *ngIf="selectedShip.armament.length > 0" class="info-section primary-weapons">
+                            <h4 class="title-font blue-underline">Armament Systems:</h4>
+                            <div  class="info-box icon-info-box" *ngFor="let armament of selectedShip.armament">
+                                <div *ngIf="armament.pictures[0]">
+                                    <img  src="{{armament.pictures[0].src}}">
                                 </div>
                                 <div>
-                                    <p><b>Type:</b> {{weaponSystem.type}}</p>
-                                    <p><b>Number of Turret(s)/Casemate(s):</b> {{weaponSystem.numberOfTurrets}}</p>
-                                    <p><b>Number of Barrels per Turret/Casemate:</b> {{weaponSystem.numberOfBarrels}}</p>
+                                    <p><b>Armament:</b> {{armament.fullName}}</p>
+                                    <p><b>Number of Armament(s):</b> {{armament.quantity}}</p>
+                                    <p *ngIf="!armament.isCannon && !armament.isMissile"><b>Width of Barrel:</b> {{armament.size}} {{armament.unit}}</p>
+                                    <p *ngIf="armament.isMissile"><b>Length of Missile:</b> {{armament.size}} {{armament.unit}}</p>
+                                    <p *ngIf="armament.isCannon"><b>Size of Cannon:</b> {{armament.size}} {{armament.unit}}</p>
+
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="selectedShip.secondaryWeaponSystems" class="info-section secondary-weapons">
-                            <h4 class="title-font blue-underline">Secondary Weapon Systems:</h4>
-                            <div  class="info-box" *ngFor="let weaponSystem of selectedShip.secondaryWeaponSystems">
-                                <p><b>Type:</b> {{weaponSystem.type}}</p>
-                                <p><b>Number of Turret(s)/Casemate(s):</b> {{weaponSystem.numberOfTurrets}}</p>
-                                <p><b>Number of Barrels per Turret/Casemate:</b> {{weaponSystem.numberOfBarrels}}</p>
-                            </div>
-                        </div>
+                    </div>
                 </div>
                 <div *ngIf="selectedShip.selectedTab==2">
+                    <p>visualization</p>
                 </div>
             </div>
         </div>
