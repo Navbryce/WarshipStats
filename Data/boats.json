@@ -1,161 +1,181 @@
 [
   {
     "ID": 0,
-    "scrapeURL": "https://en.wikipedia.org/wiki/USS_Monitor",
+    "scrapeURL": "https://en.wikipedia.org/wiki/HMS_Victory",
     "configuration": "0",
     "importantDates": [
       {
         "significance": "ordered",
         "date": {
-          "year": 1861
+          "year": 1758
         }
       },
       {
         "significance": "laid down",
         "date": {
-          "year": 1861
+          "year": 1759
         }
       },
       {
         "significance": "launched",
         "date": {
-          "year": 1862
+          "year": 1765
         }
       },
       {
         "significance": "commissioned",
         "date": {
-          "year": 1862
+          "year": 1778
         }
       }
     ],
     "awards": [
-
+      {
+        "value": "Participated",
+        "unit": "in"
+      },
+      "First Battle of Ushant (1778)",
+      "Second Battle of Ushant (1781)",
+      "Battle of Cape Spartel (1782)",
+      "Battle of Cape St Vincent (1797)",
+      "Battle of Trafalgar (1805)"
     ],
     "armament": [
       {
-        "fullName": "smoothbore Dahlgren guns",
-        "quantity": 2,
-        "size": 280.0,
-        "unit": "mm",
-        "isCannon": false,
+        "fullName": "long pattern Blomefield 32 pounders",
+        "quantity": 30,
+        "size": 15.0,
+        "unit": "kg",
+        "isCannon": true,
         "isMissile": false,
         "pictures": [
-          {
-            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/DahlgrenPawnee.jpg/220px-DahlgrenPawnee.jpg",
-            "description": "  John A. Dahlgren standing next to a 50-pounder Dahlgren rifle aboard USS Pawnee, 1865."
-          },
-          {
-            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Dahlgren_gun_crew.jpg/400px-Dahlgren_gun_crew.jpg",
-            "description": "  A 9-inch Dahlgren smoothbore naval gun and crew in the stern pivot position of USS Miami, 1864. (National Archives)."
-          },
-          {
-            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/DahlgrenBoat_HowitzerMountedinLaunch.jpg/220px-DahlgrenBoat_HowitzerMountedinLaunch.jpg",
-            "description": "  Dahlgren boat howitzer mounted in frigate's launch. The field carriage can be seen in stern"
-          },
-          {
-            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/BoatHowitzerFieldCarriage.jpg/220px-BoatHowitzerFieldCarriage.jpg",
-            "description": "  Dahlgren boat howitzer mounted on field carriage"
-          },
-          {
-            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/8inGunandIronCarriage.jpg/220px-8inGunandIronCarriage.jpg",
-            "description": "  Line engraving of a VIII-inch Dahlgren shell gun on an iron carriage"
-          }
+
+        ]
+      },
+      {
+        "fullName": "long 24 pounders",
+        "quantity": 28,
+        "size": 11.0,
+        "unit": "kg",
+        "isCannon": true,
+        "isMissile": false,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "1.7 ton short 12 pounders (5 kg)",
+        "quantity": 30,
+        "size": 5.0,
+        "unit": "kg",
+        "isCannon": true,
+        "isMissile": false,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "1.7 ton short 12 pounder (5 kg)",
+        "quantity": 12,
+        "size": 5.0,
+        "unit": "kg",
+        "isCannon": true,
+        "isMissile": false,
+        "pictures": [
+
+        ]
+      },
+      {
+        "fullName": "medium 12 pounder (5 kg), 2 x 68 pounder (31 kg) carronade",
+        "quantity": 2,
+        "size": 31.0,
+        "unit": "kg",
+        "isCannon": true,
+        "isMissile": false,
+        "pictures": [
+
         ]
       }
     ],
     "armor": [
-      {
-        "armorType": "Gun",
-        "minValue": "203",
-        "maxValue": "203",
-        "unit": "mm",
-        "range": false
-      },
-      {
-        "armorType": "Waterline",
-        "minValue": "76-127",
-        "maxValue": "76-127",
-        "unit": "mm",
-        "range": false
-      },
-      {
-        "armorType": "Deck",
-        "minValue": "25",
-        "maxValue": "25",
-        "unit": "mm",
-        "range": false
-      },
-      {
-        "armorType": "Pilot",
-        "minValue": "229",
-        "maxValue": "229",
-        "unit": "mm",
-        "range": false
-      }
+
     ],
-    "description": "USS Monitor was an iron-hulled steamship. Built during the American Civil War, she was the first ironclad warship commissioned by the Union Navy. Monitor is most famous for her central role in the Battle of Hampton Roads on 9 March 1862, where, under the command of Lieutenant John Worden, she fought the casemate ironclad CSS Virginia (built on the hull of the former steam frigate USS Merrimack) to a standstill. The unique design of the ship, distinguished by its revolving turret which was designed by American inventor Theodore Timby, was quickly duplicated and established the monitor type of warship.",
+    "description": "HMS Victory is a 104-gun first-rate ship of the line of the Royal Navy, ordered in 1758, laid down in 1759 and launched in 1765. She is best known for her role as Lord Nelson's flagship at the Battle of Trafalgar in 1805.",
     "pictures": [
       {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/USS_Monitor_at_sea.jpg/300px-USS_Monitor_at_sea.jpg",
-        "description": "USS Monitor at sea.jpg"
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Victory_Portsmouth_um_1900.jpg/300px-Victory_Portsmouth_um_1900.jpg",
+        "description": "Victory Portsmouth um 1900.jpg"
       },
       {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Johnericsson.battary.jpg/184px-Johnericsson.battary.jpg",
-        "description": "  Statue of John Ericsson in the Battery, New York City, with model of Monitor in hand"
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Combat_d%27Ouessant_juillet_1778_par_Theodore_Gudin.jpg/220px-Combat_d%27Ouessant_juillet_1778_par_Theodore_Gudin.jpg",
+        "description": "  The first battle of Ushant (1778) by Theodore Gudin. Admiral Keppel was later court martialed for allowing the French fleet to escape but was acquitted."
       },
       {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Monitor_model2.jpg/324px-Monitor_model2.jpg",
-        "description": "  Model of USS Monitor"
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/HMSVictoryFromTheFleetOffshore.jpg/170px-HMSVictoryFromTheFleetOffshore.jpg",
+        "description": "  HMS Victory flying the Blue Ensign (with the pre-1801 Union Jack), from The Fleet Offshore, 1780-90, an anonymous piece of folk art now at Compton Verney Art Gallery."
       },
       {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/USS_Monitor_plans.jpg/324px-USS_Monitor_plans.jpg",
-        "description": "  Inboard plans of USS Monitor See also Outboard plans "
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Batalha_do_Cabo_de_S%C3%A3o_Vicente.jpg/220px-Batalha_do_Cabo_de_S%C3%A3o_Vicente.jpg",
+        "description": "  The Battle of Cape Saint Vincent, Richard Brydges Beechey, 1881"
       },
       {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/USS_Monitor_-_Transverse_hull_section_through_the_turret.jpg/264px-USS_Monitor_-_Transverse_hull_section_through_the_turret.jpg",
-        "description": "  Transverse hull section through the turret"
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vice-Admiral_Horatio_Nelson%2C_1758-1805%2C_1st_Viscount_Nelson.jpg/170px-Vice-Admiral_Horatio_Nelson%2C_1758-1805%2C_1st_Viscount_Nelson.jpg",
+        "description": "  Vice-Admiral Horatio Nelson twice flew his flag in Victory"
       }
     ],
-    "name": "Monitor",
-    "builder": "Continental Iron Works, Greenpoint, Brooklyn, US",
-    "cost": "$275,000",
-    "fate": "Lost at sea, 31 December 1862",
-    "status": "Wreck located 27 August 1973, partially salvaged",
-    "type": "Monitor",
+    "name": "HMS Victory",
+    "builder": "Chatham Dockyard",
+    "homeport": [
+      "Portsmouth Historic Dockyard, England",
+      "50deg48'07''N 1deg06'35''W / 50.80194degN 1.10972degW / 50.80194; -1.10972Coordinates 50deg48'07''N 1deg06'35''W / 50.80194degN 1.10972degW / 50.80194; -1.10972"
+    ],
+    "status": [
+      "Active",
+      "Flagship of the First Sea Lord and museum ship"
+    ],
+    "class": "104-gun",
+    "type": "first-rate ship of the line",
     "displacement": {
-      "value": "1,003",
-      "unit": "t"
-    },
-    "tons burthen": {
-      "value": "776",
+      "value": "3,500",
       "unit": "tons"
     },
-    "length": {
-      "value": "54.6",
-      "unit": "m"
+    "tons burthen": {
+      "value": "2,142",
+      "unit": "tons"
     },
-    "beam": {
-      "value": "12.6",
-      "unit": "m"
-    },
-    "draft": {
-      "value": "3.2",
-      "unit": "m"
-    },
-    "installed power": {
-      "value": "240",
-      "unit": "kW"
-    },
-    "propulsion": [
-      "1 x Propeller",
-      "1 x Vibrating-lever steam engine"
+    "length": [
+      {
+        "value": "57",
+        "unit": "m"
+      },
+      {
+        "value": "69.34",
+        "unit": "m"
+      }
     ],
+    "beam": {
+      "value": "15.80",
+      "unit": "m"
+    },
+    "draught": {
+      "value": "8.76",
+      "unit": "m"
+    },
+    "depth of hold": {
+      "value": "6.55",
+      "unit": "m"
+    },
+    "propulsion": "Sails--6,510 sq yd (5,440 m2)",
+    "sail plan": "Full-rigged ship",
     "speed": {
-      "value": "6",
+      "value": "11",
       "unit": "knots"
     },
-    "complement": "49 officers and enlisted men"
+    "complement": "Approximately 850",
+    "notes": {
+      "value": "62.5",
+      "unit": "m"
+    }
   },
   {
     "ID": 1,
@@ -194,6 +214,10 @@
       {
         "fullName": "28 cm/54.5 (11 inch) SK C/34",
         "quantity": 9,
+        "size": 28.0,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
         "pictures": [
           {
             "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Fjell_festning_granat.jpg/220px-Fjell_festning_granat.jpg",
@@ -208,6 +232,10 @@
       {
         "fullName": "15 cm/55 (5.9) SK C/28",
         "quantity": 12,
+        "size": 15.0,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
         "pictures": [
 
         ]
@@ -382,169 +410,6 @@
   },
   {
     "ID": 2,
-    "scrapeURL": "https://en.wikipedia.org/wiki/HMS_Victory",
-    "configuration": "0",
-    "importantDates": [
-      {
-        "significance": "ordered",
-        "date": {
-          "year": 1758
-        }
-      },
-      {
-        "significance": "laid down",
-        "date": {
-          "year": 1759
-        }
-      },
-      {
-        "significance": "launched",
-        "date": {
-          "year": 1765
-        }
-      },
-      {
-        "significance": "commissioned",
-        "date": {
-          "year": 1778
-        }
-      }
-    ],
-    "awards": [
-      "Participated in",
-      "First Battle of Ushant (1778)",
-      "Second Battle of Ushant (1781)",
-      "Battle of Cape Spartel (1782)",
-      "Battle of Cape St Vincent (1797)",
-      "Battle of Trafalgar (1805)"
-    ],
-    "armament": [
-      {
-        "fullName": "long pattern Blomefield 32 pounders",
-        "quantity": 30,
-        "pictures": [
-
-        ]
-      },
-      {
-        "fullName": "long 24 pounders",
-        "quantity": 28,
-        "pictures": [
-
-        ]
-      },
-      {
-        "fullName": "1.7 ton short 12 pounders (5 kg)",
-        "quantity": 30,
-        "pictures": [
-
-        ]
-      },
-      {
-        "fullName": "1.7 ton short 12 pounder (5 kg)",
-        "quantity": 12,
-        "size": 12.0,
-        "unit": "pounder",
-        "isCannon": true,
-        "isMissile": false,
-        "pictures": [
-
-        ]
-      },
-      {
-        "fullName": "medium 12 pounder (5 kg), 2 x 68 pounder (31 kg) carronade",
-        "quantity": 2,
-        "size": 12.0,
-        "unit": "pounder",
-        "isCannon": true,
-        "isMissile": false,
-        "pictures": [
-
-        ]
-      }
-    ],
-    "armor": [
-
-    ],
-    "description": "HMS Victory is a 104-gun first-rate ship of the line of the Royal Navy, ordered in 1758, laid down in 1759 and launched in 1765. She is best known for her role as Lord Nelson's flagship at the Battle of Trafalgar in 1805.",
-    "pictures": [
-      {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Victory_Portsmouth_um_1900.jpg/300px-Victory_Portsmouth_um_1900.jpg",
-        "description": "Victory Portsmouth um 1900.jpg"
-      },
-      {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Combat_d%27Ouessant_juillet_1778_par_Theodore_Gudin.jpg/220px-Combat_d%27Ouessant_juillet_1778_par_Theodore_Gudin.jpg",
-        "description": "  The first battle of Ushant (1778) by Theodore Gudin. Admiral Keppel was later court martialed for allowing the French fleet to escape but was acquitted."
-      },
-      {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/HMSVictoryFromTheFleetOffshore.jpg/170px-HMSVictoryFromTheFleetOffshore.jpg",
-        "description": "  HMS Victory flying the Blue Ensign (with the pre-1801 Union Jack), from The Fleet Offshore, 1780-90, an anonymous piece of folk art now at Compton Verney Art Gallery."
-      },
-      {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Batalha_do_Cabo_de_S%C3%A3o_Vicente.jpg/220px-Batalha_do_Cabo_de_S%C3%A3o_Vicente.jpg",
-        "description": "  The Battle of Cape Saint Vincent, Richard Brydges Beechey, 1881"
-      },
-      {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Vice-Admiral_Horatio_Nelson%2C_1758-1805%2C_1st_Viscount_Nelson.jpg/170px-Vice-Admiral_Horatio_Nelson%2C_1758-1805%2C_1st_Viscount_Nelson.jpg",
-        "description": "  Vice-Admiral Horatio Nelson twice flew his flag in Victory"
-      }
-    ],
-    "name": "HMS Victory",
-    "builder": "Chatham Dockyard",
-    "homeport": [
-      "Portsmouth Historic Dockyard, England",
-      "50deg48'07''N 1deg06'35''W / 50.80194degN 1.10972degW / 50.80194; -1.10972Coordinates 50deg48'07''N 1deg06'35''W / 50.80194degN 1.10972degW / 50.80194; -1.10972"
-    ],
-    "status": [
-      "Active",
-      "Flagship of the First Sea Lord and museum ship"
-    ],
-    "class": "104-gun",
-    "type": "first-rate ship of the line",
-    "displacement": {
-      "value": "3,500",
-      "unit": "tons"
-    },
-    "tons burthen": {
-      "value": "2,142",
-      "unit": "tons"
-    },
-    "length": [
-      {
-        "value": "57",
-        "unit": "m"
-      },
-      {
-        "value": "69.34",
-        "unit": "m"
-      }
-    ],
-    "beam": {
-      "value": "15.80",
-      "unit": "m"
-    },
-    "draught": {
-      "value": "8.76",
-      "unit": "m"
-    },
-    "depth of hold": {
-      "value": "6.55",
-      "unit": "m"
-    },
-    "propulsion": "Sails--6,510 sq yd (5,440 m2)",
-    "sail plan": "Full-rigged ship",
-    "speed": {
-      "value": "11",
-      "unit": "knots"
-    },
-    "complement": "Approximately 850",
-    "notes": {
-      "value": "62.5",
-      "unit": "m"
-    }
-  },
-  {
-    "ID": 3,
     "scrapeURL": "https://en.wikipedia.org/wiki/German_battleship_Scharnhorst",
     "configuration": "0",
     "importantDates": [
@@ -574,6 +439,10 @@
       {
         "fullName": "28 cm/54.5 (11 inch) SK C/34",
         "quantity": 9,
+        "size": 28.0,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
         "pictures": [
           {
             "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Fjell_festning_granat.jpg/220px-Fjell_festning_granat.jpg",
@@ -588,6 +457,10 @@
       {
         "fullName": "15 cm/55 (5.9) SK C/28",
         "quantity": 12,
+        "size": 15.0,
+        "unit": "cm",
+        "isCannon": false,
+        "isMissile": false,
         "pictures": [
 
         ]
@@ -757,5 +630,163 @@
     ],
     "aircraft carried": "3 Arado Ar 196A",
     "aviation facilities": "1 catapult"
+  },
+  {
+    "ID": 3,
+    "scrapeURL": "https://en.wikipedia.org/wiki/USS_Monitor",
+    "configuration": "0",
+    "importantDates": [
+      {
+        "significance": "ordered",
+        "date": {
+          "year": 1861
+        }
+      },
+      {
+        "significance": "laid down",
+        "date": {
+          "year": 1861
+        }
+      },
+      {
+        "significance": "launched",
+        "date": {
+          "year": 1862
+        }
+      },
+      {
+        "significance": "commissioned",
+        "date": {
+          "year": 1862
+        }
+      }
+    ],
+    "awards": [
+
+    ],
+    "armament": [
+      {
+        "fullName": "smoothbore Dahlgren guns",
+        "quantity": 2,
+        "size": 280.0,
+        "unit": "mm",
+        "isCannon": false,
+        "isMissile": false,
+        "pictures": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/DahlgrenPawnee.jpg/220px-DahlgrenPawnee.jpg",
+            "description": "  John A. Dahlgren standing next to a 50-pounder Dahlgren rifle aboard USS Pawnee, 1865."
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Dahlgren_gun_crew.jpg/400px-Dahlgren_gun_crew.jpg",
+            "description": "  A 9-inch Dahlgren smoothbore naval gun and crew in the stern pivot position of USS Miami, 1864. (National Archives)."
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/DahlgrenBoat_HowitzerMountedinLaunch.jpg/220px-DahlgrenBoat_HowitzerMountedinLaunch.jpg",
+            "description": "  Dahlgren boat howitzer mounted in frigate's launch. The field carriage can be seen in stern"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/BoatHowitzerFieldCarriage.jpg/220px-BoatHowitzerFieldCarriage.jpg",
+            "description": "  Dahlgren boat howitzer mounted on field carriage"
+          },
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/8inGunandIronCarriage.jpg/220px-8inGunandIronCarriage.jpg",
+            "description": "  Line engraving of a VIII-inch Dahlgren shell gun on an iron carriage"
+          }
+        ]
+      }
+    ],
+    "armor": [
+      {
+        "armorType": "Gun",
+        "minValue": "203",
+        "maxValue": "203",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Waterline",
+        "minValue": "76-127",
+        "maxValue": "76-127",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Deck",
+        "minValue": "25",
+        "maxValue": "25",
+        "unit": "mm",
+        "range": false
+      },
+      {
+        "armorType": "Pilot",
+        "minValue": "229",
+        "maxValue": "229",
+        "unit": "mm",
+        "range": false
+      }
+    ],
+    "description": "USS Monitor was an iron-hulled steamship. Built during the American Civil War, she was the first ironclad warship commissioned by the Union Navy. Monitor is most famous for her central role in the Battle of Hampton Roads on 9 March 1862, where, under the command of Lieutenant John Worden, she fought the casemate ironclad CSS Virginia (built on the hull of the former steam frigate USS Merrimack) to a standstill. The unique design of the ship, distinguished by its revolving turret which was designed by American inventor Theodore Timby, was quickly duplicated and established the monitor type of warship.",
+    "pictures": [
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/USS_Monitor_at_sea.jpg/300px-USS_Monitor_at_sea.jpg",
+        "description": "USS Monitor at sea.jpg"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Johnericsson.battary.jpg/184px-Johnericsson.battary.jpg",
+        "description": "  Statue of John Ericsson in the Battery, New York City, with model of Monitor in hand"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Monitor_model2.jpg/324px-Monitor_model2.jpg",
+        "description": "  Model of USS Monitor"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/USS_Monitor_plans.jpg/324px-USS_Monitor_plans.jpg",
+        "description": "  Inboard plans of USS Monitor See also Outboard plans "
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/USS_Monitor_-_Transverse_hull_section_through_the_turret.jpg/264px-USS_Monitor_-_Transverse_hull_section_through_the_turret.jpg",
+        "description": "  Transverse hull section through the turret"
+      }
+    ],
+    "name": "Monitor",
+    "builder": "Continental Iron Works, Greenpoint, Brooklyn, US",
+    "cost": "$275,000",
+    "fate": "Lost at sea, 31 December 1862",
+    "status": "Wreck located 27 August 1973, partially salvaged",
+    "type": "Monitor",
+    "displacement": {
+      "value": "1,003",
+      "unit": "t"
+    },
+    "tons burthen": {
+      "value": "776",
+      "unit": "tons"
+    },
+    "length": {
+      "value": "54.6",
+      "unit": "m"
+    },
+    "beam": {
+      "value": "12.6",
+      "unit": "m"
+    },
+    "draft": {
+      "value": "3.2",
+      "unit": "m"
+    },
+    "installed power": {
+      "value": "240",
+      "unit": "kW"
+    },
+    "propulsion": [
+      "1 x Propeller",
+      "1 x Vibrating-lever steam engine"
+    ],
+    "speed": {
+      "value": "6",
+      "unit": "knots"
+    },
+    "complement": "49 officers and enlisted men"
   }
 ]

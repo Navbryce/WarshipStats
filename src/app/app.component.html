@@ -42,7 +42,7 @@
                     <div class="allow-y-scroll">
                         <div class="gallery-wrapper">
                             <div id="ship-gallery">
-                                <img src="{{image.src}}" *ngFor="let image of selectedShip.pictures">
+                                <img src="{{image.src}}" [attr.data-description]="image.description" *ngFor="let image of selectedShip.pictures">
                             </div>
                         </div>
                         <div *ngIf="selectedShip.description"  class="info-section primary-weapons">
@@ -58,6 +58,15 @@
                             <div class="info-box">
                                 <div *ngFor="let importantDate of selectedShip.importantDates">
                                     <p><b>{{importantDate.significance}}:</b> <span *ngFor="let key of getKeysArray(importantDate.date)">{{importantDate.date[key]}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="selectedShip.armor.length > 0" class="info-section primary-weapons">
+                            <h4 class="title-font blue-underline">Physical Attributes:</h4>
+                            <div class="info-box">
+                                <div *ngFor="let armorObject of selectedShip.armor">
+                                    <p><b>{{armorObject.armorType}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span> {{armorObject.unit}}</p>
                                 </div>
                             </div>
                         </div>

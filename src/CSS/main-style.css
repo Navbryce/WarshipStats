@@ -55,6 +55,14 @@
 }
 .icon-info-box{
 	display: flex;
+	align-items: center;
+}
+.icon-info-box > div:first-child{
+	margin-right: 3%;
+}
+.icon-info-box img{
+	object-fit: contain;
+	max-height: 200px;
 }
 .info-box p{
 	margin: 0px;
