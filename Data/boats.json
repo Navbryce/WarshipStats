@@ -101,6 +101,36 @@
 
     ],
     "description": "HMS Victory is a 104-gun first-rate ship of the line of the Royal Navy, ordered in 1758, laid down in 1759 and launched in 1765. She is best known for her role as Lord Nelson's flagship at the Battle of Trafalgar in 1805.",
+    "physicalAttributes": {
+      "displacement": {
+        "value": "3,500",
+        "unit": "tons"
+      },
+      "tons burthen": {
+        "value": "2,142",
+        "unit": "tons"
+      },
+      "length": {
+        "value": "69.34",
+        "unit": "m"
+      },
+      "beam": {
+        "value": "15.80",
+        "unit": "m"
+      },
+      "draught": {
+        "value": "8.76",
+        "unit": "m"
+      },
+      "depth of hold": {
+        "value": "6.55",
+        "unit": "m"
+      },
+      "speed": {
+        "value": "20",
+        "unit": "km"
+      }
+    },
     "pictures": [
       {
         "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Victory_Portsmouth_um_1900.jpg/300px-Victory_Portsmouth_um_1900.jpg",
@@ -135,43 +165,9 @@
     ],
     "class": "104-gun",
     "type": "first-rate ship of the line",
-    "displacement": {
-      "value": "3,500",
-      "unit": "tons"
-    },
-    "tons burthen": {
-      "value": "2,142",
-      "unit": "tons"
-    },
-    "length": [
-      {
-        "value": "57",
-        "unit": "m"
-      },
-      {
-        "value": "69.34",
-        "unit": "m"
-      }
-    ],
-    "beam": {
-      "value": "15.80",
-      "unit": "m"
-    },
-    "draught": {
-      "value": "8.76",
-      "unit": "m"
-    },
-    "depth of hold": {
-      "value": "6.55",
-      "unit": "m"
-    },
     "propulsion": "Sails--6,510 sq yd (5,440 m2)",
     "sail plan": "Full-rigged ship",
-    "speed": {
-      "value": "11",
-      "unit": "knots"
-    },
-    "complement": "Approximately 850",
+    "complement": 850,
     "notes": {
       "value": "62.5",
       "unit": "m"
@@ -338,6 +334,36 @@
       }
     ],
     "description": "Gneisenau was a German capital ship, alternatively described as a battleship and battlecruiser, of Nazi Germany's Kriegsmarine. She was the second vessel of her class, which included one other ship, Scharnhorst. The ship was built at the Deutsche Werke dockyard in Kiel; she was laid down on 6 May 1935 and launched on 8 December 1936. Completed in May 1938, the ship was armed with a main battery of nine 28 cm (11 in) C/34 guns in three triple turrets, though there were plans to replace these weapons with six 38 cm (15 in) SK C/34 guns in twin turrets.",
+    "physicalAttributes": {
+      "displacement": {
+        "value": "38,700",
+        "unit": "t"
+      },
+      "length": {
+        "value": "234.9",
+        "unit": "m"
+      },
+      "beam": {
+        "value": "30",
+        "unit": "m"
+      },
+      "draft": {
+        "value": "9.9",
+        "unit": "m"
+      },
+      "installed power": {
+        "value": "122,040",
+        "unit": "kW"
+      },
+      "speed": {
+        "value": "57",
+        "unit": "km"
+      },
+      "range": {
+        "value": "35",
+        "unit": "km"
+      }
+    },
     "pictures": [
       {
         "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Bundesarchiv_DVM_10_Bild-23-63-21%2C_Schlachtschiff_%22Gneisenau%22.jpg/300px-Bundesarchiv_DVM_10_Bild-23-63-21%2C_Schlachtschiff_%22Gneisenau%22.jpg",
@@ -366,45 +392,8 @@
     "fate": "Sunk as a blockship 23 March 1945 and scrapped after the war.",
     "class": "Scharnhorst-class",
     "type": "battleship",
-    "displacement": [
-      {
-        "value": "32,600",
-        "unit": "t"
-      },
-      {
-        "value": "38,700",
-        "unit": "t"
-      }
-    ],
-    "length": {
-      "value": "234.9",
-      "unit": "m"
-    },
-    "beam": {
-      "value": "30",
-      "unit": "m"
-    },
-    "draft": {
-      "value": "9.9",
-      "unit": "m"
-    },
-    "installed power": {
-      "value": "122,040",
-      "unit": "kW"
-    },
     "propulsion": "3 Germania geared steam turbines",
-    "speed": {
-      "value": "31",
-      "unit": "knots"
-    },
-    "range": {
-      "value": "19",
-      "unit": "knots"
-    },
-    "complement": [
-      "56 officers",
-      "1,613 enlisted"
-    ],
+    "complement": 1669,
     "aircraft carried": "3 Arado Ar 196A",
     "aviation facilities": "1 catapult"
   },
@@ -563,6 +552,36 @@
       }
     ],
     "description": "Scharnhorst was a German capital ship, alternatively described as a battleship and battlecruiser, of Nazi Germany's Kriegsmarine. She was the lead ship of her class, which included one other ship, Gneisenau. The ship was built at the Kriegsmarinewerft dockyard in Wilhelmshaven; she was laid down on 15 June 1935 and launched a year and four months later on 3 October 1936. Completed in January 1939, the ship was armed with a main battery of nine 28 cm (11 in) C/34 guns in three triple turrets. Plans to replace these weapons with six 38 cm (15 in) SK C/34 guns in twin turrets were never carried out.",
+    "physicalAttributes": {
+      "displacement": {
+        "value": "38,700",
+        "unit": "t"
+      },
+      "length": {
+        "value": "234.9",
+        "unit": "m"
+      },
+      "beam": {
+        "value": "30",
+        "unit": "m"
+      },
+      "draft": {
+        "value": "9.9",
+        "unit": "m"
+      },
+      "installed power": {
+        "value": "118,977",
+        "unit": "kW"
+      },
+      "speed": {
+        "value": "57",
+        "unit": "km"
+      },
+      "range": {
+        "value": "35",
+        "unit": "km"
+      }
+    },
     "pictures": [
       {
         "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Bundesarchiv_DVM_10_Bild-23-63-07%2C_Schlachtschiff_%22Scharnhorst%22.jpg/300px-Bundesarchiv_DVM_10_Bild-23-63-07%2C_Schlachtschiff_%22Scharnhorst%22.jpg",
@@ -592,42 +611,8 @@
     "fate": "Sunk at 72deg16'N 28deg41'E / 72.267degN 28.683degE / 72.267; 28.683 the Battle of North Cape on 26 December 1943",
     "class": "Scharnhorst-class",
     "type": "battleship",
-    "displacement": [
-      {
-        "value": "32,600",
-        "unit": "t"
-      },
-      {
-        "value": "38,700",
-        "unit": "t"
-      }
-    ],
-    "length": {
-      "value": "234.9",
-      "unit": "m"
-    },
-    "beam": {
-      "value": "30",
-      "unit": "m"
-    },
-    "draft": {
-      "value": "9.9",
-      "unit": "m"
-    },
-    "installed power": "159,551 shp; 118,977 kW[3]",
     "propulsion": "3 Brown, Boveri & Co geared steam turbines",
-    "speed": {
-      "value": "31",
-      "unit": "knots"
-    },
-    "range": {
-      "value": "19",
-      "unit": "knots"
-    },
-    "complement": [
-      "56 officers",
-      "1,613 enlisted"
-    ],
+    "complement": 1669,
     "aircraft carried": "3 Arado Ar 196A",
     "aviation facilities": "1 catapult"
   },
@@ -727,6 +712,32 @@
       }
     ],
     "description": "USS Monitor was an iron-hulled steamship. Built during the American Civil War, she was the first ironclad warship commissioned by the Union Navy. Monitor is most famous for her central role in the Battle of Hampton Roads on 9 March 1862, where, under the command of Lieutenant John Worden, she fought the casemate ironclad CSS Virginia (built on the hull of the former steam frigate USS Merrimack) to a standstill. The unique design of the ship, distinguished by its revolving turret which was designed by American inventor Theodore Timby, was quickly duplicated and established the monitor type of warship.",
+    "physicalAttributes": {
+      "displacement": {
+        "value": "1,003",
+        "unit": "t"
+      },
+      "tons burthen": {
+        "value": "776",
+        "unit": "tons"
+      },
+      "length": {
+        "value": "54.6",
+        "unit": "m"
+      },
+      "beam": {
+        "value": "12.6",
+        "unit": "m"
+      },
+      "draft": {
+        "value": "3.2",
+        "unit": "m"
+      },
+      "speed": {
+        "value": "11",
+        "unit": "km"
+      }
+    },
     "pictures": [
       {
         "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/USS_Monitor_at_sea.jpg/300px-USS_Monitor_at_sea.jpg",
@@ -755,26 +766,6 @@
     "fate": "Lost at sea, 31 December 1862",
     "status": "Wreck located 27 August 1973, partially salvaged",
     "type": "Monitor",
-    "displacement": {
-      "value": "1,003",
-      "unit": "t"
-    },
-    "tons burthen": {
-      "value": "776",
-      "unit": "tons"
-    },
-    "length": {
-      "value": "54.6",
-      "unit": "m"
-    },
-    "beam": {
-      "value": "12.6",
-      "unit": "m"
-    },
-    "draft": {
-      "value": "3.2",
-      "unit": "m"
-    },
     "installed power": {
       "value": "240",
       "unit": "kW"
@@ -783,10 +774,6 @@
       "1 x Propeller",
       "1 x Vibrating-lever steam engine"
     ],
-    "speed": {
-      "value": "6",
-      "unit": "knots"
-    },
-    "complement": "49 officers and enlisted men"
+    "complement": 49
   }
 ]

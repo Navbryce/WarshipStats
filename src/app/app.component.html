@@ -62,11 +62,11 @@
                             </div>
                         </div>
 
-                        <div *ngIf="selectedShip.armor.length > 0" class="info-section primary-weapons">
+                        <div class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Physical Attributes:</h4>
                             <div class="info-box">
-                                <div *ngFor="let armorObject of selectedShip.armor">
-                                    <p><b>{{armorObject.armorType}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span> {{armorObject.unit}}</p>
+                                <div *ngFor="let attrKey of getKeysArray(selectedShip.physicalAttributes)">
+                                    <p><b>{{attrKey}}:</b> {{selectedShip.physicalAttributes[attrKey].value}} {{selectedShip.physicalAttributes[attrKey].unit}}</p>
                                 </div>
                             </div>
                         </div>
@@ -76,6 +76,14 @@
                             <div class="info-box">
                                 <div *ngFor="let armorObject of selectedShip.armor">
                                     <p><b>{{armorObject.armorType}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span> {{armorObject.unit}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-section primary-weapons">
+                            <h4 class="title-font blue-underline">Other Info:</h4>
+                            <div class="info-box">
+                                <div *ngFor="let key of getsKeysNotInUse(selectedShip)">
+                                    <p>{{key}}</p>
                                 </div>
                             </div>
                         </div>
