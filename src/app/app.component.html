@@ -6,7 +6,7 @@
         <div *ngFor="let ship of shipsList" (click)="selectShip(ship)">
             <div class="ship-header">
                 <div class="ship-header-text">
-                    <h3>{{ship.name}}</h3>
+                    <h3>{{ship.displayName}}</h3>
                 </div>
                 <span class="ship-header-divider"></span>
             </div>
@@ -24,7 +24,7 @@
     <div class="selected-box">
         <div class="selected-frame">
             <div class="selected-box-header">
-                <h1 class="title-font metallic-text">{{selectedShip.name}}</h1>
+                <h1 class="title-font metallic-text">{{selectedShip.displayName}}</h1>
                 <ul class="selected-ship-tabs nav nav-tabs">
                       <li [ngClass]="{'active-tab': selectedShip.selectedTab==0}" class="nav-item">
                             <a  class="nav-link" href="#" (click)="selectTab(0)">General Overview</a>
@@ -71,19 +71,28 @@
                             </div>
                         </div>
 
-                        <div *ngIf="selectedShip.armor.length > 0" class="info-section primary-weapons">
+                        <div *ngIf="selectedShip.armor.armorObjects.length > 0" class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Armor:</h4>
                             <div class="info-box">
-                                <div *ngFor="let armorObject of selectedShip.armor">
+                                <div *ngFor="let armorObject of selectedShip.armor.armorObjects">
                                     <p><b>{{armorObject.armorType}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span> {{armorObject.unit}}</p>
                                 </div>
+                                <div>
+                                    <h5>General Armor Stats:</h5>
+                                    <!--- All armor is in mm from the scraper conersion--->
+                                    <p><b>Average:</b> {{selectedShip.armor.calculations.average}} mm</p>
+                                    <p><b>Median:</b> {{selectedShip.armor.calculations.median}} mm</p>
+                                    <p *ngIf = "selectedShip.armor.calculations.mode.frequency > 1"><b>Mode:</b> {{selectedShip.armor.calculations.mode.value}} mm with a frequency of {{selectedShip.armor.calculations.mode.frequency}}</p>
+                                    <p><b>Range:</b> {{selectedShip.armor.calculations.minValue}}-{{selectedShip.armor.calculations.maxValue}} mm</p>
+                                </div>
                             </div>
+
                         </div>
                         <div class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Other Info:</h4>
                             <div class="info-box">
                                 <div *ngFor="let key of getsKeysNotInUse(selectedShip)">
-                                    <p>{{key}}</p>
+                                    <b>{{key}}:</b> {{selectedShip[key]}}
                                 </div>
                             </div>
                         </div>
