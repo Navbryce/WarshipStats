@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import * as boats from '../../Data/boats.json';
+import { Component, OnInit } from '@angular/core';
+// import * as boats from '../../Data/boats.json';
+import { HttpClient } from '@angular/common/http';
 import {
   trigger,
   state,
@@ -8,7 +9,7 @@ import {
   transition
 } from '@angular/animations';
 
-const ships: Array<any> = (<any>boats);
+// const ships: Array<any> = (<any>boats);
 declare var initializeProductGallery: any;
 
 @Component({
@@ -31,14 +32,20 @@ declare var initializeProductGallery: any;
           ])
         ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Warship Website';
-  shipsList = ships;
+  shipsList = []; // Initially set in ngOnInit getShips function
   selectedShip: any;
   dialogueState = "inactive";
 
-  selectShip(ship: Ship): void{
+  // Inject HttpClient so it can be used
+  constructor(private http: HttpClient) {}
 
+  ngOnInit(): void {
+    this.getShips();
+  }
+
+  selectShip(ship: any): void{
       var body = document.getElementsByTagName("body")[0];
       var nonDialogue = document.getElementsByClassName("not-dialogue");
 
@@ -78,12 +85,7 @@ export class AppComponent {
               }
               this.dialogueState="active";
           }, 0);
-
-
-
       }
-
-
   }
   getKeysArray(object: Object): Array<String>{
       var keys = Object.keys(object);
@@ -119,18 +121,15 @@ export class AppComponent {
           this.selectedShip.selectedTab=tabNumber; //Must be done the start so code below can modify dom of tab
       }
   }
+  getShips(): void {
+    var body = {
+      shipName: "",
+      numberOfShips: 1
+    }
+    this.http.post('http://localhost:3000/ships/getShips', body).subscribe(data => {
+      console.log(data);
+      this.shipsList = this.shipsList.concat(data);
+    });
+  }
 
-
-}
-export class Ship {
-    id: number;
-    name: string;
-    weaponSystems: Array<Weapon>;
-    thumbnail: string;
-    selectedTab: number; //Only for selected ship
-}
-export class Weapon{
-    id: number;
-    name: string;
-    quantity: number;
 }

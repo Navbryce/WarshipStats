@@ -3,18 +3,27 @@ const router = express.Router();
 const childProcess = require('child_process');
 var mongoose = require('mongoose');
 
+// Allows post requests from outside domains. Disable when not developing angular-end of application
+router.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
+
 var shipSchema = mongoose.Schema({
   scrapeURL: String,
   configuration: String,
   displayName: String,
   name: String,
-  importantDates: [Object],
-  awards: [Object],
-  armament: [Object],
-  armor: [Object],
+  importantDates: Object,
+  awards: Object,
+  armament: Object,
+  armor: Object,
   description: String,
   physicalAttributes: Object,
-  pictures: [Object],
+  pictures: Object,
   any: Object // Catch all. Ships are dynamic and don't always have the same attributes
 });
 var Ship = mongoose.model('ships', shipSchema);
@@ -32,8 +41,12 @@ router.get('/', function (req, res) {
   res.send('You have attempted to access the ships backend. Return to main page.');
 });
 
-router.get('/getAllShips', function (req, res) {
-  getAllShips({}).then((data) => {
+router.post('/getShips', function (req, res) {
+  // Request should include the number of ships and the greatest (alphabetically) ship name
+  var shipName = req.body.shipName;
+  var numberOfShips = req.body.numberOfShips;
+
+  getShipsAfterName(shipName, numberOfShips, {}).then((data) => {
     res.json(data);
   });
 });
