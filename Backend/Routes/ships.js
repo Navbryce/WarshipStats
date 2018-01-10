@@ -31,25 +31,45 @@ router.get('/', function (req, res) {
   res.send('You have attempted to access the ships backend. Return to main page.');
 });
 
-router.post('/getAllShips', function (req, res) {
-  getAllShips().then((data) => {
+router.get('/getAllShips', function (req, res) {
+  getAllShips({}).then((data) => {
     res.json(data);
   });
 });
 
-// filter must be in the format of MongoQuerying syntax. returns promise if successful
-function getShips (filter) {
+router.get('/getMin', function (req, res) {
+  getShipsAfterName('Iowa', 2, {displayName: {$eq: "Monitor"}}).then((data) => {
+    res.json(data);
+  });
+});
+
+// Filter must be in the format of MongoQuerying syntax. returns promise if successful. a limit of 0 is equivalent to no limit
+function getShips (filter, limit) {
   if (connectedToDatabase) {
-    return Ship.find(filter).exec(); // Returns ship promise
+    return Ship.find(filter).sort({displayName: 1}).limit(limit).exec(); // Returns ship promise
   } else {
     throw new Error('The server is not connected to a database');
   }
 }
-// returns promise
+// Returns promise
 function getAllShips () {
   var filter = {};
-  var promise = getShips(filter);
+  var promise = getShips(filter, 0);
   return promise;
+}
+
+// Returns proimse. Gets the {numberOfShips} ships with a displayName > minDisplayName. Ships must also meet filter. Each 'filter' for a field should be in the form of an OBJECT!
+function getShipsAfterName (minDisplayName, numberOfShips, filter) {
+  if (filter.displayName != null) { // If the filter already has something on it, add the minimum filter to the existing one
+    filter.displayName.$gt = minDisplayName;
+  } else {
+    filter.displayName = {$gt: minDisplayName}; // There is no filter for the displayName
+  }
+  if (connectedToDatabase) {
+    return getShips(filter, numberOfShips);
+  } else {
+    throw new Error('The server is not connected to a database');
+  }
 }
 
 module.exports = router;
