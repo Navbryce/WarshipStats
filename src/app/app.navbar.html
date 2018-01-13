@@ -1,0 +1,25 @@
+<div class="not-dialogue nav-wrapper">
+    <div class="brand-wrapper">
+        <div class="wrapper-content">
+            <img src="/Pictures/Logos/game.png">
+            <h3 class="navbar-brand" href="#">Navbar</h3>
+            <div class="wrapper-background">
+            </div>
+        </div>
+        <nav class="navbar navbar-expand navbar-light bg-faded">
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <input style="width: 100%" type="text" placeholder="Search..." [(ngModel)]="searchEntry" (ngModelChange)="searchChange($event)">
+                  </li>
+                </ul>
+              </div>
+              <div class="">
+              </div>
+              <h5>{{searchEntry}}</h5>
+        </nav>
+    </div>

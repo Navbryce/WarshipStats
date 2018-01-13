@@ -2,19 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { ShipCreationComponent } from './app.ship-creation.component';
+import { NavbarComponent } from './app.navbar.component';
+import { SearchService } from './app.search-service'
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShipCreationComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [SearchService],
+  bootstrap: [AppComponent, ShipCreationComponent, NavbarComponent]
 })
 export class AppModule { }
