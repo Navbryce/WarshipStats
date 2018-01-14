@@ -1,0 +1,29 @@
+<div *ngIf = "addShipState">
+  <div class="selected-dialogue">
+      <div class="selected-box">
+          <div class="selected-frame">
+              <div class="selected-box-header">
+                <h1 class="title-font metallic-text">Add Ship</h1>
+              </div>
+              <div class="selected-box-main">
+                <div class="allow-y-scroll">
+                  <form>
+                    <h4>Add Ships to Database</h4>
+                    <div *ngFor="let ship of shipsToAdd">
+                      <input [(ngModel)]="ship.scrapeURL" name="scrapeURL" placeholder="Wikipedia URL...">
+                      <input [(ngModel)]="ship.configuration" name="configuration" placeholder="0" type="number" min="0">
+                      <p>{{ship.scrapeURL}} with config {{ship.configuration}}</p>
+                    </div>
+                  </form>
+                  <button (click) = "changeAddShipCount(1)">Add one more ship</button>
+                  <button (click) = "changeAddShipCount(-1)">Remove ship</button>
+                </div>
+              </div>
+          </div>
+          <div class="wrapper-background">
+          </div>
+      </div>
+      <div class="glass-pane" (click)="closeCreation()">
+      </div>
+  </div>
+</div>

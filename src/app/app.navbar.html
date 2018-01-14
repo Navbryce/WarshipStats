@@ -12,14 +12,22 @@
 
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul id="left-nav" class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                  </li>
+                </ul>
+                <ul id="middle-nav" class="navbar-nav mr-auto">
                   <li class="nav-item active">
                     <input style="width: 100%" type="text" placeholder="Search..." [(ngModel)]="searchEntry" (ngModelChange)="searchChange($event)">
                   </li>
                 </ul>
+                <ul id="right-nav" class="navbar-nav mr-auto">
+                  <li id="add-ship-button">
+                    <a (click) = "addShipButtonClicked()">Add Ship</a>
+                  </li>
+                </ul>
               </div>
-              <div class="">
-              </div>
-              <h5>{{searchEntry}}</h5>
         </nav>
+        <h5>{{searchEntry}}</h5>
+
     </div>

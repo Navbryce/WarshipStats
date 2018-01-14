@@ -16,6 +16,9 @@ footer{
 	position: relative;
 
 }
+nav{
+	position: relative;
+}
 #background{
 	top: 0px;
 	left: 0px;
@@ -42,14 +45,37 @@ footer{
 	padding-top: 400px;
 
 }
+#left-nav{
 
+}
+#middle-nav{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#right-nav{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.footer-content{
+	position: relative;
+	z-index: 2;
+	width: 100%;
+}
+.brand-wrapper{
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 30px;
+}
 .nav-wrapper{
 	position: fixed;
 	z-index: 1;
 	width: 100vw;
 
 }
-
 .navbar{
 	display: flex;
 	flex-direction: column;
@@ -63,13 +89,30 @@ footer{
 	-webkit-background-clip: text !important;
 	-webkit-text-fill-color: transparent !important;
 }
-.brand-wrapper{
-	margin-bottom: 20px;
-	display: flex;
-	flex-direction: column;
-	padding-bottom: 30px;
+.navbar-brand{
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Russo One', sans-serif;
+	color: rgba(147, 154, 165, 1);
+	font-size: 35pt;
+}
+.navbar-collapse{
+	flex: 1;
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.navbar-nav{
+	width: 100%;
+	position: relative;
+
 }
 
+.not-dialogue{
+
+}
 .wrapper-background{
 	display: block;
 	top: 0px;
@@ -89,9 +132,6 @@ footer{
 	padding-top: 20px;
 	background: linear-gradient(to left, rgba(1, 74, 191, 1) , rgba(20, 44, 81, 1));
 }
-nav{
-	position: relative;
-}
 .wrapper-content>img{
 	position: relative;
 	z-index: 2;
@@ -104,19 +144,4 @@ nav{
 	z-index: 2;
 	font-size: 60pt;
 	color: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
-}
-.navbar-brand{
-	margin: 0px;
-	padding: 0px;
-	font-family: 'Russo One', sans-serif;
-	color: rgba(147, 154, 165, 1);
-	font-size: 35pt;
-}
-.footer-content{
-	position: relative;
-	z-index: 2;
-	width: 100%;
-}
-.not-dialogue{
-
 }

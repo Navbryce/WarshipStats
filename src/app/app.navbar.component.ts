@@ -4,11 +4,14 @@ import {SearchService} from './app.search-service'
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './app.navbar.html',
-
+  templateUrl: './app.navbar.html'
 })
 export class NavbarComponent {
   searchEntry: String;
+
+  addShipButtonClicked(): void {
+    this.searchService.toggleAddShip(true);
+  }
 
   //Called whenever the search input changes. the search input is also saved to the searchEntry through the [(ngModel)] property
   searchChange (change) {
@@ -16,5 +19,7 @@ export class NavbarComponent {
   }
 
   constructor(private searchService: SearchService) { }
+
+
 
 }
