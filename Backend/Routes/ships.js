@@ -51,14 +51,11 @@ router.post('/getShips', function (req, res) {
   });
 });
 
-router.get('/scrapeShips', function (req, res) {
-  var ships = [
-    {
-      url: 'https://en.wikipedia.org/wiki/USS_Missouri_(BB-63)',
-      configuration: '0'
-    }
-  ];
-  scrapeShips(ships);
+router.post('/scrapeShips', function (req, res) {
+  console.log(req.body);
+  var shipsToScrape = req.body.ships;
+  scrapeShips(shipsToScrape);
+  res.json('Scrape job submitted');
 });
 
 // Filter must be in the format of MongoQuerying syntax. returns promise if successful. a limit of 0 is equivalent to no limit
@@ -95,10 +92,9 @@ function scrapeShips (arrayOfScrapeShips) {
   var JSONships = JSON.stringify(arrayOfScrapeShips);
   var spawnProcess = childProcess.spawn;
   var process = spawnProcess('py', ['A:/DevenirProjectsA/ABoatScraping/scraper.py', JSONships]); // Path points to scraper script
-  /* For debugging
+  // For debugging
   process.stdout.on('data', function (data) {
     console.log('Python Scraper Output: ' + data);
   });
-  */
 }
 module.exports = router;

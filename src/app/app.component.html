@@ -71,7 +71,7 @@
                             </div>
                         </div>
 
-                        <div *ngIf="selectedShip.armor.armorObjects.length > 0" class="info-section primary-weapons">
+                        <div *ngIf="selectedShip.armor.armorObjects != null && selectedShip.armor.armorObjects.length > 0" class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Armor:</h4>
                             <div class="info-box">
                                 <div *ngFor="let armorObject of selectedShip.armor.armorObjects">

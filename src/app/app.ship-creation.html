@@ -10,13 +10,14 @@
                   <form>
                     <h4>Add Ships to Database</h4>
                     <div *ngFor="let ship of shipsToAdd">
-                      <input [(ngModel)]="ship.scrapeURL" name="scrapeURL" placeholder="Wikipedia URL...">
-                      <input [(ngModel)]="ship.configuration" name="configuration" placeholder="0" type="number" min="0">
-                      <p>{{ship.scrapeURL}} with config {{ship.configuration}}</p>
+                      <input [(ngModel)]="ship.url" name="url" placeholder="Wikipedia URL..." required>
+                      <input [(ngModel)]="ship.configuration" name="configuration" placeholder="0" type="number" min="0" required>
+                      <p>{{ship.url}} with config {{ship.configuration}}</p>
                     </div>
+                    <button (click) = "changeAddShipCount(1)">Add one more ship</button>
+                    <button (click) = "changeAddShipCount(-1)">Remove ship</button>
+                    <button (click) ="submitShipsToAdd()">Add Ships</button>
                   </form>
-                  <button (click) = "changeAddShipCount(1)">Add one more ship</button>
-                  <button (click) = "changeAddShipCount(-1)">Remove ship</button>
                 </div>
               </div>
           </div>

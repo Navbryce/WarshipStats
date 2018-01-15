@@ -37,6 +37,7 @@ export class AppComponent implements OnInit{
   shipsList = []; // Initially set in ngOnInit getShips function
   selectedShip: any;
   dialogueState = "inactive";
+  test: Array<String>;
 
   // Inject HttpClient so it can be used
   constructor(private http: HttpClient) {}
@@ -88,8 +89,8 @@ export class AppComponent implements OnInit{
       }
   }
   getKeysArray(object: Object): Array<String>{
-      var keys = Object.keys(object);
-      return keys;
+      return Object.keys(object);
+
   }
   //Will return if the key is already being displayed. Really need to change from array of keys manually entered to something stored in the database by the scraper
   getsKeysNotInUse(ship: any): Array<String>{
@@ -124,11 +125,12 @@ export class AppComponent implements OnInit{
   getShips(): void {
     var body = {
       shipName: "",
-      numberOfShips: 1
+      numberOfShips: 500
     }
     this.http.post('http://localhost:3000/ships/getShips', body).subscribe(data => {
       console.log(data);
       this.shipsList = this.shipsList.concat(data);
+      this.test = this.getKeysArray(this.shipsList[0].physicalAttributes);
     });
   }
 
