@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ShipCreationComponent } from './app.ship-creation.component';
 import { NavbarComponent } from './app.navbar.component';
 import { SearchService } from './app.search-service'
+import {PlaceHolderDirective} from './app.ship-creation-placeholder.directive'
 
 
 
@@ -14,7 +15,8 @@ import { SearchService } from './app.search-service'
   declarations: [
     AppComponent,
     ShipCreationComponent,
-    NavbarComponent
+    NavbarComponent,
+    PlaceHolderDirective
   ],
   imports: [
     BrowserModule,

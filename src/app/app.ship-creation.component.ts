@@ -4,7 +4,9 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-ship-creation',
-  templateUrl: './app.ship-creation.html'
+  templateUrl: './app.ship-creation.html',
+  styleUrls: ['ship-creation-styles.css']
+
 })
 export class ShipCreationComponent {
   searchEntry: String; // Never DIRECTLY MODIFY THIS VARIABLE
@@ -47,6 +49,9 @@ export class ShipCreationComponent {
     });
     this.closeCreation();
   }
+  getKeysArray(object: Object): Array<String>{
+      return Object.keys(object);
+  }
 }
 
 export class Ship {
@@ -56,5 +61,4 @@ export class Ship {
     this.url = urlString;
     this.configuration = configurationNumber;
   }
-
 }

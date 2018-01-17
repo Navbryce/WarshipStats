@@ -90,7 +90,6 @@ export class AppComponent implements OnInit{
   }
   getKeysArray(object: Object): Array<String>{
       return Object.keys(object);
-
   }
   //Will return if the key is already being displayed. Really need to change from array of keys manually entered to something stored in the database by the scraper
   getsKeysNotInUse(ship: any): Array<String>{

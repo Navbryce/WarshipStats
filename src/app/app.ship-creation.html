@@ -9,14 +9,17 @@
                 <div class="allow-y-scroll">
                   <form>
                     <h4>Add Ships to Database</h4>
-                    <div *ngFor="let ship of shipsToAdd">
-                      <input [(ngModel)]="ship.url" name="url" placeholder="Wikipedia URL..." required>
-                      <input [(ngModel)]="ship.configuration" name="configuration" placeholder="0" type="number" min="0" required>
+                    <div *ngFor="let key of getKeysArray(shipsToAdd)">
+                      <input id="{{key}}URL" [(ngModel)]="shipsToAdd[key].url" name="url" [placeHolder] = "shipsToAdd[key].url" placeHolder="Wikipedia URL"  required>
+                      <input [(ngModel)]="shipsToAdd[key].configuration" name="configuration" placeholder="0" type="number" min="0" required>
+                      <div [hidden]="document.getElementById(key + 'URL')" class="alert alert-danger" >
+                        Name is required
+                      </div>
                       <p>{{ship.url}} with config {{ship.configuration}}</p>
                     </div>
-                    <button (click) = "changeAddShipCount(1)">Add one more ship</button>
-                    <button (click) = "changeAddShipCount(-1)">Remove ship</button>
-                    <button (click) ="submitShipsToAdd()">Add Ships</button>
+                    <button type="button" (click) = "changeAddShipCount(1)">Add one more ship</button>
+                    <button type="button" (click) = "changeAddShipCount(-1)">Remove ship</button>
+                    <button type="button" (click) ="submitShipsToAdd()">Add Ships</button>
                   </form>
                 </div>
               </div>
