@@ -5,6 +5,7 @@ import { Directive, ElementRef, Input} from '@angular/core';
 })
 
 // Sets if the error message is visible
+// DEPRECATED
 export class ErrorVisibleDirective {
 
 

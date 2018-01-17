@@ -10,9 +10,10 @@
                   <form>
                     <h4>Add Ships to Database</h4>
                     <div *ngFor="let key of getKeysArray(shipsToAdd)" [creation-input-verify] = "shipsToAdd[key].url" >
-                      <input error-visible id="{{key}}URL" [(ngModel)]="shipsToAdd[key].url" name="url"  placeHolder="Wikipedia URL"  #shipURL required>
-                      <input [(ngModel)]="shipsToAdd[key].configuration" name="configuration" placeholder="0" type="number" min="0" required>
-                      <div id="{{key}}URL-error"   class="alert alert-danger" >
+                      <!-- For some hellish reason, if you make name an array, angular doesn't treat it like an array. SO if one url input was filled it, it validated both as completed --->
+                      <input  id="{{key}}URL" [(ngModel)]="shipsToAdd[key].url" name="url{{key}}"  placeHolder="Wikipedia URL"  #shipURL="ngModel" required>
+                      <input [(ngModel)]="shipsToAdd[key].configuration" name="configuration{{key}}" placeholder="0" type="number" min="0" required>
+                      <div id="{{key}}URL-error" [hidden] = "shipURL.valid"   class="alert alert-danger" >
                         Name is required{{testa}}
                       </div>
                       <p>{{shipsToAdd[key].va}} with config {{shipsToAdd[key].configuration}}</p>
