@@ -7,7 +7,9 @@ import { AppComponent } from './app.component';
 import { ShipCreationComponent } from './app.ship-creation.component';
 import { NavbarComponent } from './app.navbar.component';
 import { SearchService } from './app.search-service'
+import {ErrorVisibleDirective} from './app.error-visible.directive'
 import {PlaceHolderDirective} from './app.ship-creation-placeholder.directive'
+
 
 
 
@@ -16,7 +18,8 @@ import {PlaceHolderDirective} from './app.ship-creation-placeholder.directive'
     AppComponent,
     ShipCreationComponent,
     NavbarComponent,
-    PlaceHolderDirective
+    PlaceHolderDirective,
+    ErrorVisibleDirective
   ],
   imports: [
     BrowserModule,

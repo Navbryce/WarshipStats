@@ -9,13 +9,13 @@
                 <div class="allow-y-scroll">
                   <form>
                     <h4>Add Ships to Database</h4>
-                    <div *ngFor="let key of getKeysArray(shipsToAdd)">
-                      <input id="{{key}}URL" [(ngModel)]="shipsToAdd[key].url" name="url" [placeHolder] = "shipsToAdd[key].url" placeHolder="Wikipedia URL"  required>
+                    <div *ngFor="let key of getKeysArray(shipsToAdd)" [creation-input-verify] = "shipsToAdd[key].url" >
+                      <input error-visible id="{{key}}URL" [(ngModel)]="shipsToAdd[key].url" name="url"  placeHolder="Wikipedia URL"  #shipURL required>
                       <input [(ngModel)]="shipsToAdd[key].configuration" name="configuration" placeholder="0" type="number" min="0" required>
-                      <div [hidden]="document.getElementById(key + 'URL')" class="alert alert-danger" >
-                        Name is required
+                      <div id="{{key}}URL-error"   class="alert alert-danger" >
+                        Name is required{{testa}}
                       </div>
-                      <p>{{ship.url}} with config {{ship.configuration}}</p>
+                      <p>{{shipsToAdd[key].va}} with config {{shipsToAdd[key].configuration}}</p>
                     </div>
                     <button type="button" (click) = "changeAddShipCount(1)">Add one more ship</button>
                     <button type="button" (click) = "changeAddShipCount(-1)">Remove ship</button>

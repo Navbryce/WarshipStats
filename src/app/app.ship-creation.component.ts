@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import {SearchService} from './app.search-service'
 import { HttpClient } from '@angular/common/http';
 
@@ -9,9 +9,12 @@ import { HttpClient } from '@angular/common/http';
 
 })
 export class ShipCreationComponent {
+  @ViewChildren('shipURL') shipURLS:QueryList<ElementRef>;
+  urlsArray: Array<ElementRef>;
   searchEntry: String; // Never DIRECTLY MODIFY THIS VARIABLE
   addShipState: boolean; // Never DIRECTLY MODIFY THIS VARIABLE
   shipsToAdd: Array<Ship>; // An array of the ships to add
+
 
   // Inject searchService to share variables and HTTP client to communicate with the backend
   constructor(private searchService: SearchService, private http: HttpClient) { }
@@ -20,8 +23,10 @@ export class ShipCreationComponent {
       this.searchService.addShip.subscribe(newState => this.addShipState = newState);
       this.shipsToAdd = [];
       this.shipsToAdd.push(new Ship("", 0)); // shipsToAdd will have a minimum of one ship
-
   }
+
+
+
   closeCreation(): void {
     this.searchService.toggleAddShip(false);
   }
