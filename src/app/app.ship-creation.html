@@ -11,12 +11,13 @@
                     <h4>Add Ships to Database</h4>
                     <div *ngFor="let key of getKeysArray(shipsToAdd)" [creation-input-verify] = "shipsToAdd[key].url" >
                       <!-- For some hellish reason, if you make name an array, angular doesn't treat it like an array. SO if one url input was filled it, it validated both as completed --->
-                      <input  id="{{key}}URL" [(ngModel)]="shipsToAdd[key].url" name="url{{key}}"  placeHolder="Wikipedia URL"  #shipURL="ngModel" required>
+                      <input  id="{{key}}URL" [(ngModel)]="shipsToAdd[key].url" name="url{{key}}"  placeHolder="Wikipedia URL"  #shipURL="ngModel" createShipValidator required>
                       <input [(ngModel)]="shipsToAdd[key].configuration" name="configuration{{key}}" placeholder="0" type="number" min="0" required>
-                      <div id="{{key}}URL-error" [hidden] = "shipURL.valid"   class="alert alert-danger" >
-                        Name is required{{testa}}
+                      <div *ngIf = "!shipURL.valid && !shipURL.pristine" id="{{key}}URL-error" class="alert alert-danger" >
+                        <p *ngIf = "shipURL.errors.required">A URL is required </p>
+                        <p *ngIf = "(shipURL.errors.containsWikipediaLink != null) && !shipURL.errors.required">The URL must direct to a Wikipedia page </p>
                       </div>
-                      <p>{{shipsToAdd[key].va}} with config {{shipsToAdd[key].configuration}}</p>
+                      <p>{{shipsToAdd[key].url}} with config {{shipsToAdd[key].configuration}}</p>
                     </div>
                     <button type="button" (click) = "changeAddShipCount(1)">Add one more ship</button>
                     <button type="button" (click) = "changeAddShipCount(-1)">Remove ship</button>

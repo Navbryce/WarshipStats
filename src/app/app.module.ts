@@ -9,6 +9,7 @@ import { NavbarComponent } from './app.navbar.component';
 import { SearchService } from './app.search-service'
 import {ErrorVisibleDirective} from './app.error-visible.directive'
 import {PlaceHolderDirective} from './app.ship-creation-placeholder.directive'
+import {CreateShipValidator} from './app.create-validation.directive'
 
 
 
@@ -19,7 +20,8 @@ import {PlaceHolderDirective} from './app.ship-creation-placeholder.directive'
     ShipCreationComponent,
     NavbarComponent,
     PlaceHolderDirective,
-    ErrorVisibleDirective
+    ErrorVisibleDirective,
+    CreateShipValidator
   ],
   imports: [
     BrowserModule,
