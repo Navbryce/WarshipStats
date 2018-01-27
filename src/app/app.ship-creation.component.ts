@@ -49,7 +49,7 @@ export class ShipCreationComponent {
     var body = {
       ships: this.shipsToAdd
     };
-    this.http.post('http://localhost:3000/ships/scrapeShips', body).subscribe(data => {
+    this.http.post('http://192.168.1.2:3000/ships/scrapeShips', body).subscribe(data => {
       console.log(data);
     });
     this.closeCreation();

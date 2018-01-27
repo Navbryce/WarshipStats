@@ -26,6 +26,6 @@ app.get('*', (req, res) => {
 const port = '3000';
 app.set('port', port);
 const server = http.createServer(app);
-server.listen(port, function () {
+server.listen(port, '192.168.1.2', function () {
   console.log('Backend express app listening @ localhost:3000');
 });

@@ -126,7 +126,7 @@ export class AppComponent implements OnInit{
       shipName: "",
       numberOfShips: 500
     }
-    this.http.post('http://localhost:3000/ships/getShips', body).subscribe(data => {
+    this.http.post('http://192.168.1.2:3000/ships/getShips', body).subscribe(data => {
       console.log(data);
       this.shipsList = this.shipsList.concat(data);
       this.test = this.getKeysArray(this.shipsList[0].physicalAttributes);
