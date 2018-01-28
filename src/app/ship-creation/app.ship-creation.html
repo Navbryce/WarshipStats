@@ -17,7 +17,6 @@
                         <p *ngIf = "shipURL.errors.required">A URL is required </p>
                         <p *ngIf = "(shipURL.errors.containsWikipediaLink != null) && !shipURL.errors.required">The URL must direct to a Wikipedia page </p>
                       </div>
-                      <p>{{shipsToAdd[key].url}} with config {{shipsToAdd[key].configuration}}</p>
                     </div>
                     <button type="button" (click) = "changeAddShipCount(1)">Add one more ship</button>
                     <button type="button" (click) = "changeAddShipCount(-1)">Remove ship</button>

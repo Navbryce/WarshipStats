@@ -51,6 +51,7 @@
                                 <p>{{selectedShip.description}}</p>
                                 <p *ngIf="selectedShip.type" style="padding-top: 5px;"><b>Class:</b> {{selectedShip.type}}</p>
                                 <p *ngIf="selectedShip.class" style="padding-top: 5px;"><b>Type:</b> {{selectedShip.class}}</p>
+                                <p *ngIf="selectedShip.complement" style="padding-top: 5px;"><b>Complement:</b> {{selectedShip.complement}} sailors</p>
                             </div>
                         </div>
                         <div class="info-section primary-weapons">
@@ -74,19 +75,21 @@
                         <div *ngIf="selectedShip.armor.armorObjects != null && selectedShip.armor.armorObjects.length > 0" class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Armor:</h4>
                             <div class="info-box">
-                                <div *ngFor="let armorObject of selectedShip.armor.armorObjects">
-                                    <p><b>{{armorObject.armorType}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span> {{armorObject.unit}}</p>
-                                </div>
-                                <div>
-                                    <h5>General Armor Stats:</h5>
+                                <div class="info-box">
+                                    <h5 class="title-font blue-underline">General Armor Stats:</h5>
                                     <!--- All armor is in mm from the scraper conersion--->
-                                    <p><b>Average:</b> {{selectedShip.armor.calculations.average}} mm</p>
-                                    <p><b>Median:</b> {{selectedShip.armor.calculations.median}} mm</p>
+                                    <p><b>Average Width:</b> {{selectedShip.armor.calculations.average}} mm</p>
+                                    <p><b>Median Width:</b> {{selectedShip.armor.calculations.median}} mm</p>
                                     <p *ngIf = "selectedShip.armor.calculations.mode.frequency > 1"><b>Mode:</b> {{selectedShip.armor.calculations.mode.value}} mm with a frequency of {{selectedShip.armor.calculations.mode.frequency}}</p>
-                                    <p><b>Range:</b> {{selectedShip.armor.calculations.minValue}}-{{selectedShip.armor.calculations.maxValue}} mm</p>
+                                    <p><b>Range of Widths:</b> {{selectedShip.armor.calculations.minValue}}-{{selectedShip.armor.calculations.maxValue}} mm</p>
+                                </div>
+                                <div class="info-box">
+                                  <h4 class="title-font blue-underline">Types of Armor:</h4>
+                                  <div *ngFor="let armorObject of selectedShip.armor.armorObjects">
+                                      <p><b>{{armorObject.armorType}}:</b> {{armorObject.minValue}}<span *ngIf="armorObject.range">-{{armorObject.maxValue}}</span> {{armorObject.unit}}</p>
+                                  </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Other Info:</h4>
@@ -101,22 +104,7 @@
 
                 <div class="tab-1 content-of-selected-box" *ngIf="selectedShip.selectedTab==1">
                     <div class="allow-y-scroll">
-                        <div *ngIf="selectedShip.armament.length > 0" class="info-section primary-weapons">
-                            <h4 class="title-font blue-underline">Armament Systems:</h4>
-                            <div  class="info-box icon-info-box" *ngFor="let armament of selectedShip.armament">
-                                <div *ngIf="armament.pictures[0]">
-                                    <img  src="{{armament.pictures[0].src}}">
-                                </div>
-                                <div>
-                                    <p><b>Armament:</b> {{armament.fullName}}</p>
-                                    <p><b>Number of Armament(s):</b> {{armament.quantity}}</p>
-                                    <p *ngIf="!armament.isCannon && !armament.isMissile"><b>Width of Barrel:</b> {{armament.size}} {{armament.unit}}</p>
-                                    <p *ngIf="armament.isMissile"><b>Length of Missile:</b> {{armament.size}} {{armament.unit}}</p>
-                                    <p *ngIf="armament.isCannon"><b>Size of Cannon:</b> {{armament.size}} {{armament.unit}}</p>
-
-                                </div>
-                            </div>
-                        </div>
+                      <app-armament-list [armament-object]=selectedShip.armament></app-armament-list>
                     </div>
                 </div>
                 <div *ngIf="selectedShip.selectedTab==2">

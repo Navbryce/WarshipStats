@@ -94,13 +94,13 @@ export class AppComponent implements OnInit{
   //Will return if the key is already being displayed. Really need to change from array of keys manually entered to something stored in the database by the scraper
   getsKeysNotInUse(ship: any): Array<String>{
     var allKeys = this.getKeysArray(ship);
-    var  keysInUseArray = ["selectedTab", "armor", "armament", "importantDates", "physicalAttributes", "pictures", "description", "ID", "name", "displayName", "configuration", "scrapeURL"];
+    var  keysInUseArray = ["selectedtab", "armor", "armament", "importantdates", "physicalattributes", "pictures", "description", "_id", "name", "displayname", "configuration", "scrapeurl", "class", "type"];
 
     for (var keysInUseCounter = 0; keysInUseCounter < keysInUseArray.length; keysInUseCounter++){
         var keyInUse = keysInUseArray[keysInUseCounter];
         var keyRemoved = false;
         for (var keyCounter = 0; keyCounter < allKeys.length && !keyRemoved; keyCounter++){
-            if (keyInUse == allKeys[keyCounter]){
+            if (keyInUse == allKeys[keyCounter].toLowerCase()){
                 allKeys.splice(keyCounter, 1)
                 keyRemoved = true;
             }

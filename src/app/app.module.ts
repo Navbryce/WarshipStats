@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { ShipCreationComponent } from './app.ship-creation.component';
-import { NavbarComponent } from './app.navbar.component';
-import { SearchService } from './app.search-service'
+import { AppComponent } from './main-viewer/app.component';
+import { ShipCreationComponent } from './ship-creation/app.ship-creation.component';
+import { NavbarComponent } from './navbar/app.navbar.component';
+import { SearchService } from './navbar/app.search-service'
 import {ErrorVisibleDirective} from './app.error-visible.directive'
-import {PlaceHolderDirective} from './app.ship-creation-placeholder.directive'
+import {PlaceHolderDirective} from './ship-creation/app.ship-creation-placeholder.directive'
 import {CreateShipValidator} from './app.create-validation.directive'
+import {ArmamentListComponent} from './main-viewer/armament-list/app.armament-list.component'
 
 
 
@@ -21,7 +22,8 @@ import {CreateShipValidator} from './app.create-validation.directive'
     NavbarComponent,
     PlaceHolderDirective,
     ErrorVisibleDirective,
-    CreateShipValidator
+    CreateShipValidator,
+    ArmamentListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import {SearchService} from './app.search-service'
+import {SearchService} from '../navbar/app.search-service'
 import { HttpClient } from '@angular/common/http';
 
 @Component({

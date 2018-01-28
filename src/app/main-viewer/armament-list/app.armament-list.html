@@ -1,0 +1,65 @@
+<div class="info-section primary-weapons">
+  <h4 class="title-font blue-underline">Statistics:</h4>
+  <div *ngIf="armament.normalGun.armaments.length > 0 && !armament.normalGun.sizeCalculate.noValues" class="info-section primary-weapons">
+    <h5 class="title-font blue-underline">Normal Guns Stats:</h5>
+    <div class="info-box">
+      <p><b>Average Barrel Width:</b> {{armament.normalGun.sizeCalculate.average}} mm</p>
+      <p><b>Median Barrel Width:</b> {{armament.normalGun.sizeCalculate.median}} mm</p>
+      <p><b>Mode Barrel Width:</b> {{armament.normalGun.sizeCalculate.mode.value}} mm guns with a frequency of {{armament.normalGun.sizeCalculate.mode.frequency}}</p>
+      <p><b>Range of Barrel Widths:</b> {{armament.normalGun.sizeCalculate.minValue}}-{{armament.normalGun.sizeCalculate.maxValue}} mm</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="armament.normalGun.armaments.length > 0" class="info-section primary-weapons">
+    <h4 class="title-font blue-underline">Normal Guns:</h4>
+    <div *ngFor="let armament of armament.normalGun.armaments" class="info-box icon-info-box">
+      <div *ngIf="armament.pictures[0]">
+          <img  src="{{armament.pictures[0].src}}">
+      </div>
+      <div>
+          <p><b>Armament:</b> {{armament.fullName}}</p>
+          <p><b>Number of Armament(s):</b> {{armament.quantity}}</p>
+          <p><b>Width of Barrel:</b> {{armament.size}} {{armament.unit}}</p>
+      </div>
+    </div>
+</div>
+<div *ngIf="armament.torpedo.armaments.length > 0" class="info-section primary-weapons">
+    <h4 class="title-font blue-underline">Torpedoes:</h4>
+    <div *ngFor="let armament of armament.torpedo.armaments" class="info-box icon-info-box">
+      <div *ngIf="armament.pictures[0]">
+          <img  src="{{armament.pictures[0].src}}">
+      </div>
+      <div>
+          <p><b>Armament:</b> {{armament.fullName}}</p>
+          <p><b>Number of Armament(s):</b> {{armament.quantity}}</p>
+          <p><b>Length of Torpedo:</b> {{armament.size}} {{armament.unit}}</p>
+      </div>
+    </div>
+</div>
+<div *ngIf="armament.missile.armaments.length > 0" class="info-section primary-weapons">
+    <h4 class="title-font blue-underline">Missiles:</h4>
+    <div *ngFor="let armament of armament.missile.armaments" class="info-box icon-info-box">
+      <div *ngIf="armament.pictures[0]">
+          <img  src="{{armament.pictures[0].src}}">
+      </div>
+      <div>
+          <p><b>Armament:</b> {{armament.fullName}}</p>
+          <p><b>Number of Armament(s):</b> {{armament.quantity}}</p>
+          <p><b>Length of Missile:</b> {{armament.size}} {{armament.unit}}</p>
+      </div>
+    </div>
+</div>
+<div *ngIf="armament.cannon.armaments.length > 0" class="info-section primary-weapons">
+    <h4 class="title-font blue-underline">Cannons:</h4>
+    <div *ngFor="let armament of armament.cannon.armaments" class="info-box icon-info-box">
+      <div *ngIf="armament.pictures[0]">
+          <img  src="{{armament.pictures[0].src}}">
+      </div>
+      <div>
+          <p><b>Armament:</b> {{armament.fullName}}</p>
+          <p><b>Number of Armament(s):</b> {{armament.quantity}}</p>
+          <p><b>Width of Barrel:</b> {{armament.size}} {{armament.unit}}</p>
+          <p><b>Size of Cannon:</b> {{armament.size}} {{armament.unit}}</p>
+      </div>
+    </div>
+</div>
