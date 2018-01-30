@@ -3,6 +3,7 @@
   <div *ngIf="armament.normalGun.armaments.length > 0 && !armament.normalGun.sizeCalculate.noValues" class="info-section primary-weapons">
     <h5 class="title-font blue-underline">Normal Guns Stats:</h5>
     <div class="info-box">
+      <p><b>Total number of Barrels:</b> {{armament.normalGun.sizeCalculate.numberOfValues}}
       <p><b>Average Barrel Width:</b> {{armament.normalGun.sizeCalculate.average}} mm</p>
       <p><b>Median Barrel Width:</b> {{armament.normalGun.sizeCalculate.median}} mm</p>
       <p><b>Mode Barrel Width:</b> {{armament.normalGun.sizeCalculate.mode.value}} mm guns with a frequency of {{armament.normalGun.sizeCalculate.mode.frequency}}</p>

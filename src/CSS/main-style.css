@@ -1,12 +1,4 @@
-#add-ship-button{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #ffc107;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	background-color: #ffc107;
-}
+
 #ship-gallery{
 	opacity: 0; /*Starts with a hidden opacity so it can fade in*/
 	transition: opacity .5s !important; /*For some reason, the photo gallery plugin automatically removes all transitions. Thus, important is needed. */

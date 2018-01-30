@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import * as boats from '../../Data/boats.json';
 import { HttpClient } from '@angular/common/http';
+import {SearchService} from '../navbar/app.search-service'
 import {
   trigger,
   state,
@@ -36,14 +37,17 @@ export class AppComponent implements OnInit{
   title = 'Warship Website';
   shipsList = []; // Initially set in ngOnInit getShips function
   selectedShip: any;
+  searchEntry: string
   dialogueState = "inactive";
-  test: Array<String>;
 
-  // Inject HttpClient so it can be used
-  constructor(private http: HttpClient) {}
+  // Inject searchService to share variables | and HTTP client to communicate with the backend
+  constructor(private searchService: SearchService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getShips();
+    this.searchService.currentSearch.subscribe(searchEntry => { // Also called when initially subscribed, so no need to call getShips when the page first loads
+      this.searchEntry = searchEntry
+      this.getShips(searchEntry)
+    });
   }
 
   selectShip(ship: any): void{
@@ -94,7 +98,7 @@ export class AppComponent implements OnInit{
   //Will return if the key is already being displayed. Really need to change from array of keys manually entered to something stored in the database by the scraper
   getsKeysNotInUse(ship: any): Array<String>{
     var allKeys = this.getKeysArray(ship);
-    var  keysInUseArray = ["selectedtab", "armor", "armament", "importantdates", "physicalattributes", "pictures", "description", "_id", "name", "displayname", "configuration", "scrapeurl", "class", "type"];
+    var  keysInUseArray = ["selectedtab", "armor", "armament", "importantdates", "physicalattributes", "pictures", "description", "_id", "name", "displayname", "configuration", "scrapeurl", "class", "type", "complement"];
 
     for (var keysInUseCounter = 0; keysInUseCounter < keysInUseArray.length; keysInUseCounter++){
         var keyInUse = keysInUseArray[keysInUseCounter];
@@ -121,15 +125,17 @@ export class AppComponent implements OnInit{
           this.selectedShip.selectedTab=tabNumber; //Must be done the start so code below can modify dom of tab
       }
   }
-  getShips(): void {
+  getShips(shipNeedle): void {
     var body = {
       shipName: "",
-      numberOfShips: 500
+      numberOfShips: 500,
+      filters: {
+        shipNeedle: shipNeedle
+      }
     }
     this.http.post('http://192.168.1.2:3000/ships/getShips', body).subscribe(data => {
       console.log(data);
-      this.shipsList = this.shipsList.concat(data);
-      this.test = this.getKeysArray(this.shipsList[0].physicalAttributes);
+      this.shipsList = <Array<any>> data;
     });
   }
 

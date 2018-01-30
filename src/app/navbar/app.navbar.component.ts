@@ -4,7 +4,9 @@ import {SearchService} from './app.search-service'
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './app.navbar.html'
+  templateUrl: './app.navbar.html',
+  styleUrls: ['./navbar-styles.css']
+
 })
 export class NavbarComponent {
   searchEntry: String;

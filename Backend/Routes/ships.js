@@ -45,8 +45,11 @@ router.post('/getShips', function (req, res) {
   // Request should include the number of ships and the greatest (alphabetically) ship name
   var shipName = req.body.shipName;
   var numberOfShips = req.body.numberOfShips;
+  var requestedFilters = req.body.filters;
 
-  getShipsAfterName(shipName, numberOfShips, {}).then((data) => {
+  var initialFilter = {displayName: {}}; // Initializes the filter. Probalby should create a constructor to do this
+  var filter = getContainsFilter(initialFilter, requestedFilters.shipNeedle);
+  getShipsAfterName(shipName, numberOfShips, filter).then((data) => {
     res.json(data);
   });
 });
@@ -97,4 +100,11 @@ function scrapeShips (arrayOfScrapeShips) {
     console.log('Python Scraper Output: ' + data);
   });
 }
+
+// Get filter that selects everything that contains a name. will modify an existing filter object.
+function getContainsFilter (filter, needle) {
+  filter.displayName.$regex = '(?i)(.*' + needle + '.*)'; // Selects all ships containing needle. (?i) makes it case insensitive
+  return filter; // Sort of unecessary
+}
+
 module.exports = router;
