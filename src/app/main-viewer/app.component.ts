@@ -16,6 +16,7 @@ declare var initializeProductGallery: any;
 @Component({
       selector: 'app-root',
       templateUrl: './app.component.html',
+      styleUrls: ['./app.component.css'],
       animations: [
           trigger('dialogueState', [
             state('inactive', style({
@@ -116,12 +117,12 @@ export class AppComponent implements OnInit{
   selectTab(tabNumber: number): void{
       console.log(this.selectedShip.selectedTab + "; new number:" + tabNumber);
 
-      if(tabNumber!=this.selectedShip.selectedTab){
+      if(tabNumber!=this.selectedShip.selectedTab && tabNumber == 0){
           setTimeout(()=>{ /*For some reason the animation trigger wants a brief period between switching. */
               initializeProductGallery(); //Same as the animation trigger. I'm pretty sure this block runs asynch or something without the timeout
           }, 0);
       }
-      if(tabNumber!=this.selectedShip.selectedTab){
+      if(tabNumber != this.selectedShip.selectedTab){
           this.selectedShip.selectedTab=tabNumber; //Must be done the start so code below can modify dom of tab
       }
   }

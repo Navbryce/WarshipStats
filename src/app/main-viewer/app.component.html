@@ -27,13 +27,13 @@
                 <h1 class="title-font metallic-text">{{selectedShip.displayName}}</h1>
                 <ul class="selected-ship-tabs nav nav-tabs">
                       <li [ngClass]="{'active-tab': selectedShip.selectedTab==0}" class="nav-item">
-                            <a  class="nav-link" href="#" (click)="selectTab(0)">General Overview</a>
+                            <a  class="nav-link" (click)="selectTab(0)">General Overview</a>
                       </li>
                       <li [ngClass]="{'active-tab': selectedShip.selectedTab==1}" class="nav-item">
-                            <a class="nav-link" (click)="selectTab(1)" href="#">Weapon Systems</a>
+                            <a class="nav-link" (click)="selectTab(1)">Weapon Systems</a>
                       </li>
                       <li [ngClass]="{'active-tab': selectedShip.selectedTab==2}" class="nav-item">
-                            <a class="nav-link" (click)="selectTab(2)" href="#">Visualization</a>
+                            <a class="nav-link" (click)="selectTab(2)">Visualization</a>
                       </li>
                 </ul>
             </div>

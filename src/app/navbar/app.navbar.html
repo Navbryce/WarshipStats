@@ -13,22 +13,42 @@
               </button>
               <div class="collapse navbar-collapse tri-container" id="navbarSupportedContent">
                 <ul id="left-nav" class="navbar-nav mr-auto">
-                  <li class="nav-item active">
+                  <li style="visibility: hidden;" id="add-ship-button" class="yellow-button">
+                    <a (click) = "addShipButtonClicked()">Add Ship</a>
                   </li>
                 </ul>
                 <ul id="middle-nav" class="navbar-nav mr-auto">
                   <div class="tri-container ">
-                    <div class="left-tri">
+                    <div class="tri-left">
                     </div>
-                    <div class="middle-tri">
+                    <div class="tri-middle">
                       <li class="nav-item active">
                         <input  type="text" placeholder="Search..." [(ngModel)]="searchEntry" (ngModelChange)="searchChange($event)">
                       </li>
                     </div>
-                    <div class="right-tri">
-                      <li class="yellow-button">
-                        <a>More Filters</a>
-                      </li>
+                    <div class="tri-right">
+                      <div class="dropdown">
+                        <div class="dropdown-button">
+                          <li class="yellow-button">
+                            <a>Sort By</a>
+                          </li>
+                        </div>
+                        <div class="dropdown-content">
+                          <p>stuff</p>
+                          <p>stuff</p>
+                        </div>
+                      </div>
+                      <div class="dropdown">
+                        <div class="dropdown-button">
+                          <li class="yellow-button">
+                            <a>More Filters</a>
+                          </li>
+                        </div>
+                        <div class="dropdown-content">
+                          <p>stuff</p>
+                          <p>stuff</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </ul>

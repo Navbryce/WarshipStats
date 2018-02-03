@@ -45,19 +45,7 @@ nav{
 	padding-top: 250px;
 
 }
-#left-nav{
 
-}
-#middle-nav{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-#right-nav{
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
 
 .footer-content{
 	position: relative;

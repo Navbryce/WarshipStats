@@ -1,12 +1,37 @@
-.yellow-button {
+#left-nav{
+	flex-basis: 0;
+}
+#middle-nav{
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	background-color: #ffc107;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	background-color: #ffc107;
-  white-space: nowrap;
+	align-items: center;
+	flex-basis: 1;
+	flex-grow: 1;
+
+}
+#right-nav{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-basis: 0;
+}
+
+.dropdown {
+	display: inline-block;
+	position: relative;
+	margin-left: 10px;
+}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+.dropdown-content {
+	border: 1px solid #ffc107;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	display: none;
+	position: absolute;
+	background-color: white;
+	width: 20vw;
+	min-width: 100px;
 }
 .nav-wrapper{
 	position: fixed;
@@ -45,9 +70,24 @@
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+
 .navbar-nav{
 	width: 100%;
 	position: relative;
+}
+.tri-left {
+	flex-basis: 1;
+	flex: 1;
+}
+.tri-middle {
+	display: flex;
+	justify-content: center;
+}
+.tri-right {
+	display: flex;
+	flex-direction: row;
+	flex-basis: 1;
+	flex: 1;
 }
 .tri-container {
   display: flex;
@@ -55,7 +95,14 @@
   align-items: center;
   width: 100%;
 }
-.tri-container > div {
-  flex-basis: 0;
-  flex-grow: 1;
+.yellow-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ffc107;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	background-color: #ffc107;
+  white-space: nowrap;
+	cursor: pointer;
 }

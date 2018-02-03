@@ -1,0 +1,23 @@
+.selected-ship-tabs>.nav-item{
+	margin-top: auto;
+}
+
+.selected-ship-tabs>.nav-item>a{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ffc107;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	width: 100px;
+	height: 40px;
+	padding: 0px;
+  cursor: pointer;
+	text-align: center;
+	font-size: 10pt;
+
+
+}
+.selected-ship-tabs>.nav-item:not(:first-child){
+	margin-left: 3px;
+}
