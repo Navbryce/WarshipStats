@@ -34,8 +34,15 @@
                           </li>
                         </div>
                         <div class="dropdown-content">
-                          <p>stuff</p>
-                          <p>stuff</p>
+                          <div style="padding: 10px;">
+                            <select [(ngModel)]="sortBy" (ngModelChange)="searchChange($event)">
+                              <option value="displayName">Name</option>
+                            </select>
+                            <select [(ngModel)]="sortOrder" (ngModelChange)="searchChange($event)">
+                              <option value="1">Ascending</option>
+                              <option value="-1">Descending</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                       <div class="dropdown">

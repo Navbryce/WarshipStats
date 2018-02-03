@@ -43,13 +43,16 @@ router.get('/', function (req, res) {
 
 router.post('/getShips', function (req, res) {
   // Request should include the number of ships and the greatest (alphabetically) ship name
+  // console.log('Parameters received for getShips:' + JSON.stringify(req.body));
   var shipName = req.body.shipName;
   var numberOfShips = req.body.numberOfShips;
   var requestedFilters = req.body.filters;
-
+  var sortUnformatted = req.body.sort;
+  var sortObject = getSortObject(sortUnformatted.sortBy, sortUnformatted.sortOrder);
   var initialFilter = {displayName: {}}; // Initializes the filter. Probalby should create a constructor to do this
   var filter = getContainsFilter(initialFilter, requestedFilters.shipNeedle);
-  getShipsAfterName(shipName, numberOfShips, filter).then((data) => {
+
+  getShipsAfterName(shipName, filter, sortObject, numberOfShips).then((data) => {
     res.json(data);
   });
 });
@@ -62,29 +65,24 @@ router.post('/scrapeShips', function (req, res) {
 });
 
 // Filter must be in the format of MongoQuerying syntax. returns promise if successful. a limit of 0 is equivalent to no limit
-function getShips (filter, limit) {
+function getShips (filter, sortObject, limit) {
+  // console.log(sortObject);
   if (connectedToDatabase) {
-    return Ship.find(filter).sort({displayName: 1}).limit(limit).exec(); // Returns ship promise
+    return Ship.find(filter).sort(sortObject).limit(limit).exec(); // Returns ship promise
   } else {
     throw new Error('The server is not connected to a database');
   }
 }
-// Returns promise
-function getAllShips () {
-  var filter = {};
-  var promise = getShips(filter, 0);
-  return promise;
-}
 
 // Returns promise. Gets the {numberOfShips} ships with a displayName > minDisplayName. Ships must also meet filter. Each 'filter' for a field should be in the form of an OBJECT!
-function getShipsAfterName (minDisplayName, numberOfShips, filter) {
+function getShipsAfterName (minDisplayName, filter, sort, numberOfShips) {
   if (filter.displayName != null) { // If the filter already has something on it, add the minimum filter to the existing one
     filter.displayName.$gt = minDisplayName;
   } else {
     filter.displayName = {$gt: minDisplayName}; // There is no filter for the displayName
   }
   if (connectedToDatabase) {
-    return getShips(filter, numberOfShips);
+    return getShips(filter, sort, numberOfShips);
   } else {
     throw new Error('The server is not connected to a database');
   }
@@ -105,6 +103,13 @@ function scrapeShips (arrayOfScrapeShips) {
 function getContainsFilter (filter, needle) {
   filter.displayName.$regex = '(?i)(.*' + needle + '.*)'; // Selects all ships containing needle. (?i) makes it case insensitive
   return filter; // Sort of unecessary
+}
+
+// Get sort object (order - 1 or -1) (sortPath (string) - displayName, armament.normalGun)
+function getSortObject (sortPath, order) {
+  var sortObject = {};
+  sortObject[sortPath] = order; // Have to do it this way because converting a string (sortPath) to a key on an object
+  return sortObject;
 }
 
 module.exports = router;

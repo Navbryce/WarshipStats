@@ -38,7 +38,9 @@ export class AppComponent implements OnInit{
   title = 'Warship Website';
   shipsList = []; // Initially set in ngOnInit getShips function
   selectedShip: any;
-  searchEntry: string
+  searchEntry = "";
+  sortBy = "displayName";
+  sortOrder = 1;
   dialogueState = "inactive";
 
   // Inject searchService to share variables | and HTTP client to communicate with the backend
@@ -47,7 +49,15 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.searchService.currentSearch.subscribe(searchEntry => { // Also called when initially subscribed, so no need to call getShips when the page first loads
       this.searchEntry = searchEntry
-      this.getShips(searchEntry)
+      this.getShips(searchEntry, this.sortBy, this.sortOrder);
+    });
+    this.searchService.sortBy.subscribe(sortBy => { // Also called whe intially subscribed? Redudant
+      this.sortBy = sortBy;
+      this.getShips(this.searchEntry, sortBy, this.sortOrder);
+    });
+    this.searchService.sortOrder.subscribe(sortOrder => { // Also called whe intially subscribed? Redudant
+      this.sortOrder = sortOrder;
+      this.getShips(this.searchEntry, this.sortBy, sortOrder);
     });
   }
 
@@ -126,10 +136,14 @@ export class AppComponent implements OnInit{
           this.selectedShip.selectedTab=tabNumber; //Must be done the start so code below can modify dom of tab
       }
   }
-  getShips(shipNeedle): void {
+  getShips(shipNeedle, sortBy, sortOrder): void {
     var body = {
       shipName: "",
       numberOfShips: 500,
+      sort: {
+        sortBy: sortBy,
+        sortOrder: sortOrder
+      },
       filters: {
         shipNeedle: shipNeedle
       }
