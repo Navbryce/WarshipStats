@@ -36,7 +36,7 @@
                         <div class="dropdown-content">
                           <div style="padding: 10px;">
                             <select [(ngModel)]="sortBy" (ngModelChange)="searchChange($event)">
-                              <option value="displayName">Name</option>
+                              <option *ngFor="let sortByOption of sortByList" value="{{sortByOption.optionValue}}">{{sortByOption.optionText}}</option>
                             </select>
                             <select [(ngModel)]="sortOrder" (ngModelChange)="searchChange($event)">
                               <option value="1">Ascending</option>
