@@ -32,6 +32,7 @@
 	background-color: white;
 	width: 20vw;
 	min-width: 100px;
+	padding: 10px;
 }
 .nav-wrapper{
 	position: fixed;
