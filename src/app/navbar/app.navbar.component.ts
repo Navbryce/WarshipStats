@@ -1,5 +1,6 @@
 import { Component, Input, ChangeDetectorRef} from '@angular/core';
-import {SearchService} from './app.search-service'
+import {SearchService} from './app.search-service';
+import {RangeFilter} from './app.search-service';
 declare var $: any;
 
 
@@ -11,49 +12,47 @@ declare var $: any;
 })
 export class NavbarComponent {
   // Set defaults
+  rangeFilters: Array<RangeFilter>; // Instantiated in constructor
   searchEntry = "";
   sortBy = "displayName";
   sortOrder = "1";
   sortByList = this.generateSortBy();
   rangeComplement = new Range(0, 0);
 
-  constructor(private changeDetector: ChangeDetectorRef, private searchService: SearchService) { }
+  constructor(private changeDetector: ChangeDetectorRef, private searchService: SearchService) {
+    this.rangeFilters = searchService.initialRangeFilters;
+  }
 
   ngAfterViewInit(): void{
-    var navbar = this;
     $(document).ready(() => {
-      $("#complement-range").ionRangeSlider({
-        type: "double",
-        grid: true,
-        min: 0,
-        max: 1000,
-        from: -500,
-        to: 500,
-        onChange: function (data) {
-          navbar.changeRangeComplement(data.from, data.to);
-        }
-      });
-      $("#number-of-guns-range").ionRangeSlider({
-        type: "double",
-        grid: true,
-        min: 0,
-        max: 1000,
-        from: -500,
-        to: 500
-      });
+      this.addRangeFilters(this.rangeFilters); // this.rangeFilters Instantiated in constructor
     });
   }
 
   addShipButtonClicked(): void {
     this.searchService.toggleAddShip(true);
     console.log(this.rangeComplement);
-
+  }
+  addRangeFilters(rangeFilters: Array<RangeFilter>): void { // See search-service to view the range objects
+    var navbar = this;
+    for (var filterCounter = 0; filterCounter < rangeFilters.length; filterCounter++) {
+      var rangeFilter = rangeFilters[filterCounter];
+      $(rangeFilter.idInDom).ionRangeSlider({
+        type: "double",
+        grid: true,
+        min: rangeFilter.displayMin,
+        max: rangeFilter.displayMax,
+        from: rangeFilter.minValue,
+        to: rangeFilter.maxValue,
+        onChange: function (data) {
+          navbar.changeRangeValue(rangeFilter.key, data.from, data.to)
+        }
+      });
+    }
   }
   // Used to change the values of range complement. Force change detection because the change is made outside of the normal life cycle
-  changeRangeComplement(from, to): void {
-    this.rangeComplement.minValue = from;
-    this.rangeComplement.maxValue = to;
-    this.changeDetector.detectChanges();
+  changeRangeValue(key, from, to): void {
+    this.searchService.changeRangeFilter(key, from, to);
   }
   // Generate sortby options
   generateSortBy(): Array<Option> {
@@ -76,6 +75,7 @@ export class NavbarComponent {
 
     return sortByList;
   }
+
   //Called whenever the search input changes. the search input is also saved to the searchEntry through the [(ngModel)] property
   searchChange (change) { // Assume everything changed since this function is called for any change to a filter, sortBy, or search bar. The provider will not "send" the changes if the value is the same as the old value (efficiency)
     this.searchService.changeSearch(this.searchEntry);

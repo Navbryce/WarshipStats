@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 // import * as boats from '../../Data/boats.json';
 import { HttpClient } from '@angular/common/http';
 import {SearchService} from '../navbar/app.search-service'
+import {RangeFilter} from '../navbar/app.search-service';
+
 import {
   trigger,
   state,
@@ -38,26 +40,33 @@ export class AppComponent implements OnInit{
   title = 'Warship Website';
   shipsList = []; // Initially set in ngOnInit getShips function
   selectedShip: any;
-  searchEntry = "";
-  sortBy = "displayName";
-  sortOrder = 1;
+  searchEntry = ""; // Should probably change this so it gets its initial value from the searchService
+  sortBy = "displayName"; // Should probably change this so it gets its initial value from the searchService
+  sortOrder = 1; // Should probably change this so it gets its initial value from the searchService
+  rangeFilters: Array<RangeFilter>; // Instantiated in constructor
   dialogueState = "inactive";
 
   // Inject searchService to share variables | and HTTP client to communicate with the backend
-  constructor(private searchService: SearchService, private http: HttpClient) { }
+  constructor(private changeDetector: ChangeDetectorRef, private searchService: SearchService, private http: HttpClient) {
+    this.rangeFilters = searchService.initialRangeFilters;
+  }
 
   ngOnInit(): void {
     this.searchService.currentSearch.subscribe(searchEntry => { // Also called when initially subscribed, so no need to call getShips when the page first loads
       this.searchEntry = searchEntry
-      this.getShips(searchEntry, this.sortBy, this.sortOrder);
+      this.getShips(searchEntry, this.sortBy, this.sortOrder, this.rangeFilters);
     });
     this.searchService.sortBy.subscribe(sortBy => { // Also called whe intially subscribed? Redudant
       this.sortBy = sortBy;
-      this.getShips(this.searchEntry, sortBy, this.sortOrder);
+      this.getShips(this.searchEntry, sortBy, this.sortOrder, this.rangeFilters);
     });
     this.searchService.sortOrder.subscribe(sortOrder => { // Also called whe intially subscribed? Redudant
       this.sortOrder = sortOrder;
-      this.getShips(this.searchEntry, this.sortBy, sortOrder);
+      this.getShips(this.searchEntry, this.sortBy, sortOrder, this.rangeFilters);
+    });
+    this.searchService.rangeFilters.subscribe(rangeFilters => {
+      this.rangeFilters = rangeFilters;
+      this.getShips(this.searchEntry, this.sortBy, this.sortOrder, rangeFilters);
     });
   }
 
@@ -136,7 +145,7 @@ export class AppComponent implements OnInit{
           this.selectedShip.selectedTab=tabNumber; //Must be done the start so code below can modify dom of tab
       }
   }
-  getShips(shipNeedle, sortBy, sortOrder): void {
+  getShips(shipNeedle, sortBy, sortOrder, rangeFilters): void {
     var body = {
       shipName: "",
       numberOfShips: 500,
@@ -145,10 +154,12 @@ export class AppComponent implements OnInit{
         sortOrder: sortOrder
       },
       filters: {
-        shipNeedle: shipNeedle
+        shipNeedle: shipNeedle,
+        rangeIntFilters: rangeFilters
       }
     }
     this.http.post('http://192.168.1.2:3000/ships/getShips', body).subscribe(data => {
+      this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
       console.log(data);
       this.shipsList = <Array<any>> data;
     });

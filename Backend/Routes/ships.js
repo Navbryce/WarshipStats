@@ -47,11 +47,12 @@ router.post('/getShips', function (req, res) {
   var shipName = req.body.shipName;
   var numberOfShips = req.body.numberOfShips;
   var requestedFilters = req.body.filters;
+  var rangeIntFilters = requestedFilters.rangeIntFilters; // Filters that can be formatted into the form of an int to another int. Should be an array of objects with a key, minValue, and maxValue
   var sortUnformatted = req.body.sort;
   var sortObject = getSortObject(sortUnformatted.sortBy, sortUnformatted.sortOrder);
-  var initialFilter = {displayName: {}}; // Initializes the filter. Probalby should create a constructor to do this
-  var filter = getContainsFilter(initialFilter, requestedFilters.shipNeedle);
-
+  var filter = {displayName: {}}; // Initializes the filter. Probalby should create a constructor to do this
+  getContainsFilter(filter, requestedFilters.shipNeedle); // Gets the ships with only a certain string in their name
+  addRangeIntFilters(filter, rangeIntFilters); // Adds the filters for complement, speed, ....
   getShipsAfterName(shipName, filter, sortObject, numberOfShips).then((data) => {
     res.json(data);
   });
@@ -67,6 +68,7 @@ router.post('/scrapeShips', function (req, res) {
 // Filter must be in the format of MongoQuerying syntax. returns promise if successful. a limit of 0 is equivalent to no limit
 function getShips (filter, sortObject, limit) {
   // console.log(sortObject);
+  // console.log('FILTER:' + JSON.stringify(filter));
   if (connectedToDatabase) {
     return Ship.find(filter).sort(sortObject).limit(limit).exec(); // Returns ship promise
   } else {
@@ -110,6 +112,28 @@ function getSortObject (sortPath, order) {
   var sortObject = {};
   sortObject[sortPath] = order; // Have to do it this way because converting a string (sortPath) to a key on an object
   return sortObject;
+}
+function addRangeIntFilters (existingFilterObject, rangeIntFilters) {
+  // console.log(JSON.stringify(rangeIntFilters));
+  for (var rangeFilterCounter = 0; rangeFilterCounter < rangeIntFilters.length; rangeFilterCounter++) {
+    var rangeFilter = rangeIntFilters[rangeFilterCounter];
+    // console.log(JSON.stringify(rangeFilter));
+    var rangeObject = createRangeFilter(rangeFilter.minValue, rangeFilter.maxValue); // Creates an object with {$lt: value, $gt: value}
+    existingFilterObject = setFilter(existingFilterObject, rangeFilter.key, rangeObject); // Sets the above object to the filter key (complement, speed, ...)
+  }
+  return existingFilterObject; // Return modified object
+}
+function createRangeFilter (minValue, maxValue) { // Returns a range object of integer values for mongo queries
+  var object = {
+    $gt: minValue,
+    $lt: maxValue
+  };
+  // console.log(JSON.stringify(object));
+  return object;
+}
+function setFilter (existingFilter, filterKey, filterObject) {
+  existingFilter[filterKey] = filterObject;
+  return existingFilter;
 }
 
 module.exports = router;
