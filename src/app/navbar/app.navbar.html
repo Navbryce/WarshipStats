@@ -53,9 +53,9 @@
                           </li>
                         </div>
                         <div class="dropdown-content">
-                          <div>
-                            <label>Complement</label>
-                            <input id="complement-range">
+                          <div *ngFor="let rangeFilter of rangeFilters">
+                            <label>{{rangeFilter.displayName}}</label>
+                            <input id="{{rangeFilter.idInDom}}">
                           </div>
                         </div>
                       </div>

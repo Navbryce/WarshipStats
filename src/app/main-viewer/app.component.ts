@@ -83,8 +83,11 @@ export class AppComponent implements OnInit{
               element.style.transform = "scale(1)";
           }
           this.dialogueState="inactive";
+          this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
           setTimeout(()=>{
-              this.selectedShip=ship;
+              this.selectedShip=null;
+              this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
+
           }, 100);
 
       }else{
@@ -97,9 +100,14 @@ export class AppComponent implements OnInit{
           }
 
           this.selectedShip=ship;
+          // console.log("Selected:" + JSON.stringify(ship));
+
           this.selectTab(previouslySelectedTab);
+
           body.style.overflowY= "hidden";
           this.dialogueState="inactive";
+          this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
+
           setTimeout(()=>{ /*For some reason the animation trigger wants a brief period between switching. */
               for(var domElement=0; domElement<nonDialogue.length; domElement++){
                   var element = (<HTMLElement>nonDialogue[domElement]);
@@ -109,6 +117,8 @@ export class AppComponent implements OnInit{
 
               }
               this.dialogueState="active";
+              this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
+
           }, 0);
       }
   }
@@ -134,15 +144,18 @@ export class AppComponent implements OnInit{
     return allKeys;
   }
   selectTab(tabNumber: number): void{
+      var oldTab = this.selectedShip.selectedTab;
       console.log(this.selectedShip.selectedTab + "; new number:" + tabNumber);
 
-      if(tabNumber!=this.selectedShip.selectedTab && tabNumber == 0){
-          setTimeout(()=>{ /*For some reason the animation trigger wants a brief period between switching. */
-              initializeProductGallery(); //Same as the animation trigger. I'm pretty sure this block runs asynch or something without the timeout
-          }, 0);
+      if(tabNumber != oldTab){
+          this.selectedShip.selectedTab = tabNumber; //Must be done the start so code below can modify dom of tab
       }
-      if(tabNumber != this.selectedShip.selectedTab){
-          this.selectedShip.selectedTab=tabNumber; //Must be done the start so code below can modify dom of tab
+      this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
+
+      if(tabNumber != oldTab && tabNumber == 0){
+          setTimeout(()=>{ /*For some reason the animation trigger wants a brief period between switching. */
+            initializeProductGallery(); //Same as the animation trigger. I'm pretty sure this block runs asynch or something without the timeout
+          }, 0);
       }
   }
   getShips(shipNeedle, sortBy, sortOrder, rangeFilters): void {
@@ -159,9 +172,10 @@ export class AppComponent implements OnInit{
       }
     }
     this.http.post('http://192.168.1.2:3000/ships/getShips', body).subscribe(data => {
-      this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
       console.log(data);
       this.shipsList = <Array<any>> data;
+      this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
+
     });
   }
 

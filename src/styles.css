@@ -10,6 +10,7 @@ body{
 
 }
 footer{
+	margin-top: 100px;
 	width: 100%;
 	height: 300px;
 	background:  linear-gradient(to left, rgba(1, 74, 191, 1) , rgba(20, 44, 81, 1));

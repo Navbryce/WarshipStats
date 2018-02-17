@@ -36,15 +36,19 @@ export class NavbarComponent {
   addRangeFilters(rangeFilters: Array<RangeFilter>): void { // See search-service to view the range objects
     var navbar = this;
     for (var filterCounter = 0; filterCounter < rangeFilters.length; filterCounter++) {
-      var rangeFilter = rangeFilters[filterCounter];
-      $(rangeFilter.idInDom).ionRangeSlider({
+      const rangeFilter = rangeFilters[filterCounter]; // We don't want this variable to change as the loop changes. Otherwise, all the sliders will have the same key (the key of the final rangeFilter in the array)
+      $('#' + rangeFilter.idInDom).ionRangeSlider({
         type: "double",
         grid: true,
         min: rangeFilter.displayMin,
         max: rangeFilter.displayMax,
         from: rangeFilter.minValue,
         to: rangeFilter.maxValue,
-        onChange: function (data) {
+        onChange: (data) => {
+
+        },
+        onFinish: (data) => {
+          // console.log(data);
           navbar.changeRangeValue(rangeFilter.key, data.from, data.to)
         }
       });

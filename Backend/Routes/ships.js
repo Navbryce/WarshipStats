@@ -68,7 +68,7 @@ router.post('/scrapeShips', function (req, res) {
 // Filter must be in the format of MongoQuerying syntax. returns promise if successful. a limit of 0 is equivalent to no limit
 function getShips (filter, sortObject, limit) {
   // console.log(sortObject);
-  // console.log('FILTER:' + JSON.stringify(filter));
+   console.log('FILTER:' + JSON.stringify(filter));
   if (connectedToDatabase) {
     return Ship.find(filter).sort(sortObject).limit(limit).exec(); // Returns ship promise
   } else {

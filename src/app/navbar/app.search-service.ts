@@ -60,8 +60,12 @@ export class SearchService {
 
   generateRangeFilters (): Array<RangeFilter> {
     var rangeFilters = [];
-    var complementFilter = new RangeFilter('complement', 0, 5000, '#complement-range', 0, 5000);
+    var complementFilter = new RangeFilter('complement', 'Complement', 'complement-range', 0, 5000);
     rangeFilters.push(complementFilter);
+    var numberOfGunsFilter = new RangeFilter('armament.normalGun.sizeCalculate.numberOfValues', 'Number of Guns', 'number-of-guns-range', 0, 100);
+    rangeFilters.push(numberOfGunsFilter);
+    var numberOfGunsFilter = new RangeFilter('armament.normalGun.sizeCalculate.average', 'Average Size of guns (mm)', 'avg-size-range', 0, 350);
+    rangeFilters.push(numberOfGunsFilter);
 
     return rangeFilters;
   }
@@ -73,15 +77,18 @@ export class SearchService {
 
 export class RangeFilter {
   key: string;
+  displayName: string;
   minValue: number;
   maxValue: number;
   idInDom: string;
   displayMin: number;
   displayMax: number;
-  constructor (filterKey, min, max, id, rangeMin, rangeMax) {
+  constructor (filterKey, displayNameString, id, rangeMin, rangeMax) {
     this.key = filterKey;
-    this.minValue = min;
-    this.maxValue = max;
+    this.displayName = displayNameString;
+    // The initial values should just be the minimum and maximum possible of the range slider
+    this.minValue = rangeMin;
+    this.maxValue = rangeMax;
     this.idInDom = id;
     this.displayMin = rangeMin;
     this.displayMax = rangeMax;
