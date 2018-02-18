@@ -11,7 +11,7 @@ import {ErrorVisibleDirective} from './app.error-visible.directive'
 import {PlaceHolderDirective} from './ship-creation/app.ship-creation-placeholder.directive'
 import {CreateShipValidator} from './app.create-validation.directive'
 import {ArmamentListComponent} from './main-viewer/armament-list/app.armament-list.component'
-
+import {ShipGraphComponent} from './main-viewer/ship-graph/ship-graph.component'
 
 
 
@@ -23,7 +23,8 @@ import {ArmamentListComponent} from './main-viewer/armament-list/app.armament-li
     PlaceHolderDirective,
     ErrorVisibleDirective,
     CreateShipValidator,
-    ArmamentListComponent
+    ArmamentListComponent,
+    ShipGraphComponent
   ],
   imports: [
     BrowserModule,

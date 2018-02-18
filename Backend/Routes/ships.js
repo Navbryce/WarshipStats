@@ -119,15 +119,32 @@ function addRangeIntFilters (existingFilterObject, rangeIntFilters) {
     var rangeFilter = rangeIntFilters[rangeFilterCounter];
     // console.log(JSON.stringify(rangeFilter));
     var rangeObject = createRangeFilter(rangeFilter.minValue, rangeFilter.maxValue); // Creates an object with {$lt: value, $gt: value}
-    existingFilterObject = setFilter(existingFilterObject, rangeFilter.key, rangeObject); // Sets the above object to the filter key (complement, speed, ...)
+    if (rangeFilter.minValue == 0) {
+      var nullInclude = {};
+      nullInclude[rangeFilter.key] = null;
+      var rangeInclude = {};
+      rangeInclude[rangeFilter.key] = rangeObject;
+      var orArray = [nullInclude, rangeInclude];
+      existingFilterObject['$or'] = orArray;
+    } else {
+      existingFilterObject = setFilter(existingFilterObject, rangeFilter.key, rangeObject); // Sets the above object to the filter key (complement, speed, ...)
+    }
   }
   return existingFilterObject; // Return modified object
 }
 function createRangeFilter (minValue, maxValue) { // Returns a range object of integer values for mongo queries
-  var object = {
-    $gt: minValue,
-    $lt: maxValue
-  };
+  var object;
+  if (minValue == 0) { // if a minvalue is zero, you want to include null fields. $or statement is added in addRangeFilters
+    object = {
+      $lte: maxValue
+    };
+  } else {
+    object = {
+      $gte: minValue,
+      $lte: maxValue
+    };
+  }
+
   // console.log(JSON.stringify(object));
   return object;
 }

@@ -107,8 +107,8 @@
                       <app-armament-list [armament-object]=selectedShip.armament></app-armament-list>
                     </div>
                 </div>
-                <div *ngIf="selectedShip.selectedTab==2">
-                    <p>visualization</p>
+                <div class="content-of-selected-box" *ngIf="selectedShip.selectedTab==2">
+                    <ship-graph [ship]="selectedShip"></ship-graph>
                 </div>
             </div>
         </div>

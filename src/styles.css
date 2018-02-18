@@ -46,8 +46,10 @@ nav{
 	padding-top: 250px;
 
 }
-
-
+#ship-graph > svg { /* If I choose to not use the WebGL renderer */
+  height: 100%;
+  width: 100%;
+}
 .footer-content{
 	position: relative;
 	z-index: 2;

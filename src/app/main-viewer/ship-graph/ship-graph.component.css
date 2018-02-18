@@ -1,0 +1,9 @@
+#ship-graph {
+  height: 100%;
+  width: 100%;
+}
+.graph-wrapper {
+  height: 100%;
+  width: 100%;
+}
+/*styles in angular compiled style sheets are only applied when the element is not dyanmically added. the #ship-graph > svg style can be in the styles.css (which is not compiled through angular)*/
