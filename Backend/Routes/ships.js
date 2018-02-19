@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const childProcess = require('child_process');
-var mongoose = require('mongoose');
+var Ships = require('shipmodule');
 
 // Allows post requests from outside domains. Disable when not developing angular-end of application
 router.use(function (req, res, next) {
@@ -10,31 +10,6 @@ router.use(function (req, res, next) {
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
   next();
-});
-
-var shipSchema = mongoose.Schema({
-  scrapeURL: String,
-  configuration: String,
-  displayName: String,
-  name: String,
-  importantDates: Object,
-  awards: Object,
-  armament: Object,
-  armor: Object,
-  description: String,
-  physicalAttributes: Object,
-  pictures: Object,
-  any: Object // Catch all. Ships are dynamic and don't always have the same attributes
-});
-var Ship = mongoose.model('ships', shipSchema);
-
-// Connect to Mongo Database 'ABoat'
-var connectedToDatabase = false;
-mongoose.connect('mongodb://localhost/ABoat', { useMongoClient: true });
-var database = mongoose.connection;
-database.on('error', console.error.bind(console, 'Error when connecting to database.'));
-database.once('open', function () {
-  connectedToDatabase = true;
 });
 
 router.get('/', function (req, res) {
@@ -53,7 +28,7 @@ router.post('/getShips', function (req, res) {
   var filter = {displayName: {}}; // Initializes the filter. Probalby should create a constructor to do this
   getContainsFilter(filter, requestedFilters.shipNeedle); // Gets the ships with only a certain string in their name
   addRangeIntFilters(filter, rangeIntFilters); // Adds the filters for complement, speed, ....
-  getShipsAfterName(shipName, filter, sortObject, numberOfShips).then((data) => {
+  Ships.getShipsAfterName(shipName, filter, sortObject, numberOfShips).then((data) => {
     res.json(data);
   });
 });
@@ -64,31 +39,6 @@ router.post('/scrapeShips', function (req, res) {
   scrapeShips(shipsToScrape);
   res.json('Scrape job submitted');
 });
-
-// Filter must be in the format of MongoQuerying syntax. returns promise if successful. a limit of 0 is equivalent to no limit
-function getShips (filter, sortObject, limit) {
-  // console.log(sortObject);
-   console.log('FILTER:' + JSON.stringify(filter));
-  if (connectedToDatabase) {
-    return Ship.find(filter).sort(sortObject).limit(limit).exec(); // Returns ship promise
-  } else {
-    throw new Error('The server is not connected to a database');
-  }
-}
-
-// Returns promise. Gets the {numberOfShips} ships with a displayName > minDisplayName. Ships must also meet filter. Each 'filter' for a field should be in the form of an OBJECT!
-function getShipsAfterName (minDisplayName, filter, sort, numberOfShips) {
-  if (filter.displayName != null) { // If the filter already has something on it, add the minimum filter to the existing one
-    filter.displayName.$gt = minDisplayName;
-  } else {
-    filter.displayName = {$gt: minDisplayName}; // There is no filter for the displayName
-  }
-  if (connectedToDatabase) {
-    return getShips(filter, sort, numberOfShips);
-  } else {
-    throw new Error('The server is not connected to a database');
-  }
-}
 
 // Scrape ships. Parameter must be an array of objects with "url" and "configuration attributes". Will add the scraped ships to the Mongo database
 function scrapeShips (arrayOfScrapeShips) {

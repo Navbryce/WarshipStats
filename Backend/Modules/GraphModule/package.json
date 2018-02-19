@@ -1,0 +1,14 @@
+{
+  "name": "graphmodule",
+  "version": "1.0.0",
+  "description": "Includes the database functions required to get edge info and node info",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^5.0.1"
+  }
+}
