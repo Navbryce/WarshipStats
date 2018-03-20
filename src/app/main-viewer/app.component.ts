@@ -171,7 +171,7 @@ export class AppComponent implements OnInit{
         rangeIntFilters: rangeFilters
       }
     }
-    this.http.post('http://192.168.1.2:3000/ships/getShips', body).subscribe(data => {
+    this.http.post('http://192.168.1.82:3000/ships/getShips', body).subscribe(data => {
       console.log(data);
       this.shipsList = <Array<any>> data;
       this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery

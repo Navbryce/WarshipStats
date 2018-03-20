@@ -57,8 +57,8 @@
                         <div class="info-section primary-weapons">
                             <h4 class="title-font blue-underline">Important Dates:</h4>
                             <div class="info-box">
-                                <div *ngFor="let importantDate of selectedShip.importantDates">
-                                    <p><b>{{importantDate.significance}}:</b> <span *ngFor="let key of getKeysArray(importantDate.date)">{{importantDate.date[key]}}</span></p>
+                                <div *ngFor="let key of getKeysArray(selectedShip.importantDates)">
+                                    <p><b>{{key}}:</b> <span *ngFor="let dateKey of getKeysArray(selectedShip.importantDates[key])">{{selectedShip.importantDates[key][dateKey]}}</span></p>
                                 </div>
                             </div>
                         </div>
