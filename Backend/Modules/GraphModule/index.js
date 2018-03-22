@@ -43,23 +43,25 @@ function getEdgesWithPictures (filter, sortObject) {
   return new Promise((resolve, reject) => {
     var edgePromise = getEdges(filter, sortObject);
     edgePromise.then((edges) => {
-      console.log(edges[0].source)
       var orArray = []
       filter = {$or: orArray};
       for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter++) {
         orArray.push({scrapeURL: edges[edgeCounter].source});
         orArray.push({scrapeURL: edges[edgeCounter].target});
       }
-
-      var shipsPromise = Ships.getShips(filter, {}, 0);
+      var shipsPromise = Ships.getShips(filter, {}, 0); // will remove duplicates. so if two requests are for the sharnhorst, will return only 1 SCHARNHORST OBJECT
       shipsPromise.then((ships) => {
+        // The image object map deals with the "removed" duplicates problem
+        var imageObjectMap = {};
+        for (var shipCounter = 0; shipCounter < ships.length; shipCounter++) {
+          var ship = ships[shipCounter];
+          imageObjectMap[ship.scrapeURL] = ship.pictures[0];
+        }
         // Add pictures from shipobjects to edges
-        for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter += 2) {
+        for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter++) {
           var edge = edges[edgeCounter];
-          var sourceShip = ships[edgeCounter]
-          var targetShip = ships[edgeCounter + 1];
-          edge.sourceImage = sourceShip.pictures[0];
-          edge.targetImage = targetShip.pictures[0];
+          edge.sourceImage = imageObjectMap[edge.source];
+          edge.targetImage = imageObjectMap[edge.target];
           // console.log(edge);
         }
         resolve(edges);

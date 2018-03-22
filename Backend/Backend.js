@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 // Contains most of the ship functions (Getting ships, adding new ships...)
 const ships = require(path.join(__dirname, 'Routes/ships.js'));
+const graphs = require(path.join(__dirname, 'Routes/graphs.js'));
 const root = path.join(__dirname, '..');
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // Routes ships functions to ships route
 app.use('/ships', ships);
+// Routes graph functions to the graphs route
+app.use('/graphs', graphs);
 // Fixes Dependencies, CSS, pictures paths
 app.use(express.static(path.join(root, 'dist')));
 

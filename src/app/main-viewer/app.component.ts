@@ -175,7 +175,6 @@ export class AppComponent implements OnInit{
       console.log(data);
       this.shipsList = <Array<any>> data;
       this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
-
     });
   }
 
