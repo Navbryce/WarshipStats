@@ -10,6 +10,7 @@ declare var Viva: any;
 export class ShipGraphComponent {
   graphContainer: any;
   @Input() ship: any;
+  @Input() allShips: any; // Represents all the nodes
   graph: any; // Vivagraph object
 
   // Inject HTTP client
@@ -17,47 +18,88 @@ export class ShipGraphComponent {
   }
 
   ngAfterContentInit() {
+    console.log("ALL SHIPS:" + this.allShips);
     this.graphContainer = document.getElementById("ship-graph");
-    console.log("Graph Container: " + this.graphContainer); // Should not be null
     this.graph = Viva.Graph.graph();
     this.drawEntireGraph();
+
+    // Layout ensures stronger edges are, the shorter the edge
+    var maximumLength = 90; // The maximum link length
+    var maximumMagnitude = 10; // The maximum possible magnitude or at least treat is as the maximum
+    var layout = Viva.Graph.Layout.forceDirected(this.graph, {
+        springLength: maximumLength,
+        springCoeff : 0.0008,
+        gravity : -10,
+        // This is the main part of this example. We are telling force directed
+        // layout, that we want to change length of each physical spring
+        // by overriding `springTransform` method:
+        springTransform: function (link, spring) {
+          var linkMagnitude = link.data.magnitude;
+          if (linkMagnitude > maximumMagnitude) {
+            linkMagnitude = 0; // If the link is stronger than the maximum magnitude, treat it as the maximum magnitude
+          }
+          spring.length = maximumLength * (1 - linkMagnitude);
+        }
+    });
 
     // specify where it should be rendered:
     var renderer = Viva.Graph.View.renderer(this.graph, {
       container: this.graphContainer,
-      graphics: this.getSvgGraphics()
+      graphics: this.getSvgGraphics(),
+      layout: layout
     });
     renderer.run();
 
   }
 
-  addEdge(edge: any): void { // Assumes teh nodes have already been added
-    this.graph.addLink(edge.source, edge.target);
+  addAllNodes (): void { // Adds all the ships as nodes
+    for (var shipCounter = 0; shipCounter < this.allShips.length; shipCounter++) {
+      var ship = this.allShips[shipCounter];
+      var node = {
+        imageURL: ship.pictures[0].src,
+        name: ship.displayName,
+        scrapeURL: ship.scrapeURL,
+      }
+      this.addNode(node);
+    }
+  }
+
+  addEdge (edge: any): void { // Assumes teh nodes have already been added
+    this.graph.addLink(edge.source, edge.target, {magnitude: edge.magnitude});
   }
 
   addNode (node: any): void {
-    this.graph.addNode(node.scrapeURL, {imageURL: node.imageURL});
+    this.graph.addNode(node.scrapeURL, {imageURL: node.imageURL, name: node.name});
   }
-
-  add
 
   getSvgGraphics (): any {
     var graphics = Viva.Graph.View.svgGraphics();
     graphics.node((node) => {
            // The function is called every time renderer needs a ui to display node
-           return Viva.Graph.svg('image')
+           var ui = Viva.Graph.svg('g');
+           var label = Viva.Graph.svg('text').attr('y', '-4px').text(node.data.name);
+           var image = Viva.Graph.svg('image')
                  .attr('width', 24)
                  .attr('height', 24)
                  .link(node.data.imageURL); // node.data holds custom object passed to graph.addNode();
-        })
-        .placeNode((nodeUI, pos) => {
-            // Shift image to let links go to the center:
-            nodeUI.attr('x', pos.x - 12).attr('y', pos.y - 12);
-        });
+
+           ui.append(label);
+           ui.append(image);
+           return ui;
+         })
+    graphics.placeNode((nodeUI, pos) => {
+      // Shift image to let links go to the center:
+      var translate = 'translate(' +(pos.x - 24/2) + ',' + (pos.y - 24/2) +')'; // 24/2 is size
+      nodeUI.attr('transform', translate);
+    });
+
     return graphics;
   }
 
   drawEntireGraph (): void {
+    this.addAllNodes(); // Adds all the ships as nodes
+
+    // Add edges (Edges also contain the image URL which at this point is unecessary)
     var body = {}
     this.http.post('http://192.168.1.82:3000/graphs/getAllEdges', body).subscribe(edgesRes => {
       var edges = <Array<any>> edgesRes;
@@ -65,12 +107,14 @@ export class ShipGraphComponent {
       for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter++) {
         var edge = edges[edgeCounter];
         var sourceNode = {
+          imageURL: edge.sourceImage.src,
+          name: edge.sourceName,
           scrapeURL: edge.source,
-          imageURL: edge.sourceImage.src
         }
         var targetNode = {
-          scrapeURL: edge.target,
-          imageURL: edge.targetImage.src
+          imageURL: edge.targetImage.src,
+          name: edge.targetName,
+          scrapeURL: edge.target
         }
         // Add nodes first
         this.addNode(sourceNode);

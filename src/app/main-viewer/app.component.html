@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="content-of-selected-box" *ngIf="selectedShip.selectedTab==2">
-                    <ship-graph [ship]="selectedShip"></ship-graph>
+                    <ship-graph [allShips]="shipsList" [ship]="selectedShip"></ship-graph>
                 </div>
             </div>
         </div>

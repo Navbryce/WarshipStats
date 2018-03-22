@@ -39,7 +39,7 @@ function getEdges (filter, sortObject) {
 }
 
 // Get edges with pictures
-function getEdgesWithPictures (filter, sortObject) {
+function getEdgesWithPictures (filter, sortObject) { // Also tacks on the ships name. Edges don't hold picture/imageURL/boatName info because it's redundant and already in the database
   return new Promise((resolve, reject) => {
     var edgePromise = getEdges(filter, sortObject);
     edgePromise.then((edges) => {
@@ -53,15 +53,19 @@ function getEdgesWithPictures (filter, sortObject) {
       shipsPromise.then((ships) => {
         // The image object map deals with the "removed" duplicates problem
         var imageObjectMap = {};
+        var shipNameMap = {};
         for (var shipCounter = 0; shipCounter < ships.length; shipCounter++) {
           var ship = ships[shipCounter];
           imageObjectMap[ship.scrapeURL] = ship.pictures[0];
+          shipNameMap[ship.scrapeURL] = ship.displayName;
         }
         // Add pictures from shipobjects to edges
         for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter++) {
           var edge = edges[edgeCounter];
           edge.sourceImage = imageObjectMap[edge.source];
+          edge.sourceName = shipNameMap[edge.source];
           edge.targetImage = imageObjectMap[edge.target];
+          edge.targetName = shipNameMap[edge.target];
           // console.log(edge);
         }
         resolve(edges);
