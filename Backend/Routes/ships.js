@@ -1,7 +1,7 @@
+var Ships = require('../Modules/ShipModule');
 const express = require('express');
 const router = express.Router();
 const childProcess = require('child_process');
-var Ships = require('shipmodule');
 
 // Allows post requests from outside domains. Disable when not developing angular-end of application
 router.use(function (req, res, next) {
@@ -25,7 +25,7 @@ router.post('/getShips', function (req, res) {
   var rangeIntFilters = requestedFilters.rangeIntFilters; // Filters that can be formatted into the form of an int to another int. Should be an array of objects with a key, minValue, and maxValue
   var sortUnformatted = req.body.sort;
   var sortObject = getSortObject(sortUnformatted.sortBy, sortUnformatted.sortOrder);
-  var filter = {displayName: {}}; // Initializes the filter. Probalby should create a constructor to do this
+  var filter = {displayName: {}, $and: []}; // Initializes the filter. Probalby should create a constructor to do this
   getContainsFilter(filter, requestedFilters.shipNeedle); // Gets the ships with only a certain string in their name
   addRangeIntFilters(filter, rangeIntFilters); // Adds the filters for complement, speed, ....
   Ships.getShipsAfterName(shipName, filter, sortObject, numberOfShips).then((data) => {
@@ -67,15 +67,18 @@ function addRangeIntFilters (existingFilterObject, rangeIntFilters) {
   // console.log(JSON.stringify(rangeIntFilters));
   for (var rangeFilterCounter = 0; rangeFilterCounter < rangeIntFilters.length; rangeFilterCounter++) {
     var rangeFilter = rangeIntFilters[rangeFilterCounter];
-    // console.log(JSON.stringify(rangeFilter));
     var rangeObject = createRangeFilter(rangeFilter.minValue, rangeFilter.maxValue); // Creates an object with {$lt: value, $gt: value}
-    if (rangeFilter.minValue == 0) {
-      var nullInclude = {};
-      nullInclude[rangeFilter.key] = null;
-      var rangeInclude = {};
-      rangeInclude[rangeFilter.key] = rangeObject;
-      var orArray = [nullInclude, rangeInclude];
-      existingFilterObject['$or'] = orArray;
+
+    if (rangeFilter.minValue == 0) { // includes boats with null for the field and ones that meet the original filter
+      var orArray = [];
+      var normalFilter = {};
+      normalFilter[rangeFilter.key] = rangeObject;
+      orArray.push(normalFilter);
+      var nullFilter = {};
+      nullFilter[rangeFilter.key] = null; // include null values
+      orArray.push(nullFilter);
+      var filterObject = {$or: orArray};
+      existingFilterObject['$and'].push(filterObject); // I honestly think it's silly. I can't put a series of $or conditions for a certain field under that field's property key  like {field: $or :[{}, {}]}. I need to put them in the next level's or statement. They're also placed in an and in case there are multiple or statements.
     } else {
       existingFilterObject = setFilter(existingFilterObject, rangeFilter.key, rangeObject); // Sets the above object to the filter key (complement, speed, ...)
     }

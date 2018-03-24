@@ -1,5 +1,5 @@
 var Promise = require('promise');
-var Ships = require('shipmodule');
+var Ships = require('../ShipModule');
 
 
 var mongoose = require('mongoose');

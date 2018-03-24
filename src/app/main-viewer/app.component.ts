@@ -171,6 +171,8 @@ export class AppComponent implements OnInit{
         rangeIntFilters: rangeFilters
       }
     }
+    // console.log(body.filters);
+
     this.http.post('http://192.168.1.82:3000/ships/getShips', body).subscribe(data => {
       console.log(data);
       this.shipsList = <Array<any>> data;
