@@ -2,4 +2,27 @@
   <div id="ship-graph">
     <svg style="display: none;"></svg>
   </div>
+  <div id="info-panel">
+    <div>
+      <img src="{{ship.pictures[0].src}}">
+      <h5>Connection info for <b>{{ship.displayName}}:</b></h5>
+      <div class="edges">
+        <div class="edge" *ngFor = "let edge of shipEdges">
+          <div class="edge-header" (click)="edge.display = !edge.display">
+            <h5>{{edge.view}}</h5><span><i class="fa" [ngClass]="edge.display ? 'fa-minus' : 'fa-plus'"></i></span>
+          </div>
+          <div class="edge-info" [hidden]="!edge.display">
+            <p><b>Ship:</b> {{edge.view}}</p>
+            <p><b>Direct Connection Strength:</b> {{edge.magnitude}}</p>
+            <div>
+              <p><b>Reasons</b>:</p>
+              <ul>
+                <li *ngFor = "let reason of edge.reasons">{{reason}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

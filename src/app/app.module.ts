@@ -13,8 +13,6 @@ import {CreateShipValidator} from './app.create-validation.directive'
 import {ArmamentListComponent} from './main-viewer/armament-list/app.armament-list.component'
 import {ShipGraphComponent} from './main-viewer/ship-graph/ship-graph.component'
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

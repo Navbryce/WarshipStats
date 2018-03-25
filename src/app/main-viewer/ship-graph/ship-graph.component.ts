@@ -1,5 +1,6 @@
 import { Component, Input, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {sortEdges} from '../../misc-functions/edges-functions.functions'
 
 declare var Viva: any;
 @Component({
@@ -8,17 +9,19 @@ declare var Viva: any;
   styleUrls: ['./ship-graph.component.css']
 })
 export class ShipGraphComponent {
-  graphContainer: any;
   @Input() ship: any;
   @Input() allShips: any; // Represents all the nodes
   graph: any; // Vivagraph object
+  graphContainer: any;
+  shipEdges: Array<any>; // Stores an array of all the edges where the ship being viewed is a target or source
+
 
   // Inject HTTP client
   constructor(private http: HttpClient) {
   }
 
   ngAfterContentInit() {
-    console.log("ALL SHIPS:" + this.allShips);
+    this.shipEdges = [];
     this.graphContainer = document.getElementById("ship-graph");
     this.graph = Viva.Graph.graph();
     this.drawEntireGraph();
@@ -110,22 +113,33 @@ export class ShipGraphComponent {
           imageURL: edge.sourceImage.src,
           name: edge.sourceName,
           scrapeURL: edge.source,
-        }
+        };
         var targetNode = {
           imageURL: edge.targetImage.src,
           name: edge.targetName,
           scrapeURL: edge.target
+        };
+
+        // If the ship being viewed is a target or source in the edge, add it to the array
+        if (edge.source == this.ship.scrapeURL) { // edge.view says the target is the name we want to display (because the user is looking at the source)
+          edge.view = edge.targetName;
+          edge.display = false; // for the accordion/hidden effect
+          this.shipEdges.push(edge);
+        }else if (edge.target == this.ship.scrapeURL) { // edge.view says the source is the name we want to display (because the user is looking at the target)
+          edge.view = edge.sourceName;
+          edge.display = false; // for the accordion/hidden effect
+          this.shipEdges.push(edge);
         }
+
         // Add nodes first
         this.addNode(sourceNode);
         this.addNode(targetNode);
 
         // Add edge
         this.addEdge(edge);
-
-
       }
-
+      sortEdges(this.shipEdges); // Sorts shipEdges by magnitude . COuld be done through binary add, but I'm not going to implement that right now
+      this.shipEdges = this.shipEdges.reverse();
     });
   }
 }

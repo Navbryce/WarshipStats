@@ -1,7 +1,77 @@
 #ship-graph {
   height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+#info-panel {
+  background-color: rgba(200, 200, 200, .9);
+  height: 100%;
+  min-width: 150px;
+  overflow-y: scroll;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30%;
+  z-index: 1;
+}
+
+#info-panel img {
+  height: 100%;
+  object-fit: contain;
   width: 100%;
 }
+
+.edge {
+  display: block;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.edge-header {
+  background-color: rgb(100, 100, 100);
+  box-sizing: content-box;
+  padding: 5px;
+  position: relative;
+  user-select: none;
+  width: 100%;
+  line-height: 30px;
+}
+
+.edge-header h5 {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.edge-header span {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  line-height: 100%;
+  position: absolute;
+  right: 5px;
+  top: 0;
+}
+
+.edge-header:hover {
+  cursor:pointer;
+}
+
+.edge {
+  width: 100%;
+}
+
+.edge-info {
+  border-left: 2px solid rgb(100, 100, 100);
+  margin-top: 5px;
+  padding-left: 10px;
+  transition: visibility
+}
+
 .graph-wrapper {
   height: 100%;
   width: 100%;
