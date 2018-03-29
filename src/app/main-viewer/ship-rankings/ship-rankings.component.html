@@ -1,0 +1,8 @@
+<h5>Ship Rankings List</h5>
+<p>The higher up on the ship rankings list, the more related the ship is to the {{ship.displayName}}</p>
+<div>
+  <div *ngFor="let distance of ship.distances">
+    <p><b>Ship:</b> {{distance.scrapeURL}}</p>
+    <p><b>Relatedness:</b> {{convertDistance(distance.distance)}}</p>
+  </div>
+</div>

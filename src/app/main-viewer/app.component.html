@@ -35,6 +35,9 @@
                       <li [ngClass]="{'active-tab': selectedShip.selectedTab==2}" class="nav-item">
                             <a class="nav-link" (click)="selectTab(2)">Visualization</a>
                       </li>
+                      <li [ngClass]="{'active-tab': selectedShip.selectedTab==3}" class="nav-item">
+                            <a class="nav-link" (click)="selectTab(3)">Ship Rankings</a>
+                      </li>
                 </ul>
             </div>
             <div class="selected-box-main">
@@ -109,6 +112,11 @@
                 </div>
                 <div class="content-of-selected-box" *ngIf="selectedShip.selectedTab==2">
                     <ship-graph [allShips]="shipsList" [ship]="selectedShip"></ship-graph>
+                </div>
+                <div class="content-of-selected-box" *ngIf="selectedShip.selectedTab==3">
+                    <div class="allow-y-scroll">
+                      <ship-rankings [ship]="selectedShip"></ship-rankings>
+                    </div>
                 </div>
             </div>
         </div>

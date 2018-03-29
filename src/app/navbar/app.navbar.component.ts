@@ -8,7 +8,6 @@ declare var $: any;
   selector: 'app-navbar',
   templateUrl: './app.navbar.html',
   styleUrls: ['./navbar-styles.css']
-
 })
 export class NavbarComponent {
   // Set defaults

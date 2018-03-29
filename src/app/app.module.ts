@@ -12,6 +12,8 @@ import {PlaceHolderDirective} from './ship-creation/app.ship-creation-placeholde
 import {CreateShipValidator} from './app.create-validation.directive'
 import {ArmamentListComponent} from './main-viewer/armament-list/app.armament-list.component'
 import {ShipGraphComponent} from './main-viewer/ship-graph/ship-graph.component'
+import {ShipRankings} from './main-viewer/ship-rankings/ship-rankings.component'
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import {ShipGraphComponent} from './main-viewer/ship-graph/ship-graph.component'
     ErrorVisibleDirective,
     CreateShipValidator,
     ArmamentListComponent,
-    ShipGraphComponent
+    ShipGraphComponent,
+    ShipRankings
   ],
   imports: [
     BrowserModule,
