@@ -38,7 +38,9 @@ declare var initializeProductGallery: any;
 })
 export class AppComponent implements OnInit{
   title = 'Warship Website';
-  shipsList = []; // Initially set in ngOnInit getShips function
+  shipsList = []; // Initially set in ngOnInit getShips function. Has filters applied to it
+  allShipsList = []; // All the ships
+  hasGottenShipsOnce = false; // The first time the web page gets the ships, will set to true
   selectedShip: any;
   searchEntry = ""; // Should probably change this so it gets its initial value from the searchService
   sortBy = "displayName"; // Should probably change this so it gets its initial value from the searchService
@@ -176,6 +178,10 @@ export class AppComponent implements OnInit{
     this.http.post('http://192.168.1.82:3000/ships/getShips', body).subscribe(data => {
       console.log(data);
       this.shipsList = <Array<any>> data;
+      if (!this.hasGottenShipsOnce) {
+        this.hasGottenShipsOnce = true;
+        this.allShipsList = <Array<any>> data; // Unadulterated/unfiltered list of ships.
+      }
       this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
     });
   }

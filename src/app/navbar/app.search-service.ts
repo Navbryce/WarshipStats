@@ -62,7 +62,7 @@ export class SearchService {
     var rangeFilters = [];
     var complementFilter = new RangeFilter('complement', 'Complement', 'complement-range', 0, 5000);
     rangeFilters.push(complementFilter);
-    var numberOfGunsFilter = new RangeFilter('armament.normalGun.sizeCalculate.numberOfValues', 'Number of Guns', 'number-of-guns-range', 0, 100);
+    var numberOfGunsFilter = new RangeFilter('armament.normalGun.sizeCalculate.numberOfValues', 'Number of Guns', 'number-of-guns-range', 0, 200);
     rangeFilters.push(numberOfGunsFilter);
     var numberOfGunsFilter = new RangeFilter('armament.normalGun.sizeCalculate.average', 'Average Size of guns (mm)', 'avg-size-range', 0, 350);
     rangeFilters.push(numberOfGunsFilter);

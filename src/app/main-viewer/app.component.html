@@ -115,7 +115,7 @@
                 </div>
                 <div class="content-of-selected-box" *ngIf="selectedShip.selectedTab==3">
                     <div class="allow-y-scroll">
-                      <ship-rankings [ship]="selectedShip"></ship-rankings>
+                      <ship-rankings [ship]="selectedShip" [allShips] = "allShipsList"></ship-rankings>
                     </div>
                 </div>
             </div>
