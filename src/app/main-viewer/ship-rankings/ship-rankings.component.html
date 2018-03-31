@@ -1,10 +1,21 @@
 <h5>Ship Rankings List</h5>
 <p>The higher up on the ship rankings list, the more related the ship is to the {{ship.displayName}}</p>
 <div *ngIf="allShipsMap != null">
-  <div *ngFor="let distance of ship.distances">
-    <div *ngIf="inMap(distance.scrapeURL)">
-      <p><b>Ship:</b> {{allShipsMap[distance.scrapeURL].displayName}}</p>
-      <p><b>Relatedness:</b> {{convertDistance(distance.distance)}}</p>
+  <div *ngFor="let distance of ship.distances; index as index">
+    <div *ngIf="inMap(distance.scrapeURL)" class="info-box">
+      <div>
+        <h5>{{index+1}}</h5>
+      </div>
+      <div class="icon-info-box">
+        <div *ngIf="allShipsMap[distance.scrapeURL].pictures[0]">
+            <img class="ship-preview" src="{{allShipsMap[distance.scrapeURL].pictures[0].src}}">
+        </div>
+        <div>
+          <p><b>Ship:</b> {{allShipsMap[distance.scrapeURL].displayName}}</p>
+          <p><b>Relatedness:</b> {{convertDistance(distance.distance)}}</p>
+          <button (click)="switchShip(allShipsMap[distance.scrapeURL])" class="btn">View Ship</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

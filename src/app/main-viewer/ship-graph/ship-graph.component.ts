@@ -1,6 +1,8 @@
-import { Component, Input, ElementRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {sortEdges} from '../../misc-functions/edges-functions.functions'
+import { arrayToMap } from '../../misc-functions/ships-functions.functions'
+
 
 declare var Viva: any;
 @Component({
@@ -11,13 +13,20 @@ declare var Viva: any;
 export class ShipGraphComponent {
   @Input() ship: any;
   @Input() allShips: any; // Represents all the nodes
+  @Output() switchShips = new EventEmitter<any>();
   graph: any; // Vivagraph object
   graphContainer: any;
+  graphics: any;
   shipEdges: Array<any>; // Stores an array of all the edges where the ship being viewed is a target or source
+  shipMap: any;
 
 
   // Inject HTTP client
   constructor(private http: HttpClient) {
+  }
+
+  ngOnChanges() {
+    this.shipMap = arrayToMap(this.allShips);
   }
 
   ngAfterContentInit() {
@@ -44,11 +53,11 @@ export class ShipGraphComponent {
           spring.length = maximumLength * (1 - linkMagnitude);
         }
     });
-
+    this.graphics = this.getSvgGraphics();
     // specify where it should be rendered:
     var renderer = Viva.Graph.View.renderer(this.graph, {
       container: this.graphContainer,
-      graphics: this.getSvgGraphics(),
+      graphics: this.graphics,
       layout: layout
     });
     renderer.run();
@@ -75,30 +84,6 @@ export class ShipGraphComponent {
     this.graph.addNode(node.scrapeURL, {imageURL: node.imageURL, name: node.name});
   }
 
-  getSvgGraphics (): any {
-    var graphics = Viva.Graph.View.svgGraphics();
-    graphics.node((node) => {
-           // The function is called every time renderer needs a ui to display node
-           var ui = Viva.Graph.svg('g');
-           var label = Viva.Graph.svg('text').attr('y', '-4px').text(node.data.name);
-           var image = Viva.Graph.svg('image')
-                 .attr('width', 24)
-                 .attr('height', 24)
-                 .link(node.data.imageURL); // node.data holds custom object passed to graph.addNode();
-
-           ui.append(label);
-           ui.append(image);
-           return ui;
-         })
-    graphics.placeNode((nodeUI, pos) => {
-      // Shift image to let links go to the center:
-      var translate = 'translate(' +(pos.x - 24/2) + ',' + (pos.y - 24/2) +')'; // 24/2 is size
-      nodeUI.attr('transform', translate);
-    });
-
-    return graphics;
-  }
-
   drawEntireGraph (): void {
     this.addAllNodes(); // Adds all the ships as nodes
 
@@ -123,10 +108,12 @@ export class ShipGraphComponent {
         // If the ship being viewed is a target or source in the edge, add it to the array
         if (edge.source == this.ship.scrapeURL) { // edge.view says the target is the name we want to display (because the user is looking at the source)
           edge.view = edge.targetName;
+          edge.viewURL = edge.target;
           edge.display = false; // for the accordion/hidden effect
           this.shipEdges.push(edge);
         }else if (edge.target == this.ship.scrapeURL) { // edge.view says the source is the name we want to display (because the user is looking at the target)
           edge.view = edge.sourceName;
+          edge.viewURL = edge.source;
           edge.display = false; // for the accordion/hidden effect
           this.shipEdges.push(edge);
         }
@@ -141,5 +128,49 @@ export class ShipGraphComponent {
       sortEdges(this.shipEdges); // Sorts shipEdges by magnitude . COuld be done through binary add, but I'm not going to implement that right now
       this.shipEdges = this.shipEdges.reverse();
     });
+  }
+
+  getSvgGraphics (): any {
+    var graphics = Viva.Graph.View.svgGraphics();
+    var component = this;
+    graphics.node((node) => {
+           // The function is called every time renderer needs a ui to display node
+           var ui = Viva.Graph.svg('g');
+           var label = Viva.Graph.svg('text').attr('y', '-4px').text(node.data.name);
+           var image = Viva.Graph.svg('image')
+                 .attr('width', 24)
+                 .attr('height', 24)
+                 .link(node.data.imageURL); // node.data holds custom object passed to graph.addNode();
+
+           ui.append(label);
+           ui.append(image);
+           ui.addEventListener("mouseover", ()=> {
+             component.highlightConnectedNodes(node.id, true);
+          });
+          ui.addEventListener("mouseout", ()=> {
+            component.highlightConnectedNodes(node.id, false);
+         });
+           return ui;
+         })
+    graphics.placeNode((nodeUI, pos) => {
+      // Shift image to let links go to the center:
+      var translate = 'translate(' +(pos.x - 24/2) + ',' + (pos.y - 24/2) +')'; // 24/2 is size
+      nodeUI.attr('transform', translate);
+    });
+
+    return graphics;
+  }
+
+  highlightConnectedNodes(nodeID: any, state: boolean): void { // Highlights and unhighlights based on state
+    this.graph.forEachLinkedNode(nodeID, (node, edge) => {
+      var linkUI = this.graphics.getLinkUI(edge.id);
+      if (linkUI) { // Make sure it's not null
+        linkUI.attr('stroke', state ? 'red': 'grey');
+      }
+    });
+  }
+
+  switchShip (ship: any): void { // Switch the ship being viewed
+    this.switchShips.emit(ship);
   }
 }

@@ -72,6 +72,53 @@ export class AppComponent implements OnInit{
     });
   }
 
+  getShips(shipNeedle, sortBy, sortOrder, rangeFilters): void {
+    var body = {
+      shipName: "",
+      numberOfShips: 500,
+      sort: {
+        sortBy: sortBy,
+        sortOrder: sortOrder
+      },
+      filters: {
+        shipNeedle: shipNeedle,
+        rangeIntFilters: rangeFilters
+      }
+    }
+    // console.log(body.filters);
+
+    this.http.post('http://192.168.1.82:3000/ships/getShips', body).subscribe(data => {
+      console.log(data);
+      this.shipsList = <Array<any>> data;
+      if (!this.hasGottenShipsOnce) {
+        this.hasGottenShipsOnce = true;
+        this.allShipsList = <Array<any>> data; // Unadulterated/unfiltered list of ships.
+      }
+      this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
+    });
+  }
+
+  getKeysArray(object: Object): Array<String>{
+      return Object.keys(object);
+  }
+  //Will return if the key is already being displayed. Really need to change from array of keys manually entered to something stored in the database by the scraper
+  getsKeysNotInUse(ship: any): Array<String>{
+    var allKeys = this.getKeysArray(ship);
+    var  keysInUseArray = ["selectedtab", "armor", "armament", "importantdates", "physicalattributes", "pictures", "description", "_id", "name", "displayname", "configuration", "scrapeurl", "class", "type", "complement"];
+
+    for (var keysInUseCounter = 0; keysInUseCounter < keysInUseArray.length; keysInUseCounter++){
+        var keyInUse = keysInUseArray[keysInUseCounter];
+        var keyRemoved = false;
+        for (var keyCounter = 0; keyCounter < allKeys.length && !keyRemoved; keyCounter++){
+            if (keyInUse == allKeys[keyCounter].toLowerCase()){
+                allKeys.splice(keyCounter, 1)
+                keyRemoved = true;
+            }
+        }
+    }
+
+    return allKeys;
+  }
   selectShip(ship: any): void{
       var body = document.getElementsByTagName("body")[0];
       var nonDialogue = document.getElementsByClassName("not-dialogue");
@@ -124,27 +171,7 @@ export class AppComponent implements OnInit{
           }, 0);
       }
   }
-  getKeysArray(object: Object): Array<String>{
-      return Object.keys(object);
-  }
-  //Will return if the key is already being displayed. Really need to change from array of keys manually entered to something stored in the database by the scraper
-  getsKeysNotInUse(ship: any): Array<String>{
-    var allKeys = this.getKeysArray(ship);
-    var  keysInUseArray = ["selectedtab", "armor", "armament", "importantdates", "physicalattributes", "pictures", "description", "_id", "name", "displayname", "configuration", "scrapeurl", "class", "type", "complement"];
 
-    for (var keysInUseCounter = 0; keysInUseCounter < keysInUseArray.length; keysInUseCounter++){
-        var keyInUse = keysInUseArray[keysInUseCounter];
-        var keyRemoved = false;
-        for (var keyCounter = 0; keyCounter < allKeys.length && !keyRemoved; keyCounter++){
-            if (keyInUse == allKeys[keyCounter].toLowerCase()){
-                allKeys.splice(keyCounter, 1)
-                keyRemoved = true;
-            }
-        }
-    }
-
-    return allKeys;
-  }
   selectTab(tabNumber: number): void{
       var oldTab = this.selectedShip.selectedTab;
       console.log(this.selectedShip.selectedTab + "; new number:" + tabNumber);
@@ -160,30 +187,16 @@ export class AppComponent implements OnInit{
           }, 0);
       }
   }
-  getShips(shipNeedle, sortBy, sortOrder, rangeFilters): void {
-    var body = {
-      shipName: "",
-      numberOfShips: 500,
-      sort: {
-        sortBy: sortBy,
-        sortOrder: sortOrder
-      },
-      filters: {
-        shipNeedle: shipNeedle,
-        rangeIntFilters: rangeFilters
-      }
+  // Only call when switching from one ship view to another
+  switchShips (newShip: any): void {
+    this.selectShip(null);
+    if (newShip != null) { // Just in case the new ship is null, no need to "switch" twice
+      setTimeout(() => {
+        this.selectShip(newShip);
+      }, 400);
     }
-    // console.log(body.filters);
-
-    this.http.post('http://192.168.1.82:3000/ships/getShips', body).subscribe(data => {
-      console.log(data);
-      this.shipsList = <Array<any>> data;
-      if (!this.hasGottenShipsOnce) {
-        this.hasGottenShipsOnce = true;
-        this.allShipsList = <Array<any>> data; // Unadulterated/unfiltered list of ships.
-      }
-      this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
-    });
   }
+
+
 
 }

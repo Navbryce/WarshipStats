@@ -111,11 +111,11 @@
                     </div>
                 </div>
                 <div class="content-of-selected-box" *ngIf="selectedShip.selectedTab==2">
-                    <ship-graph [allShips]="shipsList" [ship]="selectedShip"></ship-graph>
+                    <ship-graph (switchShips)="switchShips($event)" [allShips]="allShipsList" [ship]="selectedShip"></ship-graph>
                 </div>
                 <div class="content-of-selected-box" *ngIf="selectedShip.selectedTab==3">
                     <div class="allow-y-scroll">
-                      <ship-rankings [ship]="selectedShip" [allShips] = "allShipsList"></ship-rankings>
+                      <ship-rankings (selectShip)="switchShips($event)" [ship]="selectedShip" [allShips] = "allShipsList"></ship-rankings>
                     </div>
                 </div>
             </div>

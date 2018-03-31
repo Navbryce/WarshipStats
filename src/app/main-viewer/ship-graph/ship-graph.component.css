@@ -1,3 +1,6 @@
+button {
+  background-color: #ffc107;
+}
 #ship-graph {
   height: 100%;
   position: absolute;

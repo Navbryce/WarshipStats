@@ -7,8 +7,8 @@
       <img src="{{ship.pictures[0].src}}">
       <h5>Connection info for <b>{{ship.displayName}}:</b></h5>
       <div class="edges">
-        <div class="edge" *ngFor = "let edge of shipEdges">
-          <div class="edge-header" (click)="edge.display = !edge.display">
+        <div *ngFor = "let edge of shipEdges" class="edge">
+          <div (click)="edge.display = !edge.display" class="edge-header">
             <h5>{{edge.view}}</h5><span><i class="fa" [ngClass]="edge.display ? 'fa-minus' : 'fa-plus'"></i></span>
           </div>
           <div class="edge-info" [hidden]="!edge.display">
@@ -20,6 +20,7 @@
                 <li *ngFor = "let reason of edge.reasons">{{reason}}</li>
               </ul>
             </div>
+            <button (click)="switchShip(shipMap[edge.viewURL])" class="btn">View Ship</button>
           </div>
         </div>
       </div>
