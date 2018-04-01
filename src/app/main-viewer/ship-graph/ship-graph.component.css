@@ -7,7 +7,12 @@ button {
   width: 100%;
   z-index: 0;
 }
-
+#button-panel {
+  display: inline-block;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+}
 #info-panel {
   background-color: rgba(200, 200, 200, .9);
   height: 100%;
@@ -25,6 +30,10 @@ button {
   height: 100%;
   object-fit: contain;
   width: 100%;
+}
+
+.btn-constant { /*Constant button size*/
+  width: 50px;
 }
 
 .edge {

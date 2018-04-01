@@ -17,8 +17,10 @@ export class ShipGraphComponent {
   graph: any; // Vivagraph object
   graphContainer: any;
   graphics: any;
+  layoutRunning: boolean;
   shipEdges: Array<any>; // Stores an array of all the edges where the ship being viewed is a target or source
   shipMap: any;
+  renderer: any;
 
 
   // Inject HTTP client
@@ -37,7 +39,7 @@ export class ShipGraphComponent {
 
     // Layout ensures stronger edges are, the shorter the edge
     var maximumLength = 90; // The maximum link length
-    var maximumMagnitude = 10; // The maximum possible magnitude or at least treat is as the maximum
+    var maximumMagnitude = 30; // The maximum possible magnitude or at least treat is as the maximum
     var layout = Viva.Graph.Layout.forceDirected(this.graph, {
         springLength: maximumLength,
         springCoeff : 0.0008,
@@ -49,6 +51,7 @@ export class ShipGraphComponent {
           var linkMagnitude = link.data.magnitude;
           if (linkMagnitude > maximumMagnitude) {
             linkMagnitude = 0; // If the link is stronger than the maximum magnitude, treat it as the maximum magnitude
+            console.log("A link has a greater magnitude than the pre-configured magnitude of " + maximumMagnitude + " in the graph");
           }
           spring.length = maximumLength * (1 - linkMagnitude);
         }
@@ -60,6 +63,8 @@ export class ShipGraphComponent {
       graphics: this.graphics,
       layout: layout
     });
+    this.layoutRunning = true;
+    this.renderer = renderer;
     renderer.run();
 
   }
@@ -130,6 +135,12 @@ export class ShipGraphComponent {
     });
   }
 
+  getPauseText (state: boolean): string {
+    var returnString = null;
+    state ? returnString = "Pause": returnString = "Resume";
+    return returnString;
+  }
+
   getSvgGraphics (): any {
     var graphics = Viva.Graph.View.svgGraphics();
     var component = this;
@@ -172,5 +183,16 @@ export class ShipGraphComponent {
 
   switchShip (ship: any): void { // Switch the ship being viewed
     this.switchShips.emit(ship);
+  }
+
+  toggleRender (): void {
+    if (this.renderer != null) {
+      if (this.layoutRunning) {
+        this.renderer.pause();
+      } else {
+        this.renderer.resume();
+      }
+      this.layoutRunning = !this.layoutRunning; // Switch states
+    }
   }
 }

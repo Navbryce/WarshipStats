@@ -3,15 +3,14 @@
 <div *ngIf="allShipsMap != null">
   <div *ngFor="let distance of ship.distances; index as index">
     <div *ngIf="inMap(distance.scrapeURL)" class="info-box">
-      <div>
-        <h5>{{index+1}}</h5>
+      <div class="rank-header">
+        <h1 class="title-font metallic-text">{{index+1}}. {{allShipsMap[distance.scrapeURL].displayName}}</h1>
       </div>
       <div class="icon-info-box">
         <div *ngIf="allShipsMap[distance.scrapeURL].pictures[0]">
             <img class="ship-preview" src="{{allShipsMap[distance.scrapeURL].pictures[0].src}}">
         </div>
         <div>
-          <p><b>Ship:</b> {{allShipsMap[distance.scrapeURL].displayName}}</p>
           <p><b>Relatedness:</b> {{convertDistance(distance.distance)}}</p>
           <button (click)="switchShip(allShipsMap[distance.scrapeURL])" class="btn">View Ship</button>
         </div>

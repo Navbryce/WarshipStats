@@ -1,4 +1,7 @@
 <div class="graph-wrapper">
+  <div id="button-panel">
+    <button (click)="toggleRender()" class="btn btn-constant" title="{{getPauseText(layoutRunning)}} graph"><i [ngClass]="layoutRunning ? 'fa-pause' : 'fa-play'" class="fa"></i></button>
+  </div>
   <div id="ship-graph">
     <svg style="display: none;"></svg>
   </div>
