@@ -1,5 +1,5 @@
 {
-  "backendIP": "192.168.1.82",
+  "backendIP": "localhost",
   "mongoIP": "localhost",
-  "port": "2000"
+  "port": "8000"
 }
