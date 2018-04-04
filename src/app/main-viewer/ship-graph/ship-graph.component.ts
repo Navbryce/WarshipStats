@@ -2,6 +2,9 @@ import { Component, ElementRef, EventEmitter, Input, Output  } from '@angular/co
 import { HttpClient } from '@angular/common/http';
 import {sortEdges} from '../../misc-functions/edges-functions.functions'
 import { arrayToMap } from '../../misc-functions/ships-functions.functions'
+import * as configData from '../../../../config.json';
+const config = (<any>configData);
+
 
 
 declare var Viva: any;
@@ -11,6 +14,7 @@ declare var Viva: any;
   styleUrls: ['./ship-graph.component.css']
 })
 export class ShipGraphComponent {
+
   @Input() ship: any;
   @Input() allShips: any; // Represents all the nodes
   @Output() switchShips = new EventEmitter<any>();
@@ -21,10 +25,12 @@ export class ShipGraphComponent {
   shipEdges: Array<any>; // Stores an array of all the edges where the ship being viewed is a target or source
   shipMap: any;
   renderer: any;
+  configObject = <any> config;
 
 
   // Inject HTTP client
   constructor(private http: HttpClient) {
+    console.log(this.configObject.mongoIP);
   }
 
   ngOnChanges() {
@@ -94,7 +100,7 @@ export class ShipGraphComponent {
 
     // Add edges (Edges also contain the image URL which at this point is unecessary)
     var body = {}
-    this.http.post('http://192.168.1.82:3000/graphs/getAllEdges', body).subscribe(edgesRes => {
+    this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/graphs/getAllEdges', body).subscribe(edgesRes => {
       var edges = <Array<any>> edgesRes;
       console.log(edges);
       for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter++) {

@@ -1,5 +1,6 @@
 // Dependencies
 const express = require('express');
+const configModule = require('./Modules/ConfigModule')
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
@@ -8,6 +9,8 @@ const bodyParser = require('body-parser');
 const ships = require(path.join(__dirname, 'Routes/ships.js'));
 const graphs = require(path.join(__dirname, 'Routes/graphs.js'));
 const root = path.join(__dirname, '..');
+
+const config = configModule.getConfig();
 
 const app = express();
 
@@ -26,9 +29,9 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(root, '/dist/index.html'));
 });
 
-const port = '3000';
+const port = config.port;
 app.set('port', port);
 const server = http.createServer(app);
-server.listen(port, '192.168.1.82', function () {
-  console.log('Backend express app listening @ localhost:3000');
+server.listen(port, config.backendIP, function () {
+  console.log('Backend express app listening @ ' + config.backendIP + ':' + config.port);
 });

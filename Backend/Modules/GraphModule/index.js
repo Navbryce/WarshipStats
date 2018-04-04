@@ -1,6 +1,6 @@
+var Config = require('../ConfigModule');
 var Promise = require('promise');
 var Ships = require('../ShipModule');
-
 
 var mongoose = require('mongoose');
 
@@ -12,9 +12,12 @@ var edgeSchema = mongoose.Schema({
 });
 var Edge = mongoose.model('edges', edgeSchema);
 
+// Get config
+var config = Config.getConfig();
+
 // Connect to Mongo Database 'ABoat'
 var connectedToDatabase = false;
-mongoose.connect('mongodb://localhost/ABoat', { useMongoClient: true });
+mongoose.connect('mongodb://' + config.mongoIP + '/ABoat', { useMongoClient: true });
 var database = mongoose.connection;
 
 database.on('error', console.error.bind(console, 'Error when connecting to database.'));
@@ -43,7 +46,7 @@ function getEdgesWithPictures (filter, sortObject) { // Also tacks on the ships 
   return new Promise((resolve, reject) => {
     var edgePromise = getEdges(filter, sortObject);
     edgePromise.then((edges) => {
-      var orArray = []
+      var orArray = [];
       filter = {$or: orArray};
       for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter++) {
         orArray.push({scrapeURL: edges[edgeCounter].source});

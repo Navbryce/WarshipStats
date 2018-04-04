@@ -3,6 +3,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {SearchService} from '../navbar/app.search-service'
 import {RangeFilter} from '../navbar/app.search-service';
+import * as configData from '../../../config.json';
+const config = (<any>configData);
 
 import {
   trigger,
@@ -37,6 +39,7 @@ declare var initializeProductGallery: any;
         ]
 })
 export class AppComponent implements OnInit{
+  configObject = <any>config;
   title = 'Warship Website';
   shipsList = []; // Initially set in ngOnInit getShips function. Has filters applied to it
   allShipsList = []; // All the ships
@@ -87,7 +90,7 @@ export class AppComponent implements OnInit{
     }
     // console.log(body.filters);
 
-    this.http.post('http://192.168.1.82:3000/ships/getShips', body).subscribe(data => {
+    this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/ships/getShips', body).subscribe(data => {
       console.log(data);
       this.shipsList = <Array<any>> data;
       if (!this.hasGottenShipsOnce) {

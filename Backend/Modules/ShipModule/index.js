@@ -1,4 +1,4 @@
-
+var Config = require('../ConfigModule');
 var mongoose = require('mongoose');
 
 var shipSchema = mongoose.Schema({
@@ -17,9 +17,12 @@ var shipSchema = mongoose.Schema({
 });
 var Ship = mongoose.model('ships', shipSchema);
 
+// Get config
+var config = Config.getConfig();
+
 // Connect to Mongo Database 'ABoat'
 var connectedToDatabase = false;
-mongoose.connect('mongodb://localhost/ABoat', { useMongoClient: true });
+mongoose.connect('mongodb://' + config.mongoIP + '/ABoat', { useMongoClient: true });
 var database = mongoose.connection;
 database.on('error', console.error.bind(console, 'Error when connecting to database.'));
 database.once('open', function () {
@@ -28,8 +31,8 @@ database.once('open', function () {
 
 // Filter must be in the format of MongoQuerying syntax. returns promise if successful. a limit of 0 is equivalent to no limit
 function getShips (filter, sortObject, limit) {
-    // console.log(sortObject);
-   console.log('FILTER:' + JSON.stringify(filter));
+  // console.log(sortObject);
+  console.log('FILTER:' + JSON.stringify(filter));
   if (connectedToDatabase) {
     return Ship.find(filter).sort(sortObject).limit(limit).exec(); // Returns ship promise
   } else {
