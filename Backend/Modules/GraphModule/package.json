@@ -8,6 +8,10 @@
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.0.12",
+    "promise": "^8.0.1"
+  },
   "devDependencies": {
     "mocha": "^5.0.1"
   }

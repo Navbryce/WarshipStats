@@ -22,7 +22,7 @@ var config = Config.getConfig();
 
 // Connect to Mongo Database 'ABoat'
 var connectedToDatabase = false;
-mongoose.connect('mongodb://' + config.mongoIP + '/ABoat', { useMongoClient: true });
+mongoose.connect('mongodb://' + config.mongoIP + '/ABoat', {});
 var database = mongoose.connection;
 database.on('error', console.error.bind(console, 'Error when connecting to database.'));
 database.once('open', function () {
