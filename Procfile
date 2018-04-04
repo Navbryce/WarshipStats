@@ -1,1 +1,1 @@
-web: node .\Backend\Backend.js
+web: node /Backend/Backend.js
