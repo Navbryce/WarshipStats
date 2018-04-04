@@ -1,6 +1,6 @@
 {
   "name": "aboat",
-  "main": "./Backend/Backend.js"
+  "main": "./Backend/Backend.js",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
