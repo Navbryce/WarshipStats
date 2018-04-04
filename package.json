@@ -1,5 +1,6 @@
 {
   "name": "aboat",
+  "main": "./Backend/Backend.js"
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -9,6 +10,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engines": {
+    "node":"~6.11.3",
+    "npm":"~3.10.10"
   },
   "private": true,
   "dependencies": {
