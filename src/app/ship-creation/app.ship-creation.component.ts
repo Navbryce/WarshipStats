@@ -1,6 +1,8 @@
 import { Component, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import {SearchService} from '../navbar/app.search-service'
 import { HttpClient } from '@angular/common/http';
+import * as configData from '../../../config.json';
+const config = (<any>configData);
 
 @Component({
   selector: 'app-ship-creation',
@@ -9,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 
 })
 export class ShipCreationComponent {
+  configObject = <any>config;
   @ViewChildren('shipURL') shipURLS:QueryList<ElementRef>;
   urlsArray: Array<ElementRef>;
   searchEntry: String; // Never DIRECTLY MODIFY THIS VARIABLE
@@ -49,7 +52,7 @@ export class ShipCreationComponent {
     var body = {
       ships: this.shipsToAdd
     };
-    this.http.post('http://192.168.1.82:3000/ships/scrapeShips', body).subscribe(data => {
+    this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/ships/scrapeShips', body).subscribe(data => {
       console.log(data);
     });
     this.closeCreation();
