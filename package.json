@@ -12,8 +12,8 @@
     "e2e": "ng e2e"
   },
   "engines": {
-    "node":"~6.11.3",
-    "npm":"~3.10.10"
+    "node": "~6.11.3",
+    "npm": "~3.10.10"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +29,8 @@
     "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
     "express": "^4.16.2",
+    "mongoose": "^5.0.12",
+    "promise": "^8.0.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
