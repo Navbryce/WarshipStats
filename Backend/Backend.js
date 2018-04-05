@@ -32,6 +32,6 @@ app.get('*', (req, res) => {
 const port = config.port;
 app.set('port', port);
 const server = http.createServer(app);
-server.listen(port, config.backendIP, function () {
+server.listen(process.env.PORT || port, config.backendIP, function () {
   console.log('Backend express app listening @ ' + config.backendIP + ':' + config.port);
 });
