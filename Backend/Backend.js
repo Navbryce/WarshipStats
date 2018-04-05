@@ -31,7 +31,8 @@ app.get('*', (req, res) => {
 
 const port = config.port;
 app.set('port', (process.env.PORT || port));
+app.set('ip', (process.env.IP || config.backendIP)); // Config (heroku config) must have IP environment variable set
 const server = http.createServer(app);
-server.listen(app.get('port'), config.backendIP, function () {
-  console.log('Backend express app listening @ ' + config.backendIP + ':' + app.get('port'));
+server.listen(app.get('port'), app.get('ip'), function () {
+  console.log('Backend express app listening @ ' + app.get('ip') + ':' + app.get('port'));
 });
