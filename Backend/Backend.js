@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 // Contains most of the ship functions (Getting ships, adding new ships...)
 const ships = require(path.join(__dirname, 'Routes/ships.js'));
 const graphs = require(path.join(__dirname, 'Routes/graphs.js'));
-const root = path.join(__dirname, '..');
+const root = path.join(__dirname, '..'); // Get root path
 
 const config = configModule.getConfig();
 
