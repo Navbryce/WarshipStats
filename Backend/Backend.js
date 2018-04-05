@@ -30,8 +30,8 @@ app.get('*', (req, res) => {
 });
 
 const port = config.port;
-app.set('port', port);
+app.set('port', (process.env.PORT || port));
 const server = http.createServer(app);
-server.listen(process.env.PORT || port, config.backendIP, function () {
-  console.log('Backend express app listening @ ' + config.backendIP + ':' + config.port);
+server.listen(app.get('port'), config.backendIP, function () {
+  console.log('Backend express app listening @ ' + config.backendIP + ':' + app.get('port'));
 });
