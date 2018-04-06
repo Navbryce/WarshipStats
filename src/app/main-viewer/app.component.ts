@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {SearchService} from '../navbar/app.search-service'
 import {RangeFilter} from '../navbar/app.search-service';
+import {getIP} from '../misc-functions/get-ip.function';
 import * as configData from '../../../config.json';
 const config = (<any>configData);
 
@@ -88,9 +89,9 @@ export class AppComponent implements OnInit{
         rangeIntFilters: rangeFilters
       }
     }
-    // console.log(body.filters);
+    var fullIP = getIP(this.configObject);
 
-    this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/ships/getShips', body).subscribe(data => {
+    this.http.post(fullIP + '/ships/getShips', body).subscribe(data => {
       console.log(data);
       this.shipsList = <Array<any>> data;
       if (!this.hasGottenShipsOnce) {

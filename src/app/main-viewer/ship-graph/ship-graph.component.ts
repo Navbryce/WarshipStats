@@ -1,7 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, Output  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {sortEdges} from '../../misc-functions/edges-functions.functions'
-import { arrayToMap } from '../../misc-functions/ships-functions.functions'
+import {sortEdges} from '../../misc-functions/edges-functions.functions';
+import { arrayToMap } from '../../misc-functions/ships-functions.functions';
+import {getIP} from '../../misc-functions/get-ip.function';
 import * as configData from '../../../../config.json';
 const config = (<any>configData);
 
@@ -100,7 +101,8 @@ export class ShipGraphComponent {
 
     // Add edges (Edges also contain the image URL which at this point is unecessary)
     var body = {}
-    this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/graphs/getAllEdges', body).subscribe(edgesRes => {
+    var fullIP = getIP(this.configObject);
+    this.http.post(fullIP + '/graphs/getAllEdges', body).subscribe(edgesRes => {
       var edges = <Array<any>> edgesRes;
       console.log(edges);
       for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter++) {

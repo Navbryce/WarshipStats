@@ -2,6 +2,8 @@ import { Component, Input, ViewChildren, QueryList, ElementRef } from '@angular/
 import {SearchService} from '../navbar/app.search-service'
 import { HttpClient } from '@angular/common/http';
 import * as configData from '../../../config.json';
+import {getIP} from '../misc-functions/get-ip.function';
+
 const config = (<any>configData);
 
 @Component({
@@ -52,7 +54,8 @@ export class ShipCreationComponent {
     var body = {
       ships: this.shipsToAdd
     };
-    this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/ships/scrapeShips', body).subscribe(data => {
+    var fullIP = getIP(this.configObject);
+    this.http.post(fullIP + '/ships/scrapeShips', body).subscribe(data => {
       console.log(data);
     });
     this.closeCreation();

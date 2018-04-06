@@ -1,5 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { AppComponent } from './main-viewer/app.component';
 import {
   trigger,
   state,
