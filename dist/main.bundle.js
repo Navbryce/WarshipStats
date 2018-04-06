@@ -233,9 +233,10 @@ module.exports = "\r\n\r\n\r\n<div id=\"content\" class=\"not-dialogue\">\r\n   
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__navbar_app_search_service__ = __webpack_require__("./src/app/navbar/app.search-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_json__ = __webpack_require__("./config.json");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__config_json__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_animations__ = __webpack_require__("./node_modules/@angular/animations/@angular/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_json__ = __webpack_require__("./config.json");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__config_json__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_animations__ = __webpack_require__("./node_modules/@angular/animations/@angular/animations.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -250,7 +251,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var config = __WEBPACK_IMPORTED_MODULE_3__config_json__;
+
+var config = __WEBPACK_IMPORTED_MODULE_4__config_json__;
 
 var AppComponent = (function () {
     // Inject searchService to share variables | and HTTP client to communicate with the backend
@@ -302,8 +304,8 @@ var AppComponent = (function () {
                 rangeIntFilters: rangeFilters
             }
         };
-        // console.log(body.filters);
-        this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/ships/getShips', body).subscribe(function (data) {
+        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_3__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
+        this.http.post(fullIP + '/ships/getShips', body).subscribe(function (data) {
             console.log(data);
             _this.shipsList = data;
             if (!_this.hasGottenShipsOnce) {
@@ -408,17 +410,17 @@ AppComponent = __decorate([
         template: __webpack_require__("./src/app/main-viewer/app.component.html"),
         styles: [__webpack_require__("./src/app/main-viewer/app.component.css")],
         animations: [
-            Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["j" /* trigger */])('dialogueState', [
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["g" /* state */])('inactive', Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["h" /* style */])({
+            Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["j" /* trigger */])('dialogueState', [
+                Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["g" /* state */])('inactive', Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["h" /* style */])({
                     transform: 'scale(1) translate(0, 100vh)',
                     opacity: '1',
                 })),
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["g" /* state */])('active', Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["h" /* style */])({
+                Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["g" /* state */])('active', Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["h" /* style */])({
                     transform: 'scale(1)',
                     opacity: '1',
                 })),
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["i" /* transition */])('inactive => active', Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["e" /* animate */])('200ms ease-in')),
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["i" /* transition */])('active => inactive', Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["e" /* animate */])('200ms ease-out'))
+                Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["i" /* transition */])('inactive => active', Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["e" /* animate */])('200ms ease-in')),
+                Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["i" /* transition */])('active => inactive', Object(__WEBPACK_IMPORTED_MODULE_5__angular_animations__["e" /* animate */])('200ms ease-out'))
             ])
         ]
     }),
@@ -504,8 +506,9 @@ module.exports = "<div class=\"graph-wrapper\">\r\n  <div id=\"button-panel\">\r
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__misc_functions_edges_functions_functions__ = __webpack_require__("./src/app/misc-functions/edges-functions.functions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__misc_functions_ships_functions_functions__ = __webpack_require__("./src/app/misc-functions/ships-functions.functions.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_json__ = __webpack_require__("./config.json");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__config_json__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_json__ = __webpack_require__("./config.json");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__config_json__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -520,7 +523,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var config = __WEBPACK_IMPORTED_MODULE_4__config_json__;
+
+var config = __WEBPACK_IMPORTED_MODULE_5__config_json__;
 var ShipGraphComponent = (function () {
     // Inject HTTP client
     function ShipGraphComponent(http) {
@@ -589,7 +593,8 @@ var ShipGraphComponent = (function () {
         this.addAllNodes(); // Adds all the ships as nodes
         // Add edges (Edges also contain the image URL which at this point is unecessary)
         var body = {};
-        this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/graphs/getAllEdges', body).subscribe(function (edgesRes) {
+        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
+        this.http.post(fullIP + '/graphs/getAllEdges', body).subscribe(function (edgesRes) {
             var edges = edgesRes;
             console.log(edges);
             for (var edgeCounter = 0; edgeCounter < edges.length; edgeCounter++) {
@@ -821,6 +826,25 @@ function swapInArray(array, swapIndex0, swapIndex1) {
     array[swapIndex0] = tempSwapHolder;
 }
 //# sourceMappingURL=edges-functions.functions.js.map
+
+/***/ }),
+
+/***/ "./src/app/misc-functions/get-ip.function.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getIP;
+function getIP(configObject) {
+    var fullIP;
+    if (configObject.backendIP == null || configObject.backendIP.length === 0) {
+        fullIP = ''; // the ip has been been dynamically set. hopefully the frontend is on the same server as the backend
+    }
+    else {
+        fullIP = 'http://' + configObject.backendIP + ':' + configObject.port;
+    }
+    return fullIP;
+}
+//# sourceMappingURL=get-ip.function.js.map
 
 /***/ }),
 
@@ -1177,6 +1201,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_json__ = __webpack_require__("./config.json");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__config_json__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1186,6 +1211,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1226,7 +1252,8 @@ var ShipCreationComponent = (function () {
         var body = {
             ships: this.shipsToAdd
         };
-        this.http.post('http://' + this.configObject.backendIP + ':' + this.configObject.port + '/ships/scrapeShips', body).subscribe(function (data) {
+        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
+        this.http.post(fullIP + '/ships/scrapeShips', body).subscribe(function (data) {
             console.log(data);
         });
         this.closeCreation();

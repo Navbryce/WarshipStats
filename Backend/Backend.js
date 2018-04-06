@@ -1,6 +1,6 @@
 // Dependencies
 const express = require('express');
-const configModule = require('./Modules/ConfigModule')
+const configModule = require('./Modules/ConfigModule');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
