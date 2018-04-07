@@ -44,17 +44,7 @@ router.post('/scrapeShips', function (req, res) {
 // Scrape ships. Parameter must be an array of objects with "url" and "configuration attributes". Will add the scraped ships to the Mongo database
 function scrapeShips (arrayOfScrapeShips) {
   var JSONships = JSON.stringify(arrayOfScrapeShips);
-  var spawnProcess = childProcess.spawn;
-  var process;
-  try {
-    process = spawnProcess('py', [scraperDir + '/scraper.py', JSONships]); // Path points to scraper script
-  } catch (error) { // Some systems, like the one heroku uses, has python3 as the command, not py
-    process = spawnProcess('python3', [scraperDir + '/scraper.py', JSONships]); // Path points to scraper script
-  }
-  // For debugging
-  process.stdout.on('data', function (data) {
-    console.log('Python Scraper Output: ' + data);
-  });
+  spawnScrapeProcess('py', JSONships, true);
 }
 
 // Get filter that selects everything that contains a name. will modify an existing filter object.
@@ -110,6 +100,20 @@ function createRangeFilter (minValue, maxValue) { // Returns a range object of i
 function setFilter (existingFilter, filterKey, filterObject) {
   existingFilter[filterKey] = filterObject;
   return existingFilter;
+}
+function spawnScrapeProcess (commandString, JSONships, tryAgain) {
+  var spawnProcess = childProcess.spawn;
+  var process = spawnProcess(commandString, [scraperDir + '/scraper.py', JSONships]); // Path points to scraper script
+  // For debugging
+  process.stdout.on('data', function (data) {
+    console.log('Python Scraper Output: ' + data);
+  });
+  process.on('error', function (err) { // normal try/catches don't work
+    console.error(err);
+    if (tryAgain) {
+      spawnScrapeProcess('python3', JSONships, false); // Some servers have python3 as the command not py
+    }
+  });
 }
 
 module.exports = router;
