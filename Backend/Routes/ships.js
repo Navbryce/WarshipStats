@@ -2,7 +2,7 @@ var Ships = require('../Modules/ShipModule');
 const express = require('express');
 const router = express.Router();
 const childProcess = require('child_process');
-const scraperParDir = process.env.SHIP_SCRAPER; // Path points to parent directory of ship scraper. Ship scraper should be set under the SHIP_SCRAPER environment variable
+const scraperDir = process.env.SHIP_SCRAPER; // Path points to parent directory of ship scraper. Ship scraper should be set under the SHIP_SCRAPER environment variable
 
 // Allows post requests from outside domains. Disable when not developing angular-end of application
 router.use(function (req, res, next) {
@@ -45,7 +45,7 @@ router.post('/scrapeShips', function (req, res) {
 function scrapeShips (arrayOfScrapeShips) {
   var JSONships = JSON.stringify(arrayOfScrapeShips);
   var spawnProcess = childProcess.spawn;
-  var process = spawnProcess('py', [scraperParDir + '/ABoatScraping/scraper.py', JSONships]); // Path points to scraper script
+  var process = spawnProcess('py', [scraperDir + '/scraper.py', JSONships]); // Path points to scraper script
   // For debugging
   process.stdout.on('data', function (data) {
     console.log('Python Scraper Output: ' + data);
