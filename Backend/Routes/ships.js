@@ -45,7 +45,12 @@ router.post('/scrapeShips', function (req, res) {
 function scrapeShips (arrayOfScrapeShips) {
   var JSONships = JSON.stringify(arrayOfScrapeShips);
   var spawnProcess = childProcess.spawn;
-  var process = spawnProcess('py', [scraperDir + '/scraper.py', JSONships]); // Path points to scraper script
+  var process;
+  try {
+    process = spawnProcess('py', [scraperDir + '/scraper.py', JSONships]); // Path points to scraper script
+  } catch (error) { // Some systems, like the one heroku uses, has python3 as the command, not py
+    process = spawnProcess('python3', [scraperDir + '/scraper.py', JSONships]); // Path points to scraper script
+  }
   // For debugging
   process.stdout.on('data', function (data) {
     console.log('Python Scraper Output: ' + data);
