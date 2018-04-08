@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Russo+One');
-
+app-navbar {
+	z-index: 3;
+}
+app-root {
+	z-index: 0;
+}
 
 body{
 	font-family: 'Roboto', sans-serif;
@@ -10,12 +15,12 @@ body{
 
 }
 footer{
-	margin-top: 100px;
+	margin-top: 300px;
 	width: 100%;
 	height: 300px;
 	background:  linear-gradient(to left, rgba(1, 74, 191, 1) , rgba(20, 44, 81, 1));
 	position: relative;
-
+	z-index: 0;
 }
 nav{
 	position: relative;

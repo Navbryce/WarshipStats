@@ -76,6 +76,9 @@
 	width: 100%;
 	position: relative;
 }
+.range-label {
+	user-select: none;
+}
 .tri-left {
 	flex-basis: 1;
 	flex: 1;
@@ -97,13 +100,13 @@
   width: 100%;
 }
 .yellow-button {
-	display: flex;
 	align-items: center;
-	justify-content: center;
 	background-color: #ffc107;
-	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
-	background-color: #ffc107;
-  white-space: nowrap;
+	border-top-right-radius: 3px;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	user-select: none;
+  white-space: nowrap;
 }
