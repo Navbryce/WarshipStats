@@ -1,8 +1,12 @@
 var Ships = require('../Modules/ShipModule');
+const LogModule = require('../Modules/LogModule');
 const express = require('express');
 const router = express.Router();
 const childProcess = require('child_process');
 const scraperDir = process.env.SHIP_SCRAPER; // Path points to parent directory of ship scraper. Ship scraper should be set under the SHIP_SCRAPER environment variable
+
+// Generate logs
+var shipCreationLog = new LogModule.LogWriter('ships-route/', 'ship-creation-log');
 
 // Allows post requests from outside domains. Disable when not developing angular-end of application
 router.use(function (req, res, next) {
@@ -107,9 +111,11 @@ function spawnScrapeProcess (commandString, JSONships, tryAgain) {
   // For debugging
   process.stdout.on('data', function (data) {
     console.log('Python Scraper Output: ' + data);
+    shipCreationLog.log('Python Scraper Out: ' + data);
   });
   process.on('error', function (err) { // normal try/catches don't work
     console.error(err);
+    shipCreationLog.log('Python Scraper Out Error: ' + err);
     if (tryAgain) {
       spawnScrapeProcess('python3', JSONships, false); // Some servers have python3 as the command not py
     }

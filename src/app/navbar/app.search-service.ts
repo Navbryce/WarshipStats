@@ -66,6 +66,8 @@ export class SearchService {
     rangeFilters.push(numberOfGunsFilter);
     var numberOfGunsFilter = new RangeFilter('armament.normalGun.sizeCalculate.average', 'Average Size of guns (mm)', 'avg-size-range', 0, 350);
     rangeFilters.push(numberOfGunsFilter);
+    var numberOfGunsFilter = new RangeFilter('armament.normalGun.sizeCalculate.sum', 'Sum of all Barrels (mm)', 'sum-size-range', 0, 10000);
+    rangeFilters.push(numberOfGunsFilter);
 
     return rangeFilters;
   }

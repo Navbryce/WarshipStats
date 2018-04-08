@@ -5,6 +5,7 @@ ship-graph {
 
 .selected-ship-tabs>.nav-item {
 	margin-top: auto;
+	user-select: none;
 }
 
 .selected-ship-tabs>.nav-item>a {

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {SearchService} from '../navbar/app.search-service'
 import {RangeFilter} from '../navbar/app.search-service';
 import {getIP} from '../misc-functions/get-ip.function';
+import {capitalizeFirstLetter} from '../misc-functions/formatting-functions';
 import * as configData from '../../../config.json';
 const config = (<any>configData);
 
@@ -74,6 +75,11 @@ export class AppComponent implements OnInit{
       this.rangeFilters = rangeFilters;
       this.getShips(this.searchEntry, this.sortBy, this.sortOrder, rangeFilters);
     });
+  }
+
+  formatString (value: string): string {
+    value = capitalizeFirstLetter(value);
+    return value;
   }
 
   getShips(shipNeedle, sortBy, sortOrder, rangeFilters): void {

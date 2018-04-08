@@ -1,6 +1,0 @@
-{	
-   "backendIP": "",	   
-   "dbName": "ABoat",	   
-   "mongoIP": "localhost",
-   "port": "4000"	 
- }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {capitalizeFirstLetter} from '../../misc-functions/formatting-functions';
 
 
 @Component({
@@ -8,4 +9,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ArmamentListComponent {
   @Input('armament-object') armament: any;
+
+  formatString (value: string): string {
+    value = capitalizeFirstLetter(value);
+    return value;
+  }
 }
