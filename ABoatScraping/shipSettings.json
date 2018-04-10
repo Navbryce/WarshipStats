@@ -1,0 +1,10 @@
+{
+    "websiteRoot": "https://en.wikipedia.org",
+    "dbIp": "ds135619.mlab.com",
+    "dbPort": "35619",
+    "databaseName": "ships",
+    "maxNumberOfImagesForAShip": 5,
+    "mPass": "writeships",
+    "mUser": "ships-write",
+    "numberOfImagesForSubsItems": 5
+}
