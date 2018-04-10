@@ -31,6 +31,8 @@ function LogWriter (pathInsideLogFolder, logName) { // Assumes the SHIP_APP path
   var existingLogContents = null;
   if (fs.existsSync(this.logPath)) { // Because createWriteStream will delete the existing file. If it already exists, PULL out the existing data from the file
     existingLogContents = fs.readFileSync(this.logPath).toString();
+  } else {
+    fs.closeSync(fs.openSync(this.logPath, 'w')); // Create file if it doesn't exist. Not necessary on Windows
   }
 
   var writeStream = fs.createWriteStream(this.logPath, {flags: 'w'});
