@@ -1,0 +1,217 @@
+
+#ship-gallery{
+	opacity: 0; /*Starts with a hidden opacity so it can fade in*/
+	transition: opacity .5s !important; /*For some reason, the photo gallery plugin automatically removes all transitions. Thus, important is needed. */
+	width: 60%;
+	margin: auto;
+
+}
+#ships{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-left: 5%;
+	padding-right: 5%;
+	width: 100vw;
+}
+#ships>div{
+	margin: 20pt;
+	cursor: pointer;
+}
+
+#ships img{
+	object-fit: contain;
+	width: 400px;
+	height: 200px;
+
+}
+.active-tab{
+}
+.active-tab>a{
+	background-color: #c19307 !important;
+}
+.allow-y-scroll{
+	overflow-y: scroll;
+	width: 100%;
+}
+.content-of-selected-box{
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+}
+.gallery-wrapper{
+	padding-top: 25px;
+	margin-bottom: 25px;
+	background-color: rgb(35, 35, 35);
+	border-bottom: solid 2px rgba(200, 200, 200, 1);
+}
+.glass-pane{
+	display: block;
+	content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+.icon-info-box{
+	display: flex;
+	align-items: center;
+}
+.icon-info-box > div:first-child{
+	margin-right: 3%;
+}
+.icon-info-box img{
+	object-fit: contain;
+	max-height: 200px;
+}
+.info-box p{
+	margin: 0px;
+	padding: 0px;
+}
+.ship-content{
+	padding: 0pt;
+}
+
+.ship-header{
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.ship-header-divider{
+	display: inline-block;
+	height: 3px;
+	content: '';
+	width: 100%;
+	background-color: rgba(1, 74, 191, .7);
+
+}
+.ship-header-text{
+	padding: 0px;
+	margin: 0px;
+}
+.ship-header-text h3{
+	display: inline-block;
+	white-space: nowrap;
+	padding: 0px;
+	margin: 0px;
+}
+.ship-header-background{
+	display: block;
+	position: relative;
+}
+.selected-dialogue{
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0px;
+	left: 0px;
+	z-index: 100;
+}
+
+.selected-box{
+	position: relative;
+	z-index: 2;
+	background: rgba(20, 44, 81, 1);
+}
+.selected-box-main{
+	background-color: white;
+	height: 90vh;
+	width: 70vw;
+	position: relative;
+	z-index: 2;
+}
+.selected-frame{
+	position: relative;
+	z-index: 2;
+	margin: 20px;
+	margin-bottom: 0px;
+
+}
+.selected-box-header{
+	width: 100%;
+	z-index: 2;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	display: flex;
+}
+.selected-box-header>h1{
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+}
+
+.selected-ship-tabs{
+	margin-left: auto;
+	border: none;
+	display: flex;
+}
+.metallic-text{
+	background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea) !important;
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent !important;
+}
+.title-font{
+	font-family: 'Russo One', sans-serif;
+}
+
+.selected-box-stats{
+	min-width: 300px;
+	flex: 1;
+	width: 50%;
+
+}
+.selected-box-info{
+	min-width: 300px;
+	width: 50%;
+	flex: 1;
+	height: 100%;
+	padding-top: 2%;
+	overflow-y: scroll;
+	border-left: solid 2px rgba(200, 200, 200, 1);
+
+}
+.info-section{
+	padding-left: 2%;
+	padding-right: 2%;
+	padding-bottom: 20px;
+
+}
+.blue-underline{
+	text-decoration: underline;
+	text-decoration-color: rgba(1, 74, 191, .7)
+}
+
+.selected-box-shipimg{
+	width: 400px;
+	height: 300px;
+	object-fit: contain;
+}
+.tab-1{
+	display: flex;
+	width: 100%;
+}
+.tab-1>div{
+	min-width: 200px;
+	flex:1;
+}
+.tab-1{
+	padding-top: 2%;
+}
+.info-box{
+	margin: 2px;
+	padding: 2%;
+	border-bottom: solid 2px rgba(200, 200, 200, 1);
+}
+
+.visualization-button{
+	display: block;
+	position: relative;
+	float: right;
+}
