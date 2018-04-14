@@ -155,6 +155,14 @@ export class ShipGraphComponent {
 
   }
 
+  // If the edge is on the main ship's edge's list, the edge info panel will be expanded
+  expandEdgeInfo (edge: any, scrollTo: boolean): void {
+    edge.display = true;
+    if (scrollTo) {
+      document.getElementById(edge.edgeId).scrollIntoView();
+    }
+  }
+
   getPauseText (state: boolean): string {
     var returnString = null;
     state ? returnString = "Pause": returnString = "Resume";
@@ -185,7 +193,7 @@ export class ShipGraphComponent {
         const angularEdge = node.data.angularEdge; // If not null, then this node shares an edge with the main node being viewed and the angularEdge is the object angular has access to
         if (angularEdge != null) { // means the ship is directly connected to the main ship.
           ui.addEventListener("click", ()=> {
-            angularEdge.display = true;
+            component.expandEdgeInfo(angularEdge, true);
           });
         }
 
