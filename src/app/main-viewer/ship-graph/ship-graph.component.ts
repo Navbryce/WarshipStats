@@ -39,14 +39,14 @@ export class ShipGraphComponent {
   }
 
   ngAfterContentInit() {
-    this.shipEdges = [];
+    this.shipEdges = []; // The edges directly connected to the main ship. Edges add to this list in drawEntireGraph
     this.graphContainer = document.getElementById("ship-graph");
     this.graph = Viva.Graph.graph();
     this.drawEntireGraph();
 
     // Layout ensures stronger edges are, the shorter the edge
     var maximumLength = 90; // The maximum link length
-    var maximumMagnitude = 30; // The maximum possible magnitude or at least treat is as the maximum
+    var maximumMagnitude = 40; // The maximum possible magnitude or at least treat is as the maximum
     var layout = Viva.Graph.Layout.forceDirected(this.graph, {
         springLength: maximumLength,
         springCoeff : 0.0008,
@@ -73,7 +73,6 @@ export class ShipGraphComponent {
     this.layoutRunning = true;
     this.renderer = renderer;
     renderer.run();
-
   }
 
   addAllNodes (): void { // Adds all the ships as nodes
@@ -89,16 +88,24 @@ export class ShipGraphComponent {
   }
 
   addEdge (edge: any): void { // Assumes teh nodes have already been added
-    this.graph.addLink(edge.source, edge.target, {magnitude: edge.magnitude});
+    var edgeData = {magnitude: edge.magnitude};
+
+    this.graph.addLink(edge.source, edge.target, edgeData);
   }
 
   addNode (node: any): void {
-    this.graph.addNode(node.scrapeURL, {imageURL: node.imageURL, name: node.name});
+    // Will only add nodes that haven't already been added
+    if (this.graph.getNode(node.scrapeURL) == null || node.angularEdge != null) { // if it has an angular edge, it means its very relevant and should ovverride the existing node
+      // angularEdge: An object references by angular that is displayed on ther right. if the node contains angular object, it should OVERRIDE the node object already graphed.
+      var nodeData = {imageURL: node.imageURL, name: node.name};
+      if (node.angularEdge != null) { // This node shares an edge with the main ship being viewed
+        nodeData['angularEdge'] = node.angularEdge; // The shared edge object that angular has access to
+      }
+      this.graph.addNode(node.scrapeURL, nodeData);
+    }
   }
 
   drawEntireGraph (): void {
-    this.addAllNodes(); // Adds all the ships as nodes
-
     // Add edges (Edges also contain the image URL which at this point is unecessary)
     var body = {}
     var fullIP = getIP(this.configObject);
@@ -120,11 +127,13 @@ export class ShipGraphComponent {
 
         // If the ship being viewed is a target or source in the edge, add it to the array
         if (edge.source == this.ship.scrapeURL) { // edge.view says the target is the name we want to display (because the user is looking at the source)
+          targetNode['angularEdge'] = edge; // References to the edge object that this node shared with the main ship being viewed
           edge.view = edge.targetName;
           edge.viewURL = edge.target;
           edge.display = false; // for the accordion/hidden effect
           this.shipEdges.push(edge);
         }else if (edge.target == this.ship.scrapeURL) { // edge.view says the source is the name we want to display (because the user is looking at the target)
+          sourceNode['angularEdge'] = edge; // References to the edge object that this node shared with the main ship being viewed
           edge.view = edge.sourceName;
           edge.viewURL = edge.source;
           edge.display = false; // for the accordion/hidden effect
@@ -141,6 +150,9 @@ export class ShipGraphComponent {
       sortEdges(this.shipEdges); // Sorts shipEdges by magnitude . COuld be done through binary add, but I'm not going to implement that right now
       this.shipEdges = this.shipEdges.reverse();
     });
+
+    this.addAllNodes(); // Adds all the ships as nodes. Since nodes that have already been added aren't added again, this needs to be run last. Otherwise, the above edges code will be overriden when it makes nodes with angularEdge
+
   }
 
   getPauseText (state: boolean): string {
@@ -152,39 +164,71 @@ export class ShipGraphComponent {
   getSvgGraphics (): any {
     var graphics = Viva.Graph.View.svgGraphics();
     var component = this;
+    graphics.highlightEdge = (ui, color) => {
+      ui.attr('stroke', color);
+    }
     graphics.node((node) => {
-           // The function is called every time renderer needs a ui to display node
-           var ui = Viva.Graph.svg('g');
-           var label = Viva.Graph.svg('text').attr('y', '-4px').text(node.data.name);
-           var image = Viva.Graph.svg('image')
-                 .attr('width', 24)
-                 .attr('height', 24)
-                 .link(node.data.imageURL); // node.data holds custom object passed to graph.addNode();
+      // The function is called every time renderer needs a ui to display node
+      var ui = Viva.Graph.svg('g');
+      var label = Viva.Graph.svg('text').attr('y', '-4px').text(node.data.name);
+      var image = Viva.Graph.svg('image')
+      .attr('width', 24)
+      .attr('height', 24)
+      .link(node.data.imageURL); // node.data holds custom object passed to graph.addNode();
 
-           ui.append(label);
-           ui.append(image);
-           ui.addEventListener("mouseover", ()=> {
-             component.highlightConnectedNodes(node.id, true);
+      ui.append(label);
+      ui.append(image);
+
+      if (node.id == component.ship.scrapeURL) { // Always leave important node edge's highlighted
+        // Do nothing right now
+      } else { // Not the main ship being viewed
+        const angularEdge = node.data.angularEdge; // If not null, then this node shares an edge with the main node being viewed and the angularEdge is the object angular has access to
+        if (angularEdge != null) { // means the ship is directly connected to the main ship.
+          ui.addEventListener("click", ()=> {
+            angularEdge.display = true;
           });
-          ui.addEventListener("mouseout", ()=> {
-            component.highlightConnectedNodes(node.id, false);
-         });
-           return ui;
-         })
+        }
+
+        ui.addEventListener("mouseover", ()=> {
+          component.highlightConnectedNodes(node.id, true);
+        });
+        ui.addEventListener("mouseout", ()=> {
+          component.highlightConnectedNodes(node.id, false);
+        });
+      }
+      return ui;
+    });
     graphics.placeNode((nodeUI, pos) => {
       // Shift image to let links go to the center:
       var translate = 'translate(' +(pos.x - 24/2) + ',' + (pos.y - 24/2) +')'; // 24/2 is size
       nodeUI.attr('transform', translate);
     });
-
+    graphics.link((edge) => {
+      var ui = Viva.Graph.svg('path');
+      var mainNodeId;
+      if (edge.fromId == this.ship.scrapeURL || edge.toId == this.ship.scrapeURL) { // Highlight the edges directly connected to the main ship
+        graphics.highlightEdge(ui, "red");
+      } else {
+        graphics.highlightEdge(ui, "grey");
+      }
+      return ui;
+    });
+    graphics.placeLink((linkUI, fromPos, toPos) => {
+      var data = 'M' + fromPos.x + ',' + fromPos.y + 'L' + toPos.x + ',' + toPos.y;
+      linkUI.attr('d', data);
+    });
     return graphics;
   }
 
   highlightConnectedNodes(nodeID: any, state: boolean): void { // Highlights and unhighlights based on state
     this.graph.forEachLinkedNode(nodeID, (node, edge) => {
-      var linkUI = this.graphics.getLinkUI(edge.id);
-      if (linkUI) { // Make sure it's not null
-        linkUI.attr('stroke', state ? 'red': 'grey');
+      if (node.id != this.ship.scrapeURL) { // Don't unhighlight the main ship's edges
+        var linkUI = this.graphics.getLinkUI(edge.id);
+        if (linkUI) { // Make sure it's not null
+          linkUI.attr('stroke', state ? 'red': 'grey');
+        } else {
+          console.log('Can\'t highlight edge for ' + nodeID + ' because it\'s null');
+        }
       }
     });
   }
