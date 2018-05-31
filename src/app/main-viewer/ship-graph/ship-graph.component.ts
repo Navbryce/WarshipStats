@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LoadScreenService } from '../../utilities/load-screen/load-screen.service';
 import {sortEdges} from '../../misc-functions/edges-functions.functions';
 import { arrayToMap } from '../../misc-functions/ships-functions.functions';
 import {getIP} from '../../misc-functions/get-ip.function';
@@ -30,7 +31,7 @@ export class ShipGraphComponent {
 
 
   // Inject HTTP client
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private loadScreenService: LoadScreenService) {
     console.log(this.configObject.mongoIP);
   }
 
@@ -39,6 +40,7 @@ export class ShipGraphComponent {
   }
 
   ngAfterContentInit() {
+    this.loadScreenService.activateLoadingWithReason("loading-graph"); // activate loading
     this.shipEdges = []; // The edges directly connected to the main ship. Edges add to this list in drawEntireGraph
     this.graphContainer = document.getElementById("ship-graph");
     this.graph = Viva.Graph.graph();
@@ -73,6 +75,8 @@ export class ShipGraphComponent {
     this.layoutRunning = true;
     this.renderer = renderer;
     renderer.run();
+    this.loadScreenService.deactivateLoadingWithReason("loading-graph"); // activate loading
+
   }
 
   addAllNodes (): void { // Adds all the ships as nodes
