@@ -1,4 +1,5 @@
 import { Component, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { LoadScreenService } from '../utilities/load-screen/load-screen.service';
 import {SearchService} from '../navbar/app.search-service'
 import { HttpClient } from '@angular/common/http';
 import * as configData from '../../../config.json';
@@ -22,7 +23,7 @@ export class ShipCreationComponent {
 
 
   // Inject searchService to share variables and HTTP client to communicate with the backend
-  constructor(private searchService: SearchService, private http: HttpClient) { }
+  constructor(private loadScreen: LoadScreenService, private searchService: SearchService, private http: HttpClient) { }
   ngOnInit() {
       this.searchService.currentSearch.subscribe(searchEntry => this.searchEntry = searchEntry)
       this.searchService.addShip.subscribe(newState => this.addShipState = newState);
@@ -51,14 +52,17 @@ export class ShipCreationComponent {
   }
 
   submitShipsToAdd(): void { //Scrape the shis inputed by the user (stored under this.shipsToAdd)
+    this.loadScreen.activateLoadingWithReason("scraping ship");
     var body = {
       ships: this.shipsToAdd
     };
     var fullIP = getIP(this.configObject);
     this.http.post(fullIP + '/ships/scrapeShips', body).subscribe(data => {
-      console.log(data);
+      console.log("Scrape End Status:" + data);
+      this.searchService.forceShipUpdate();
+      this.loadScreen.deactivateLoadingWithReason("scraping ship");
+      this.closeCreation();
     });
-    this.closeCreation();
   }
   getKeysArray(object: Object): Array<String>{
       return Object.keys(object);
