@@ -124,7 +124,8 @@ function spawnScrapeProcess (commandString, JSONships, tryAgain) { // returns pr
     }
   });
   return new Promise((resolve, reject) => {
-    process.on('exit', () => {
+    process.on('exit', (exit) => {
+      console.log('EXIT CODE: ' + exit);
       resolve('complete');
     });
   });
