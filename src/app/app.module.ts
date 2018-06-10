@@ -11,6 +11,8 @@ import {ErrorVisibleDirective} from './app.error-visible.directive'
 import {PlaceHolderDirective} from './ship-creation/app.ship-creation-placeholder.directive'
 import {CreateShipValidator} from './app.create-validation.directive'
 import {ArmamentListComponent} from './main-viewer/armament-list/app.armament-list.component'
+import {LoadScreen} from './utilities/load-screen/load-screen.component'
+import {LoadScreenService} from './utilities/load-screen/load-screen.service'
 import {ShipGraphComponent} from './main-viewer/ship-graph/ship-graph.component'
 import {ShipRankings} from './main-viewer/ship-rankings/ship-rankings.component'
 
@@ -24,6 +26,7 @@ import {ShipRankings} from './main-viewer/ship-rankings/ship-rankings.component'
     ErrorVisibleDirective,
     CreateShipValidator,
     ArmamentListComponent,
+    LoadScreen,
     ShipGraphComponent,
     ShipRankings
   ],
@@ -33,7 +36,7 @@ import {ShipRankings} from './main-viewer/ship-rankings/ship-rankings.component'
     HttpClientModule,
     FormsModule
   ],
-  providers: [SearchService],
-  bootstrap: [AppComponent, ShipCreationComponent, NavbarComponent]
+  providers: [LoadScreenService, SearchService],
+  bootstrap: [LoadScreen, AppComponent, NavbarComponent, ShipCreationComponent]
 })
 export class AppModule { }

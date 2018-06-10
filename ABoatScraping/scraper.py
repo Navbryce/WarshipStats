@@ -18,11 +18,13 @@ from ABoatDatabase import BoatDatabase
 from unidecode import unidecode
 import requests
 import sys
+from sys import exit
 import traceback
 import json
 from ship_compare.compare_ship_to_database import DatabaseCompare
 from ship_compare.ship_network_algo.run_algos_on_network import run_algos
 from utilities.get_environment import CONFIG_PATH
+from utilities.get_environment import RECOMMENDED_UNITS
 
 
 
@@ -30,6 +32,8 @@ from utilities.get_environment import CONFIG_PATH
 global websiteRoot #Assigned in the settings area of the script
 global conversionTable #ConversionTable
 
+def error (message) :
+    print("ERROR: " + message)
 
 def normalizeString(string, removeNewLines):
     if removeNewLines:
@@ -79,6 +83,23 @@ def isWordFloat(word):
         #traceback.print_exc()
         value = None
     return value
+
+def process_range (range_string):
+    """
+    rangeString -- should ONLY be the range string (no spaces or other words)
+    will return None if not a range
+    will return Average if range
+    """
+    possible_number = None
+    rangeIndex = range_string.find("-")
+    if rangeIndex > 0: # if a dash exists to represent a range of numbers, it would make no sense to be at the first character in the string so > 0 (or it might not even be in the string)
+        firstValue = isWordFloat(range_string[0:rangeIndex])
+        secondValue = isWordFloat(range_string[rangeIndex + 1:])
+        #print("First value, %s, and second value, %s."%(firstValue, secondValue))
+        if firstValue is not None and secondValue is not None: # If it is a range, find the average. Treat that like the complement number
+            averageObject = Calculate([firstValue, secondValue])
+            possible_number = averageObject.calculateAverage()
+    return possible_number
 
 def parseIntFromStringArray(haystackArray, intToKeep):
     intCounter = -1
@@ -248,7 +269,7 @@ def getImages(pageElement, maxImages): #Page element = DOM element that is a par
     return imageObjArray
 def formatShipName(shipName):
     """Formats a ship name if one is not provided in the scraper parameters"""
-    wordsToFilter = ["hms", "uss", "battleship", "german", "japanese", "italian", "american", "ijn", "(", "sms", "cruiser"] #in lower case. shipName will be converted to lower case for comparison
+    wordsToFilter = ["hms", "uss", "battleship", "german", "french", "japanese", "italian", "american", "ijn", "(", "sms", "cruiser"] #in lower case. shipName will be converted to lower case for comparison
 
     shipWords = getArrayOfWords(shipName, None, -1)
     if len(shipWords) > 1: #Some ship names might be more than one word. This just filters out the names that are already fine
@@ -300,7 +321,7 @@ def createDateObject(dateString):
             try:
                 dateObject = Date.strptime(dateString, "%Y")
             except:
-                print("A date object could not be created from the string: " + dateString)
+                error("A date object could not be created from the string: " + dateString)
                 dateObject = None
 
     return dateObject
@@ -340,6 +361,7 @@ def processArmament(armamentElement, armamentString, arrayOfWords, armamentTypeO
 
     # tries to get the name without the link if there are no links
     arrayOfName = getArrayOfWords(armamentString, "x", -1)
+    #print("ARMAMENT: ", arrayOfName, " FULL", armamentString)
     # Gets quantity info
     quantityBeforeConversion = parseIntFromStringArray(arrayOfWords, 0)
     quantity = conversionTable.convertUnit(quantityBeforeConversion, "word", arrayOfName[1]) # If double, triple are the first words, will multiply the quantity by the appropriate multiplier. If it's some other word (or number), it will just return the original value
@@ -351,7 +373,8 @@ def processArmament(armamentElement, armamentString, arrayOfWords, armamentTypeO
 
 
     if quantity is None:# Should only be called if an error occurs. For example: New York and torpedo tubes
-        print("Error - Source: " + arrayOfWords + "\nName: " +armamentFullName, "with quantity", quantity)
+        error_string = "Source: " + arrayOfWords + "\nName: " +armamentFullName, "with quantity", quantity
+        error(error_string)
         armament = None;
     else:
         charactersToRemove = ['(', ')']
@@ -512,25 +535,34 @@ def processStandardValue(valueString):
         Looks for certain units. If the value contains a unit will return a dictionary with the unit and value keys.
         Else, it will just return the valueString
     """
-    print(valueString)
+    # print(valueString)
+    valueString = valueString.lower(); # Make the string lowercase
+
+    returnValue = valueString # Will return the valueString if no units are found
+
     oddCharacters = ["(", ")"]
     replaceWithSpaceCharacters = ["[", "]"]
-    unitsToSearchFor = ["km", "nmi", "kn", "knots", "m", "ft", "t", "long tons", "tons", "kW", "in", "inch"] # Range units prioritized first because some ranges have speeds associated with them (we don't want to pull the speed value)
+    unitsToSearchFor = ["km", "nmi", "miles", "kn", "knots", "m", "meters", "ft", "feet", "t", "long tons", "tons", "kw", "in", "inch"] # Range units prioritized first because some ranges have speeds associated with them (we don't want to pull the speed value)
 
-    returnValue = valueString #Will return the valueString if no units are found
 
     searchString = removeOddCharacters(valueString, oddCharacters) #Removes parentheses because some units are surrounded by them
     searchString = replaceOddCharacters(searchString, replaceWithSpaceCharacters, ' ')
     for unit in unitsToSearchFor:
         wordsBeforeUnit = getWordsBeforeUnit(searchString, unit, 1) #Returns an array of words before the unit of at most size 1. Note: units must be surrounded by spaces
-        if len(wordsBeforeUnit) == 1: #If true, the string contains the unit
-            value = isWordFloat(wordsBeforeUnit[0])
+        if len(wordsBeforeUnit) == 1: # If true, the string contains the unit
+            value_word = wordsBeforeUnit[0]
+            value = isWordFloat(value_word)
             if value is None: # if it can't be processed as a float
-                value = wordsBeforeUnit[0]
+                # maybe it's a range?
+                value = process_range(value_word)
+                if value is None: # fallback, don't try to pull out a number.
+                    error("Could not process value %s from %s"%(value_word, valueString))
+                    value = value_word
             returnValue = {
                 "value": value,
                 "unit": unit
             }
+            # print(returnValue)
             break
     return returnValue
 
@@ -549,20 +581,31 @@ def calculateComplement(valueString, ship):
     if currentComplementValue == 0 or not valueStringContainsOfficersAndEnlisted: # SEE ABOVE. Function calculateCOmplement might be called multiple times if multiple configurations or complement listed as series of strings. If multiple configurations, keep the first
         wordsArray = getArrayOfWords(valueString, None, -1)
         for word in wordsArray:
-            rangeIndex = word.find("-")
-            if rangeIndex > 0: # if a dash exists to represent a range of numbers, it would make no sense to be at the first character in the string so > 0 (or it might not even be in the string)
-                firstValue = isWordInt(word[0:rangeIndex])
-                secondValue = isWordInt(word[rangeIndex + 1:])
-                if firstValue is not None and secondValue is not None: # If it is a range, find the average. Treat that like the complement number
-                    averageObject = Calculate([firstValue, secondValue])
-                    possibleNumber = averageObject.calculateAverage()
-                    currentComplementValue += possibleNumber
-            else:
+            possibleNumber = process_range(word) # maybe it's a range
+            if possibleNumber is None: # if it is not a range, maybe it's a normal number
                 possibleNumber = isWordInt(word)
                 if possibleNumber is not None:
                     currentComplementValue += possibleNumber
+            else:
+                currentComplementValue += possibleNumber
 
         ship['complement'] = currentComplementValue
+
+def convert_value_object (key, value_object):
+    """converts to the recommended unit or default unit (depending on what is configured)"""
+    # convert physical attribute to the preferred unit for the physical attribute
+    if key in RECOMMENDED_UNITS: # if a unit exists for the physical attribute (key should be the name version of the physical attribute (speed, beam...))
+        preferred_unit = RECOMMENDED_UNITS[key]
+        converted_value = conversionTable.convertUnit(value_object["value"], value_object["unit"], preferred_unit)
+        if converted_value is not None: # presumably this if statement is unnecessary. If configured correctly, the recommended unit DEFINITELY should be in the conversion dictioanry
+            value_object["value"] = converted_value
+            value_object["unit"] = preferred_unit
+        else:
+            error("Converting %s to %s failed"%(value_object["unit"], preferred_unit))
+    else:
+        error("A recommended unit could not be found for physical attribute %s"%(key))
+    return value_object
+
 
 def processArmamentElements(armamentElements, configurationToKeep):
     values = []
@@ -588,12 +631,13 @@ def processArmamentElements(armamentElements, configurationToKeep):
     for arrayValueElement in armamentElements:
         armamentFormattedString = formatString(arrayValueElement.text_content())
         arrayOfWords = getArrayOfWords(armamentFormattedString, None, -1)
-        isDate = len(arrayOfWords) < 3
+        isDate = len(arrayOfWords) <= 3
         if isDate == False and armamentElementCounter == 0: #The first "value" is not a configuration year, so it must only have one configuration
             oneConfiguration = True
         if isDate:
             configurationCounter += 1
-            if configurationCounter > configurationToKeep:
+            if configurationCounter > configurationToKeep or len(values) > 0: # Stop adding armaments if you've encountered another date past your configuration OR you've added armaments and have encountered a date
+                # if values.length> 0 - probably means was scraping first configuration (0th) and the first configuration did not have a "date header"
                 break
         elif (configurationCounter == configurationToKeep) or (oneConfiguration):
             if armamentFormattedString.find("removed") == -1: # Some times armaments are listed when they are removed. Ensures the armament wasn't removed
@@ -637,7 +681,10 @@ def categorizeElement(key, value, valueElement, ship): #Will categorize elements
 
     #Add element to category. Perform necessary operations
     if physicalAttribute:
-        ship["physicalAttributes"][key] = processStandardValue(value) #ship["physicalAttributes"] object defined at ship construction
+        valueObject = processStandardValue(value)
+        valueObject = convert_value_object(key, valueObject)
+
+        ship["physicalAttributes"][key] = valueObject #ship["physicalAttributes"] object defined at ship construction
     elif importantDate:
         date = createDateObject(value)
         if date is not None:
@@ -829,15 +876,22 @@ if runScript: #runScript is set false if one of the parameters is bad
 
         # Save to MongoDatabase
         boatDatabase.protectedInsertShip(ship)
+        #print notify
+        print("----SCRAPER COMPLETE----")
+        print("Calculating edges and relatedness...")
+
         # Generate edges
         databaseCompare = DatabaseCompare(ship)
+        #print(databaseCompare.getSerializableEdgesBetweenShips())
         databaseCompare.writeEdgesToDatabase()
         databaseCompare.closeDatabases()
+
+
         # Appends the ship to the list of ships
         ships.append(ship)
         # Increment ship counter
         shipCounter+=1
     # After all the edges have been drawn between the ships, calculate the shortest paths
     run_algos()
-
+    exit(0)
     print(json.dumps(ships))

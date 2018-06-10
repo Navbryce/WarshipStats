@@ -58,6 +58,10 @@ export class SearchService {
     this.rangeFiltersSource.next(rangeFilters); // The rangeFilters object was updated in the code above
   }
 
+  forceShipUpdate (): void { // will force the website to check for new ships by basically updating the "sortby" value with the same value (still calls all the action listeners)
+    this.sortBySource.next(this.sortBySource.value);
+  }
+
   generateRangeFilters (): Array<RangeFilter> {
     var rangeFilters = [];
     var complementFilter = new RangeFilter('complement', 'Complement', 'complement-range', 0, 5000);

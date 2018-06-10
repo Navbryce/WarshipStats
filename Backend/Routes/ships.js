@@ -3,6 +3,7 @@ const LogModule = require('../Modules/LogModule');
 const express = require('express');
 const router = express.Router();
 const childProcess = require('child_process');
+var Promise = require('promise');
 const scraperDir = process.env.SHIP_SCRAPER; // Path points to parent directory of ship scraper. Ship scraper should be set under the SHIP_SCRAPER environment variable
 
 // Generate logs
@@ -41,14 +42,16 @@ router.post('/getShips', function (req, res) {
 router.post('/scrapeShips', function (req, res) {
   console.log(req.body);
   var shipsToScrape = req.body.ships;
-  scrapeShips(shipsToScrape);
-  res.json('Scrape job submitted');
+  var promise = scrapeShips(shipsToScrape);
+  promise.then((data) => {
+    res.json(data); // data should just be "complete"
+  });
 });
 
 // Scrape ships. Parameter must be an array of objects with "url" and "configuration attributes". Will add the scraped ships to the Mongo database
 function scrapeShips (arrayOfScrapeShips) {
   var JSONships = JSON.stringify(arrayOfScrapeShips);
-  spawnScrapeProcess('py', JSONships, true);
+  return spawnScrapeProcess('py', JSONships, true); // returns promise that returns "complete" when the process completes
 }
 
 // Get filter that selects everything that contains a name. will modify an existing filter object.
@@ -105,7 +108,7 @@ function setFilter (existingFilter, filterKey, filterObject) {
   existingFilter[filterKey] = filterObject;
   return existingFilter;
 }
-function spawnScrapeProcess (commandString, JSONships, tryAgain) {
+function spawnScrapeProcess (commandString, JSONships, tryAgain) { // returns promise that will return "complete" when the process completes
   var spawnProcess = childProcess.spawn;
   var process = spawnProcess(commandString, [scraperDir + '/scraper.py', JSONships]); // Path points to scraper script
   // For debugging
@@ -119,6 +122,12 @@ function spawnScrapeProcess (commandString, JSONships, tryAgain) {
     if (tryAgain) {
       spawnScrapeProcess('python3', JSONships, false); // Some servers have python3 as the command not py
     }
+  });
+  return new Promise((resolve, reject) => {
+    process.on('exit', (exit) => {
+      console.log('EXIT CODE: ' + exit);
+      resolve('complete');
+    });
   });
 }
 

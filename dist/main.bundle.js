@@ -155,14 +155,18 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ship_creation_app_ship_creation_placeholder_directive__ = __webpack_require__("./src/app/ship-creation/app.ship-creation-placeholder.directive.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_create_validation_directive__ = __webpack_require__("./src/app/app.create-validation.directive.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__main_viewer_armament_list_app_armament_list_component__ = __webpack_require__("./src/app/main-viewer/armament-list/app.armament-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__main_viewer_ship_graph_ship_graph_component__ = __webpack_require__("./src/app/main-viewer/ship-graph/ship-graph.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__main_viewer_ship_rankings_ship_rankings_component__ = __webpack_require__("./src/app/main-viewer/ship-rankings/ship-rankings.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__utilities_load_screen_load_screen_component__ = __webpack_require__("./src/app/utilities/load-screen/load-screen.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__utilities_load_screen_load_screen_service__ = __webpack_require__("./src/app/utilities/load-screen/load-screen.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__main_viewer_ship_graph_ship_graph_component__ = __webpack_require__("./src/app/main-viewer/ship-graph/ship-graph.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__main_viewer_ship_rankings_ship_rankings_component__ = __webpack_require__("./src/app/main-viewer/ship-rankings/ship-rankings.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -193,8 +197,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__app_error_visible_directive__["a" /* ErrorVisibleDirective */],
             __WEBPACK_IMPORTED_MODULE_11__app_create_validation_directive__["a" /* CreateShipValidator */],
             __WEBPACK_IMPORTED_MODULE_12__main_viewer_armament_list_app_armament_list_component__["a" /* ArmamentListComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__main_viewer_ship_graph_ship_graph_component__["a" /* ShipGraphComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__main_viewer_ship_rankings_ship_rankings_component__["a" /* ShipRankings */]
+            __WEBPACK_IMPORTED_MODULE_13__utilities_load_screen_load_screen_component__["a" /* LoadScreen */],
+            __WEBPACK_IMPORTED_MODULE_15__main_viewer_ship_graph_ship_graph_component__["a" /* ShipGraphComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__main_viewer_ship_rankings_ship_rankings_component__["a" /* ShipRankings */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -202,8 +207,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormsModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_8__navbar_app_search_service__["a" /* SearchService */]],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__main_viewer_app_component__["a" /* AppComponent */], __WEBPACK_IMPORTED_MODULE_6__ship_creation_app_ship_creation_component__["a" /* ShipCreationComponent */], __WEBPACK_IMPORTED_MODULE_7__navbar_app_navbar_component__["a" /* NavbarComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_14__utilities_load_screen_load_screen_service__["a" /* LoadScreenService */], __WEBPACK_IMPORTED_MODULE_8__navbar_app_search_service__["a" /* SearchService */]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_13__utilities_load_screen_load_screen_component__["a" /* LoadScreen */], __WEBPACK_IMPORTED_MODULE_5__main_viewer_app_component__["a" /* AppComponent */], __WEBPACK_IMPORTED_MODULE_7__navbar_app_navbar_component__["a" /* NavbarComponent */], __WEBPACK_IMPORTED_MODULE_6__ship_creation_app_ship_creation_component__["a" /* ShipCreationComponent */]]
     })
 ], AppModule);
 
@@ -232,12 +237,13 @@ module.exports = "\r\n\r\n\r\n<div id=\"content\" class=\"not-dialogue\">\r\n   
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__navbar_app_search_service__ = __webpack_require__("./src/app/navbar/app.search-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__misc_functions_formatting_functions__ = __webpack_require__("./src/app/misc-functions/formatting-functions.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_json__ = __webpack_require__("./config.json");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__config_json__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_animations__ = __webpack_require__("./node_modules/@angular/animations/@angular/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utilities_load_screen_load_screen_service__ = __webpack_require__("./src/app/utilities/load-screen/load-screen.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__navbar_app_search_service__ = __webpack_require__("./src/app/navbar/app.search-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__misc_functions_formatting_functions__ = __webpack_require__("./src/app/misc-functions/formatting-functions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config_json__ = __webpack_require__("./config.json");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__config_json__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_animations__ = __webpack_require__("./node_modules/@angular/animations/@angular/animations.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -254,12 +260,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var config = __WEBPACK_IMPORTED_MODULE_5__config_json__;
+
+var config = __WEBPACK_IMPORTED_MODULE_6__config_json__;
 
 var AppComponent = (function () {
     // Inject searchService to share variables | and HTTP client to communicate with the backend
-    function AppComponent(changeDetector, searchService, http) {
+    function AppComponent(changeDetector, loadScreenService, searchService, http) {
         this.changeDetector = changeDetector;
+        this.loadScreenService = loadScreenService;
         this.searchService = searchService;
         this.http = http;
         this.configObject = config;
@@ -293,10 +301,11 @@ var AppComponent = (function () {
         });
     };
     AppComponent.prototype.formatString = function (value) {
-        value = Object(__WEBPACK_IMPORTED_MODULE_4__misc_functions_formatting_functions__["a" /* capitalizeFirstLetter */])(value);
+        value = Object(__WEBPACK_IMPORTED_MODULE_5__misc_functions_formatting_functions__["a" /* capitalizeFirstLetter */])(value);
         return value;
     };
     AppComponent.prototype.getShips = function (shipNeedle, sortBy, sortOrder, rangeFilters) {
+        // Start loading while getting ships
         var _this = this;
         var body = {
             shipName: "",
@@ -310,7 +319,8 @@ var AppComponent = (function () {
                 rangeIntFilters: rangeFilters
             }
         };
-        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_3__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
+        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
+        this.loadScreenService.activateLoadingWithReason("loading-ships");
         this.http.post(fullIP + '/ships/getShips', body).subscribe(function (data) {
             console.log(data);
             _this.shipsList = data;
@@ -319,6 +329,7 @@ var AppComponent = (function () {
                 _this.allShipsList = data; // Unadulterated/unfiltered list of ships.
             }
             _this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
+            _this.loadScreenService.deactivateLoadingWithReason("loading-ships");
         });
     };
     AppComponent.prototype.getKeysArray = function (object) {
@@ -416,24 +427,24 @@ AppComponent = __decorate([
         template: __webpack_require__("./src/app/main-viewer/app.component.html"),
         styles: [__webpack_require__("./src/app/main-viewer/app.component.css")],
         animations: [
-            Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["j" /* trigger */])('dialogueState', [
-                Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["g" /* state */])('inactive', Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["h" /* style */])({
+            Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["j" /* trigger */])('dialogueState', [
+                Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["g" /* state */])('inactive', Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["h" /* style */])({
                     transform: 'scale(1) translate(0, 100vh)',
                     opacity: '1',
                 })),
-                Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["g" /* state */])('active', Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["h" /* style */])({
+                Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["g" /* state */])('active', Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["h" /* style */])({
                     transform: 'scale(1)',
                     opacity: '1',
                 })),
-                Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["i" /* transition */])('inactive => active', Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["e" /* animate */])('200ms ease-in')),
-                Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["i" /* transition */])('active => inactive', Object(__WEBPACK_IMPORTED_MODULE_6__angular_animations__["e" /* animate */])('200ms ease-out'))
+                Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["i" /* transition */])('inactive => active', Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["e" /* animate */])('200ms ease-in')),
+                Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["i" /* transition */])('active => inactive', Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["e" /* animate */])('200ms ease-out'))
             ])
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* ChangeDetectorRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__navbar_app_search_service__["a" /* SearchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__navbar_app_search_service__["a" /* SearchService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* ChangeDetectorRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__utilities_load_screen_load_screen_service__["a" /* LoadScreenService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__utilities_load_screen_load_screen_service__["a" /* LoadScreenService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__navbar_app_search_service__["a" /* SearchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__navbar_app_search_service__["a" /* SearchService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _d || Object])
 ], AppComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -505,7 +516,7 @@ module.exports = "button {\r\n  background-color: #ffc107;\r\n}\r\n#ship-graph {
 /***/ "./src/app/main-viewer/ship-graph/ship-graph.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"graph-wrapper\">\r\n  <div id=\"button-panel\">\r\n    <button (click)=\"toggleRender()\" class=\"btn btn-constant\" title=\"{{getPauseText(layoutRunning)}} graph\"><i [ngClass]=\"layoutRunning ? 'fa-pause' : 'fa-play'\" class=\"fa\"></i></button>\r\n  </div>\r\n  <div id=\"ship-graph\">\r\n    <svg style=\"display: none;\"></svg>\r\n  </div>\r\n  <div id=\"info-panel\">\r\n    <div>\r\n      <img src=\"{{ship.pictures[0].src}}\">\r\n      <h5>Connection info for <b>{{ship.displayName}}:</b></h5>\r\n      <div class=\"edges\">\r\n        <div *ngFor = \"let edge of shipEdges\" class=\"edge\">\r\n          <div (click)=\"edge.display = !edge.display\" class=\"edge-header\">\r\n            <h5>{{edge.view}}</h5><span><i class=\"fa\" [ngClass]=\"edge.display ? 'fa-minus' : 'fa-plus'\"></i></span>\r\n          </div>\r\n          <div class=\"edge-info\" [hidden]=\"!edge.display\">\r\n            <p><b>Ship:</b> {{edge.view}}</p>\r\n            <p><b>Direct Connection Strength:</b> {{edge.magnitude}}</p>\r\n            <div>\r\n              <p><b>Reasons</b>:</p>\r\n              <ul>\r\n                <li *ngFor = \"let reason of edge.reasons\">{{reason}}</li>\r\n              </ul>\r\n            </div>\r\n            <button (click)=\"switchShip(shipMap[edge.viewURL])\" class=\"btn\">View Ship</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"graph-wrapper\">\r\n  <div id=\"button-panel\">\r\n    <button (click)=\"toggleRender()\" class=\"btn btn-constant\" title=\"{{getPauseText(layoutRunning)}} graph\"><i [ngClass]=\"layoutRunning ? 'fa-pause' : 'fa-play'\" class=\"fa\"></i></button>\r\n  </div>\r\n  <div id=\"ship-graph\">\r\n    <svg style=\"display: none;\"></svg>\r\n  </div>\r\n  <div id=\"info-panel\">\r\n    <div>\r\n      <img src=\"{{ship.pictures[0].src}}\">\r\n      <h5>Connection info for <b>{{ship.displayName}}:</b></h5>\r\n      <div class=\"edges\">\r\n        <div *ngFor = \"let edge of shipEdges\" id=\"{{edge.edgeId}}\" class=\"edge\">\r\n          <div (click)=\"edge.display = !edge.display\" class=\"edge-header\">\r\n            <h5>{{edge.view}}</h5><span><i class=\"fa\" [ngClass]=\"edge.display ? 'fa-minus' : 'fa-plus'\"></i></span>\r\n          </div>\r\n          <div class=\"edge-info\" [hidden]=\"!edge.display\">\r\n            <p><b>Ship:</b> {{edge.view}}</p>\r\n            <p><b>Direct Connection Strength:</b> {{edge.magnitude}}</p>\r\n            <div>\r\n              <p><b>Reasons</b>:</p>\r\n              <ul>\r\n                <li *ngFor = \"let reason of edge.reasons\">{{reason}}</li>\r\n              </ul>\r\n            </div>\r\n            <button (click)=\"switchShip(shipMap[edge.viewURL])\" class=\"btn\">View Ship</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -516,11 +527,12 @@ module.exports = "<div class=\"graph-wrapper\">\r\n  <div id=\"button-panel\">\r
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShipGraphComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__misc_functions_edges_functions_functions__ = __webpack_require__("./src/app/misc-functions/edges-functions.functions.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__misc_functions_ships_functions_functions__ = __webpack_require__("./src/app/misc-functions/ships-functions.functions.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_json__ = __webpack_require__("./config.json");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__config_json__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utilities_load_screen_load_screen_service__ = __webpack_require__("./src/app/utilities/load-screen/load-screen.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__misc_functions_edges_functions_functions__ = __webpack_require__("./src/app/misc-functions/edges-functions.functions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__misc_functions_ships_functions_functions__ = __webpack_require__("./src/app/misc-functions/ships-functions.functions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config_json__ = __webpack_require__("./config.json");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__config_json__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -536,26 +548,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var config = __WEBPACK_IMPORTED_MODULE_5__config_json__;
+
+var config = __WEBPACK_IMPORTED_MODULE_6__config_json__;
 var ShipGraphComponent = (function () {
     // Inject HTTP client
-    function ShipGraphComponent(http) {
+    function ShipGraphComponent(http, loadScreenService) {
         this.http = http;
+        this.loadScreenService = loadScreenService;
         this.switchShips = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
         this.configObject = config;
         console.log(this.configObject.mongoIP);
     }
     ShipGraphComponent.prototype.ngOnChanges = function () {
-        this.shipMap = Object(__WEBPACK_IMPORTED_MODULE_3__misc_functions_ships_functions_functions__["a" /* arrayToMap */])(this.allShips);
+        this.shipMap = Object(__WEBPACK_IMPORTED_MODULE_4__misc_functions_ships_functions_functions__["a" /* arrayToMap */])(this.allShips);
     };
     ShipGraphComponent.prototype.ngAfterContentInit = function () {
-        this.shipEdges = [];
+        this.loadScreenService.activateLoadingWithReason("loading-graph"); // activate loading
+        this.shipEdges = []; // The edges directly connected to the main ship. Edges add to this list in drawEntireGraph
         this.graphContainer = document.getElementById("ship-graph");
         this.graph = Viva.Graph.graph();
         this.drawEntireGraph();
         // Layout ensures stronger edges are, the shorter the edge
         var maximumLength = 90; // The maximum link length
-        var maximumMagnitude = 30; // The maximum possible magnitude or at least treat is as the maximum
+        var maximumMagnitude = 40; // The maximum possible magnitude or at least treat is as the maximum
         var layout = Viva.Graph.Layout.forceDirected(this.graph, {
             springLength: maximumLength,
             springCoeff: 0.0008,
@@ -582,6 +597,7 @@ var ShipGraphComponent = (function () {
         this.layoutRunning = true;
         this.renderer = renderer;
         renderer.run();
+        this.loadScreenService.deactivateLoadingWithReason("loading-graph"); // activate loading
     };
     ShipGraphComponent.prototype.addAllNodes = function () {
         for (var shipCounter = 0; shipCounter < this.allShips.length; shipCounter++) {
@@ -595,17 +611,25 @@ var ShipGraphComponent = (function () {
         }
     };
     ShipGraphComponent.prototype.addEdge = function (edge) {
-        this.graph.addLink(edge.source, edge.target, { magnitude: edge.magnitude });
+        var edgeData = { magnitude: edge.magnitude };
+        this.graph.addLink(edge.source, edge.target, edgeData);
     };
     ShipGraphComponent.prototype.addNode = function (node) {
-        this.graph.addNode(node.scrapeURL, { imageURL: node.imageURL, name: node.name });
+        // Will only add nodes that haven't already been added
+        if (this.graph.getNode(node.scrapeURL) == null || node.angularEdge != null) {
+            // angularEdge: An object references by angular that is displayed on ther right. if the node contains angular object, it should OVERRIDE the node object already graphed.
+            var nodeData = { imageURL: node.imageURL, name: node.name };
+            if (node.angularEdge != null) {
+                nodeData['angularEdge'] = node.angularEdge; // The shared edge object that angular has access to
+            }
+            this.graph.addNode(node.scrapeURL, nodeData);
+        }
     };
     ShipGraphComponent.prototype.drawEntireGraph = function () {
         var _this = this;
-        this.addAllNodes(); // Adds all the ships as nodes
         // Add edges (Edges also contain the image URL which at this point is unecessary)
         var body = {};
-        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
+        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_5__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
         this.http.post(fullIP + '/graphs/getAllEdges', body).subscribe(function (edgesRes) {
             var edges = edgesRes;
             console.log(edges);
@@ -623,12 +647,14 @@ var ShipGraphComponent = (function () {
                 };
                 // If the ship being viewed is a target or source in the edge, add it to the array
                 if (edge.source == _this.ship.scrapeURL) {
+                    targetNode['angularEdge'] = edge; // References to the edge object that this node shared with the main ship being viewed
                     edge.view = edge.targetName;
                     edge.viewURL = edge.target;
                     edge.display = false; // for the accordion/hidden effect
                     _this.shipEdges.push(edge);
                 }
                 else if (edge.target == _this.ship.scrapeURL) {
+                    sourceNode['angularEdge'] = edge; // References to the edge object that this node shared with the main ship being viewed
                     edge.view = edge.sourceName;
                     edge.viewURL = edge.source;
                     edge.display = false; // for the accordion/hidden effect
@@ -640,9 +666,17 @@ var ShipGraphComponent = (function () {
                 // Add edge
                 _this.addEdge(edge);
             }
-            Object(__WEBPACK_IMPORTED_MODULE_2__misc_functions_edges_functions_functions__["a" /* sortEdges */])(_this.shipEdges); // Sorts shipEdges by magnitude . COuld be done through binary add, but I'm not going to implement that right now
+            Object(__WEBPACK_IMPORTED_MODULE_3__misc_functions_edges_functions_functions__["a" /* sortEdges */])(_this.shipEdges); // Sorts shipEdges by magnitude . COuld be done through binary add, but I'm not going to implement that right now
             _this.shipEdges = _this.shipEdges.reverse();
         });
+        this.addAllNodes(); // Adds all the ships as nodes. Since nodes that have already been added aren't added again, this needs to be run last. Otherwise, the above edges code will be overriden when it makes nodes with angularEdge
+    };
+    // If the edge is on the main ship's edge's list, the edge info panel will be expanded
+    ShipGraphComponent.prototype.expandEdgeInfo = function (edge, scrollTo) {
+        edge.display = true;
+        if (scrollTo) {
+            document.getElementById(edge.edgeId).scrollIntoView();
+        }
     };
     ShipGraphComponent.prototype.getPauseText = function (state) {
         var returnString = null;
@@ -650,8 +684,12 @@ var ShipGraphComponent = (function () {
         return returnString;
     };
     ShipGraphComponent.prototype.getSvgGraphics = function () {
+        var _this = this;
         var graphics = Viva.Graph.View.svgGraphics();
         var component = this;
+        graphics.highlightEdge = function (ui, color) {
+            ui.attr('stroke', color);
+        };
         graphics.node(function (node) {
             // The function is called every time renderer needs a ui to display node
             var ui = Viva.Graph.svg('g');
@@ -662,12 +700,23 @@ var ShipGraphComponent = (function () {
                 .link(node.data.imageURL); // node.data holds custom object passed to graph.addNode();
             ui.append(label);
             ui.append(image);
-            ui.addEventListener("mouseover", function () {
-                component.highlightConnectedNodes(node.id, true);
-            });
-            ui.addEventListener("mouseout", function () {
-                component.highlightConnectedNodes(node.id, false);
-            });
+            if (node.id == component.ship.scrapeURL) {
+                // Do nothing right now
+            }
+            else {
+                var angularEdge_1 = node.data.angularEdge; // If not null, then this node shares an edge with the main node being viewed and the angularEdge is the object angular has access to
+                if (angularEdge_1 != null) {
+                    ui.addEventListener("click", function () {
+                        component.expandEdgeInfo(angularEdge_1, true);
+                    });
+                }
+                ui.addEventListener("mouseover", function () {
+                    component.highlightConnectedNodes(node.id, true);
+                });
+                ui.addEventListener("mouseout", function () {
+                    component.highlightConnectedNodes(node.id, false);
+                });
+            }
             return ui;
         });
         graphics.placeNode(function (nodeUI, pos) {
@@ -675,14 +724,34 @@ var ShipGraphComponent = (function () {
             var translate = 'translate(' + (pos.x - 24 / 2) + ',' + (pos.y - 24 / 2) + ')'; // 24/2 is size
             nodeUI.attr('transform', translate);
         });
+        graphics.link(function (edge) {
+            var ui = Viva.Graph.svg('path');
+            var mainNodeId;
+            if (edge.fromId == _this.ship.scrapeURL || edge.toId == _this.ship.scrapeURL) {
+                graphics.highlightEdge(ui, "red");
+            }
+            else {
+                graphics.highlightEdge(ui, "grey");
+            }
+            return ui;
+        });
+        graphics.placeLink(function (linkUI, fromPos, toPos) {
+            var data = 'M' + fromPos.x + ',' + fromPos.y + 'L' + toPos.x + ',' + toPos.y;
+            linkUI.attr('d', data);
+        });
         return graphics;
     };
     ShipGraphComponent.prototype.highlightConnectedNodes = function (nodeID, state) {
         var _this = this;
         this.graph.forEachLinkedNode(nodeID, function (node, edge) {
-            var linkUI = _this.graphics.getLinkUI(edge.id);
-            if (linkUI) {
-                linkUI.attr('stroke', state ? 'red' : 'grey');
+            if (node.id != _this.ship.scrapeURL) {
+                var linkUI = _this.graphics.getLinkUI(edge.id);
+                if (linkUI) {
+                    linkUI.attr('stroke', state ? 'red' : 'grey');
+                }
+                else {
+                    console.log('Can\'t highlight edge for ' + nodeID + ' because it\'s null');
+                }
             }
         });
     };
@@ -720,10 +789,10 @@ ShipGraphComponent = __decorate([
         template: __webpack_require__("./src/app/main-viewer/ship-graph/ship-graph.component.html"),
         styles: [__webpack_require__("./src/app/main-viewer/ship-graph/ship-graph.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__utilities_load_screen_load_screen_service__["a" /* LoadScreenService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__utilities_load_screen_load_screen_service__["a" /* LoadScreenService */]) === "function" && _b || Object])
 ], ShipGraphComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=ship-graph.component.js.map
 
 /***/ }),
@@ -1123,6 +1192,9 @@ var SearchService = (function () {
         }
         this.rangeFiltersSource.next(rangeFilters); // The rangeFilters object was updated in the code above
     };
+    SearchService.prototype.forceShipUpdate = function () {
+        this.sortBySource.next(this.sortBySource.value);
+    };
     SearchService.prototype.generateRangeFilters = function () {
         var rangeFilters = [];
         var complementFilter = new RangeFilter('complement', 'Complement', 'complement-range', 0, 5000);
@@ -1232,11 +1304,12 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShipCreationComponent; });
 /* unused harmony export Ship */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__navbar_app_search_service__ = __webpack_require__("./src/app/navbar/app.search-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_json__ = __webpack_require__("./config.json");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__config_json__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utilities_load_screen_load_screen_service__ = __webpack_require__("./src/app/utilities/load-screen/load-screen.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__navbar_app_search_service__ = __webpack_require__("./src/app/navbar/app.search-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_json__ = __webpack_require__("./config.json");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__config_json__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__misc_functions_get_ip_function__ = __webpack_require__("./src/app/misc-functions/get-ip.function.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1251,10 +1324,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var config = __WEBPACK_IMPORTED_MODULE_3__config_json__;
+
+var config = __WEBPACK_IMPORTED_MODULE_4__config_json__;
 var ShipCreationComponent = (function () {
     // Inject searchService to share variables and HTTP client to communicate with the backend
-    function ShipCreationComponent(searchService, http) {
+    function ShipCreationComponent(loadScreen, searchService, http) {
+        this.loadScreen = loadScreen;
         this.searchService = searchService;
         this.http = http;
         this.configObject = config;
@@ -1284,14 +1359,18 @@ var ShipCreationComponent = (function () {
         }
     };
     ShipCreationComponent.prototype.submitShipsToAdd = function () {
+        var _this = this;
+        this.loadScreen.activateLoadingWithReason("scraping ship");
         var body = {
             ships: this.shipsToAdd
         };
-        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_4__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
+        var fullIP = Object(__WEBPACK_IMPORTED_MODULE_5__misc_functions_get_ip_function__["a" /* getIP */])(this.configObject);
         this.http.post(fullIP + '/ships/scrapeShips', body).subscribe(function (data) {
-            console.log(data);
+            console.log("Scrape End Status:" + data);
+            _this.searchService.forceShipUpdate();
+            _this.loadScreen.deactivateLoadingWithReason("scraping ship");
+            _this.closeCreation();
         });
-        this.closeCreation();
     };
     ShipCreationComponent.prototype.getKeysArray = function (object) {
         return Object.keys(object);
@@ -1308,7 +1387,7 @@ ShipCreationComponent = __decorate([
         template: __webpack_require__("./src/app/ship-creation/app.ship-creation.html"),
         styles: [__webpack_require__("./src/app/ship-creation/ship-creation-styles.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__navbar_app_search_service__["a" /* SearchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__navbar_app_search_service__["a" /* SearchService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__utilities_load_screen_load_screen_service__["a" /* LoadScreenService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__utilities_load_screen_load_screen_service__["a" /* LoadScreenService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__navbar_app_search_service__["a" /* SearchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__navbar_app_search_service__["a" /* SearchService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */]) === "function" && _d || Object])
 ], ShipCreationComponent);
 
 var Ship = (function () {
@@ -1319,7 +1398,7 @@ var Ship = (function () {
     return Ship;
 }());
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=app.ship-creation.component.js.map
 
 /***/ }),
@@ -1335,6 +1414,146 @@ module.exports = "<div *ngIf = \"addShipState\">\r\n  <div class=\"selected-dial
 /***/ (function(module, exports) {
 
 module.exports = ".ng-invalid:not(form) {\r\n  border-right: 5px solid #a94442;\r\n}\r\n"
+
+/***/ }),
+
+/***/ "./src/app/utilities/load-screen/load-screen.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ".load-active {\r\n  display: block !important;\r\n}\r\n.load-content {\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  height: 100%;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  width: 100%;\r\n}\r\n.load-wrapper {\r\n  background-color: rgba(100, 100, 100, .5);\r\n  display: none;\r\n  height: 100vh;\r\n  width: 100vw;\r\n}\r\n"
+
+/***/ }),
+
+/***/ "./src/app/utilities/load-screen/load-screen.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"load-wrapper\" class=\"load-wrapper\">\r\n  <div class=\"load-content\">\r\n    <div>\r\n      <img class=\"load-icon fa-spin\" src=\"/Pictures/Icons/load.png\">\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/utilities/load-screen/load-screen.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoadScreen; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__load_screen_service__ = __webpack_require__("./src/app/utilities/load-screen/load-screen.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var LoadScreen = (function () {
+    function LoadScreen(loadScreenService) {
+        var _this = this;
+        this.loadScreenService = loadScreenService;
+        loadScreenService.activateObservable.subscribe(function (reason) {
+            _this.activateLoadingWithReason(reason);
+        });
+        loadScreenService.deactivateObservable.subscribe(function (reason) {
+            _this.deactivateLoadingWithReason(reason);
+        });
+    }
+    LoadScreen.prototype.ngOnInit = function () {
+        this.loading = false;
+        this.loadingReasons = {};
+    };
+    // General Functions
+    // Get loading reasons in the form of an array
+    LoadScreen.prototype.getLoadingReasons = function () {
+        return Object.keys(this.loadingReasons);
+    };
+    // Will completely reset loading. Will essentially deactive loading no matter how many reasons there are
+    LoadScreen.prototype.resetLoading = function () {
+        this.loadingReasons = {};
+        this.deactivateLoading();
+    };
+    // General Functions End
+    // Load Screen Toggle Functions
+    LoadScreen.prototype.activateLoadingWithReason = function (reason) {
+        if (reason.length > 0) {
+            if (this.loadingReasons[reason] == null) {
+                this.loadingReasons[reason] = true; // Add it to the "reasons" HashMap
+                this.activateLoading();
+            }
+        }
+    };
+    LoadScreen.prototype.deactivateLoadingWithReason = function (reason) {
+        if (reason.length > 0) {
+            if (this.loadingReasons[reason] != null) {
+                delete this.loadingReasons[reason]; // Remove it from the "reasons" HashMap
+            }
+            if (Object.keys(this.loadingReasons).length == 0) {
+                this.deactivateLoading();
+            }
+        }
+    };
+    // Load Screen Toggle Functions End
+    // Private Functions Begin
+    // Toggle functions Begin
+    LoadScreen.prototype.activateLoading = function () {
+        if (!this.loading) {
+            this.loading = true;
+            var loadWrapper = document.getElementById("load-wrapper");
+            loadWrapper.classList.add("load-active");
+            document.getElementsByTagName("body")[0].style.overflow = "hidden";
+        }
+    };
+    LoadScreen.prototype.deactivateLoading = function () {
+        if (this.loading) {
+            this.loading = false;
+            var loadWrapper = document.getElementById("load-wrapper");
+            loadWrapper.classList.remove("load-active");
+            document.getElementsByTagName("body")[0].style.overflow = "auto";
+        }
+    };
+    return LoadScreen;
+}());
+LoadScreen = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'load-screen',
+        template: __webpack_require__("./src/app/utilities/load-screen/load-screen.component.html"),
+        styles: [__webpack_require__("./src/app/utilities/load-screen/load-screen.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__load_screen_service__["a" /* LoadScreenService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__load_screen_service__["a" /* LoadScreenService */]) === "function" && _a || Object])
+], LoadScreen);
+
+var _a;
+//# sourceMappingURL=load-screen.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/utilities/load-screen/load-screen.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoadScreenService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__ = __webpack_require__("./node_modules/rxjs/_esm5/BehaviorSubject.js");
+
+var LoadScreenService = (function () {
+    function LoadScreenService() {
+        this.activateLoadingReasonSource = new __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]("");
+        this.deactivateLoadingReasonSource = new __WEBPACK_IMPORTED_MODULE_0_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]("");
+        // observables for other classes
+        this.activateObservable = this.activateLoadingReasonSource.asObservable();
+        this.deactivateObservable = this.deactivateLoadingReasonSource.asObservable();
+    }
+    LoadScreenService.prototype.activateLoadingWithReason = function (reason) {
+        this.activateLoadingReasonSource.next(reason);
+    };
+    LoadScreenService.prototype.deactivateLoadingWithReason = function (reason) {
+        this.deactivateLoadingReasonSource.next(reason);
+    };
+    return LoadScreenService;
+}());
+
+//# sourceMappingURL=load-screen.service.js.map
 
 /***/ }),
 

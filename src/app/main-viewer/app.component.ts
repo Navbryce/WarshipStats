@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 // import * as boats from '../../Data/boats.json';
 import { HttpClient } from '@angular/common/http';
+import { LoadScreenService } from '../utilities/load-screen/load-screen.service';
 import {SearchService} from '../navbar/app.search-service'
 import {RangeFilter} from '../navbar/app.search-service';
 import {getIP} from '../misc-functions/get-ip.function';
@@ -54,7 +55,7 @@ export class AppComponent implements OnInit{
   dialogueState = "inactive";
 
   // Inject searchService to share variables | and HTTP client to communicate with the backend
-  constructor(private changeDetector: ChangeDetectorRef, private searchService: SearchService, private http: HttpClient) {
+  constructor(private changeDetector: ChangeDetectorRef, private loadScreenService: LoadScreenService, private searchService: SearchService, private http: HttpClient) {
     this.rangeFilters = searchService.initialRangeFilters;
   }
 
@@ -83,6 +84,8 @@ export class AppComponent implements OnInit{
   }
 
   getShips(shipNeedle, sortBy, sortOrder, rangeFilters): void {
+    // Start loading while getting ships
+
     var body = {
       shipName: "",
       numberOfShips: 500,
@@ -97,6 +100,7 @@ export class AppComponent implements OnInit{
     }
     var fullIP = getIP(this.configObject);
 
+    this.loadScreenService.activateLoadingWithReason("loading-ships");
     this.http.post(fullIP + '/ships/getShips', body).subscribe(data => {
       console.log(data);
       this.shipsList = <Array<any>> data;
@@ -105,6 +109,8 @@ export class AppComponent implements OnInit{
         this.allShipsList = <Array<any>> data; // Unadulterated/unfiltered list of ships.
       }
       this.changeDetector.detectChanges(); // Updates variables because sometimes the filter changes are made through jquery
+      this.loadScreenService.deactivateLoadingWithReason("loading-ships");
+
     });
   }
 
