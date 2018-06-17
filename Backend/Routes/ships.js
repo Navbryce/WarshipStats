@@ -1,4 +1,5 @@
 var Ships = require('../Modules/ShipModule');
+const configModule = require('../Modules/ConfigModule');
 const LogModule = require('../Modules/LogModule');
 const express = require('express');
 const router = express.Router();
@@ -6,8 +7,11 @@ const childProcess = require('child_process');
 var Promise = require('promise');
 const scraperDir = process.env.SHIP_SCRAPER; // Path points to parent directory of ship scraper. Ship scraper should be set under the SHIP_SCRAPER environment variable
 
+// Get config
+const config = configModule.getConfig();
+
 // Generate logs
-var shipCreationLog = new LogModule.LogWriter('ships-route/', 'ship-creation-log');
+var shipCreationLog = new LogModule.LogWriter('ships-route/', 'ship-creation-log', config.keepLogs); // false -- don't keep existing log contents
 
 // Allows post requests from outside domains. Disable when not developing angular-end of application
 router.use(function (req, res, next) {
@@ -116,17 +120,21 @@ function spawnScrapeProcess (commandString, JSONships, tryAgain) { // returns pr
     console.log('Python Scraper Output: ' + data);
     shipCreationLog.log('Python Scraper Out: ' + data);
   });
-  process.on('error', function (err) { // normal try/catches don't work
-    console.error(err);
-    shipCreationLog.log('Python Scraper Out Error: ' + err);
-    if (tryAgain) {
-      spawnScrapeProcess('python3', JSONships, false); // Some servers have python3 as the command not py
-    }
-  });
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => { // a nested promise on the on error. pretty ugly but it should work
     process.on('exit', (exit) => {
       console.log('EXIT CODE: ' + exit);
       resolve('complete');
+    });
+    process.on('error', function (err) { // normal try/catches don't work
+      console.error(err);
+      shipCreationLog.log('Python Scraper Out Error: ' + err);
+      if (tryAgain) { // prevents an infinite loop
+        spawnScrapeProcess('python3', JSONships, false).then((backupResult) => {
+          resolve(backupResult); // if another scrape process is started, resolve the original promise with this promise's result
+        }); // Some servers have python3 as the command not py
+      } else {
+        resolve(err); // an error occured and it couldn't scrape succesfully
+      }
     });
   });
 }

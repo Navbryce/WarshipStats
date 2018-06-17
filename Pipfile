@@ -4,13 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pymongo = "*"
-lxml = "*"
-cssselect = "*"
-unidecode = "*"
-datetime = "*"
-requests = "*"
-
 
 [dev-packages]
 

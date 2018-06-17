@@ -16,17 +16,21 @@ import {LoadScreenService} from './utilities/load-screen/load-screen.service'
 import {ShipGraphComponent} from './main-viewer/ship-graph/ship-graph.component'
 import {ShipRankings} from './main-viewer/ship-rankings/ship-rankings.component'
 
+// Pipes
+import { FormatCasesPipe } from './pipes/string-formatting.pipes';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShipCreationComponent,
+    ArmamentListComponent,
+    CreateShipValidator,
+    ErrorVisibleDirective,
+    FormatCasesPipe,
+    LoadScreen,
     NavbarComponent,
     PlaceHolderDirective,
-    ErrorVisibleDirective,
-    CreateShipValidator,
-    ArmamentListComponent,
-    LoadScreen,
+    ShipCreationComponent,
     ShipGraphComponent,
     ShipRankings
   ],

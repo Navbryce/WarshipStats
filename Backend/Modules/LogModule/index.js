@@ -2,7 +2,7 @@ var fs = require('fs');
 var util = require('util');
 var moment = require('moment');
 
-function LogWriter (pathInsideLogFolder, logName) { // Assumes the SHIP_APP path has been set.pathInsideLogFolder should include a back slash / at the end
+function LogWriter (pathInsideLogFolder, logName, keepExistingContents) { // Assumes the SHIP_APP path has been set.pathInsideLogFolder should include a back slash / at the end
   this.deleteLog = () => {
     writeStream.close();
     fs.unlink(this.logPath, (error) => {
@@ -24,6 +24,7 @@ function LogWriter (pathInsideLogFolder, logName) { // Assumes the SHIP_APP path
   function getArrayOfStrings (string) { // Will return an array of strings. A single string is broken into elements of an array if therer is a space
     return string.split(/\r\n|\r|\n/g); // Doesn't always work for python for some reason
   }
+
   // Constructor
   const appPath = process.env.SHIP_APP; // Path points to parent directory of ship app. Ship scraper should be set under the SHIP_APP environment variable
   this.logPath = appPath + '/Logs/' + pathInsideLogFolder + logName + '.log';
@@ -37,7 +38,7 @@ function LogWriter (pathInsideLogFolder, logName) { // Assumes the SHIP_APP path
 
   var writeStream = fs.createWriteStream(this.logPath, {flags: 'w'});
 
-  if (existingLogContents != null) {
+  if (existingLogContents != null && keepExistingContents) { // if there is preexisting contents in the log and the user wants to keep it
     this.log(existingLogContents);
     this.log('ALL DATA BEFORE THIS POINT WAS FROM A PRE-EXISTING LOG FILE');
   }

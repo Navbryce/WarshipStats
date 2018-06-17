@@ -19,7 +19,7 @@
           <img  src="{{armament.pictures[0].src}}">
       </div>
       <div>
-          <p><b>Armament:</b> {{formatString(armament.fullName)}}</p>
+          <p><b>Armament:</b> {{armament.fullName|formatCases}}</p>
           <p><b>Number of Armament(s):</b> {{armament.quantity}}</p>
           <p><b>Width of Barrel:</b> {{armament.size}} {{armament.unit}}</p>
       </div>

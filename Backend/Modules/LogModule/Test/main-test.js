@@ -3,7 +3,7 @@ var fs = require('fs');
 
 describe ('Log Tests', function () { // done is used to tell mocha that the test is comp[lete]
   it ('Make sure a log is created', () => {
-    var log = new LogModule.LogWriter('', 'test');
+    var log = new LogModule.LogWriter('', 'test', false);
     log.log('test');
     if (fs.existsSync(log.logPath)) {
       log.deleteLog();
