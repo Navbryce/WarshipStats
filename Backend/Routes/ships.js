@@ -126,7 +126,9 @@ function spawnScrapeProcess (commandString, JSONships, tryAgain) { // returns pr
       resolve('complete');
     });
     process.on('error', function (err) { // normal try/catches don't work
-      console.error(err);
+      if (!tryAgain) { // only print if not trying again
+        console.error(err);
+      }
       shipCreationLog.log('Python Scraper Out Error: ' + err);
       if (tryAgain) { // prevents an infinite loop
         spawnScrapeProcess('python3', JSONships, false).then((backupResult) => {

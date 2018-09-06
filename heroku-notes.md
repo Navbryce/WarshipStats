@@ -1,6 +1,15 @@
 Heroku
-- Have to update pip file in the ABoat directory not the ABoatScraping directory
-- Update config file
+- Create a *requirements.txt* file in the ABoat directory not the ABoatScraping directory **make sure it has the right dependencies**
+- Update config file (*shipSettings.json* for scraper and *config.json* for angular)
 - Have to REBUILD angular project AFTER the config file has been updated because the config file at the time of the build is built into the project
+- Install Heroku repo: `> heroku plugins:install heroku-repo`
+- Reset repo: `heroku repo:reset`
+- Delete the `.git`
+- `git init` (reinitialize)
+- `heroku git:remote -a heroku`
+- Delete logs from .gitignore
+- Create `Logs` directory and `ships-route` subdirectory
+- Create `ship-creation-log.log` inside `ships-route`
+- Add, commit, and push changes
 - Make sure log files exist
 - Check the file system using "heroku run bash" to make sure the heroku git repository matches the heroku-combined branch
