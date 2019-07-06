@@ -1,7 +1,6 @@
 {
-   "backendIP": "localhost",
-   "dbName": "ABoat",
-   "keepLogs": false,
-   "mongoIP": "localhost",
-   "port": "4000"
- }
+  "backendIP": "",
+  "dbName": "ships",
+  "mongoIP": "ships-read:read@ds135619.mlab.com:35619",
+  "port": "4000"
+}
