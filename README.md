@@ -1,4 +1,6 @@
-# ABoat
+# WarshipStats 
+Serves as the frontend for the [warship scraper](https://github.com/Navbryce/ABoatScraping).
+Coded in 2017 (and updated in 2022 to use Netlify)
 
 # Set Up
 1. Configure `SHIP_APP` environment variable to point to the frontend directory

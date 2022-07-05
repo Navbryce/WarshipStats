@@ -11,7 +11,9 @@
                     <h4>Add Ships to Database</h4>
                     <div *ngFor="let key of getKeysArray(shipsToAdd)" [creation-input-verify] = "shipsToAdd[key].url" >
                       <!-- For some hellish reason, if you make name an array, angular doesn't treat it like an array. SO if one url input was filled it, it validated both as completed --->
+                      <label for="{{key}}URL" style="margin-right: 5px">Wikipedia URL: </label>
                       <input  id="{{key}}URL" [(ngModel)]="shipsToAdd[key].url" name="url{{key}}"  placeHolder="Wikipedia URL"  #shipURL="ngModel" createShipValidator required>
+                      <label for="configuration{{key}}" style="margin-right: 5px">Configuration # to use: </label>
                       <input [(ngModel)]="shipsToAdd[key].configuration" name="configuration{{key}}" placeholder="0" type="number" min="0" required>
                       <div *ngIf = "!shipURL.valid && !shipURL.pristine" id="{{key}}URL-error" class="alert alert-danger" >
                         <p *ngIf = "shipURL.errors.required">A URL is required </p>

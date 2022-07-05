@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
+@Injectable()
 export class LoadScreenService {
   private activateLoadingReasonSource = new BehaviorSubject<string>("");
   private deactivateLoadingReasonSource = new BehaviorSubject<string>("");

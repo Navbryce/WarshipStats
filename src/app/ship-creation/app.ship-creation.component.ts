@@ -2,10 +2,7 @@ import { Component, Input, ViewChildren, QueryList, ElementRef } from '@angular/
 import { LoadScreenService } from '../utilities/load-screen/load-screen.service';
 import {SearchService} from '../navbar/app.search-service'
 import { HttpClient } from '@angular/common/http';
-import * as configData from '../../../config.json';
-import {getIP} from '../misc-functions/get-ip.function';
-
-const config = (<any>configData);
+import {environment} from 'environments/environment';
 
 @Component({
   selector: 'app-ship-creation',
@@ -14,7 +11,6 @@ const config = (<any>configData);
 
 })
 export class ShipCreationComponent {
-  configObject = <any>config;
   @ViewChildren('shipURL') shipURLS:QueryList<ElementRef>;
   urlsArray: Array<ElementRef>;
   searchEntry: String; // Never DIRECTLY MODIFY THIS VARIABLE
@@ -56,7 +52,7 @@ export class ShipCreationComponent {
     var body = {
       ships: this.shipsToAdd
     };
-    var fullIP = getIP(this.configObject);
+    var fullIP = environment.apiURL;
     this.http.post(fullIP + '/ships/scrapeShips', body).subscribe(data => {
       console.log("Scrape End Status:" + data);
       this.searchService.forceShipUpdate();

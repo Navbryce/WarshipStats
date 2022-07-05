@@ -4,9 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { LoadScreenService } from '../utilities/load-screen/load-screen.service';
 import {SearchService} from '../navbar/app.search-service'
 import {RangeFilter} from '../navbar/app.search-service';
-import {getIP} from '../misc-functions/get-ip.function';
-import * as configData from '../../../config.json';
-const config = (<any>configData);
 
 import {
   trigger,
@@ -15,6 +12,7 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import {environment} from 'environments/environment';
 
 // const ships: Array<any> = (<any>boats);
 declare var initializeProductGallery: any;
@@ -41,7 +39,6 @@ declare var initializeProductGallery: any;
         ]
 })
 export class AppComponent implements OnInit{
-  configObject = <any>config;
   title = 'Warship Website';
   shipsList = []; // Initially set in ngOnInit getShips function. Has filters applied to it
   allShipsList = []; // All the ships
@@ -92,7 +89,7 @@ export class AppComponent implements OnInit{
         rangeIntFilters: rangeFilters
       }
     }
-    var fullIP = getIP(this.configObject);
+    var fullIP = environment.apiURL;
 
     this.loadScreenService.activateLoadingWithReason("loading-ships");
     this.http.post(fullIP + '/ships/getShips', body).subscribe(data => {
