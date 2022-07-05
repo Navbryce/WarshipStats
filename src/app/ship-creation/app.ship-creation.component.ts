@@ -3,7 +3,7 @@ import { LoadScreenService } from '../utilities/load-screen/load-screen.service'
 import {SearchService} from '../navbar/app.search-service'
 import { HttpClient } from '@angular/common/http';
 import * as configData from '../../../config.json';
-import {getIP} from '../misc-functions/get-ip.function';
+import {environment} from 'environments/environment';
 
 const config = (<any>configData);
 
@@ -56,7 +56,7 @@ export class ShipCreationComponent {
     var body = {
       ships: this.shipsToAdd
     };
-    var fullIP = getIP(this.configObject);
+    var fullIP = environment.apiURL;
     this.http.post(fullIP + '/ships/scrapeShips', body).subscribe(data => {
       console.log("Scrape End Status:" + data);
       this.searchService.forceShipUpdate();
