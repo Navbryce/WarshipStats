@@ -1,7 +1,4 @@
 {
    "backendIP": "localhost",
-   "dbName": "ABoat",
-   "keepLogs": false,
-   "mongoIP": "localhost",
    "port": "4000"
  }
