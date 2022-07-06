@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiURL: "https://warship-scraper-be.herokuapp.com"
+  apiURL: "http://localhost:8080"
 };
