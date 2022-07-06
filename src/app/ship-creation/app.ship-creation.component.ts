@@ -2,10 +2,7 @@ import { Component, Input, ViewChildren, QueryList, ElementRef } from '@angular/
 import { LoadScreenService } from '../utilities/load-screen/load-screen.service';
 import {SearchService} from '../navbar/app.search-service'
 import { HttpClient } from '@angular/common/http';
-import * as configData from '../../../config.json';
 import {environment} from 'environments/environment';
-
-const config = (<any>configData);
 
 @Component({
   selector: 'app-ship-creation',
@@ -14,7 +11,6 @@ const config = (<any>configData);
 
 })
 export class ShipCreationComponent {
-  configObject = <any>config;
   @ViewChildren('shipURL') shipURLS:QueryList<ElementRef>;
   urlsArray: Array<ElementRef>;
   searchEntry: String; // Never DIRECTLY MODIFY THIS VARIABLE

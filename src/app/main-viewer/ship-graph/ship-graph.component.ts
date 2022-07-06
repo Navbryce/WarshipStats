@@ -3,10 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoadScreenService } from '../../utilities/load-screen/load-screen.service';
 import {sortEdges} from '../../misc-functions/edges-functions.functions';
 import { arrayToMap } from '../../misc-functions/ships-functions.functions';
-import * as configData from '../../../../config.json';
 import {environment} from 'environments/environment';
-const config = (<any>configData);
-
 
 
 declare var Viva: any;
@@ -27,8 +24,6 @@ export class ShipGraphComponent {
   shipEdges: Array<any>; // Stores an array of all the edges where the ship being viewed is a target or source
   shipMap: any;
   renderer: any;
-  configObject = <any> config;
-
 
   // Inject HTTP client
   constructor(private http: HttpClient, private loadScreenService: LoadScreenService) {

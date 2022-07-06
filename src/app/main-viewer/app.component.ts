@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { LoadScreenService } from '../utilities/load-screen/load-screen.service';
 import {SearchService} from '../navbar/app.search-service'
 import {RangeFilter} from '../navbar/app.search-service';
-import * as configData from '../../../config.json';
-const config = (<any>configData);
 
 import {
   trigger,
@@ -41,7 +39,6 @@ declare var initializeProductGallery: any;
         ]
 })
 export class AppComponent implements OnInit{
-  configObject = <any>config;
   title = 'Warship Website';
   shipsList = []; // Initially set in ngOnInit getShips function. Has filters applied to it
   allShipsList = []; // All the ships
